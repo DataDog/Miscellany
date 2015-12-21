@@ -1,0 +1,24 @@
+init_config:
+    primary_api_key: key_value
+    primary_app_key: key_value
+
+metrics:
+  - metric: system.cpu.idle{*}by{host}
+  - metric: system.load.1{*}by{host}
+  - metric: system.cpu.iowait{*}by{host}
+  - metric: system.mem.used{*}by{host}
+  - metric: system.net.bytes_rcvd{*}by{host}
+  - metric: system.net.bytes_sent{*}by{host}
+
+instances:
+  - account_name: account-a
+    api_key: key_value
+    app_key: key_value
+    
+  - account_name: account-b
+    api_key: key_value
+    app_key: key_value
+    
+  - account_name: account-c
+    api_key: key_value
+    app_key: key_value
