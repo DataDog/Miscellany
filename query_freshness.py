@@ -1,11 +1,11 @@
-##########################################################################
-#Use a cronjob to submit regularily the Metric  						 #
-#																		 #
-#crontab -e 															 #
-#(vim) */1 * * * * cd <path_to_the_script> ; python query_freshness.py   #
-#(vim) !wq																 #
-#crontab -l 															 #
-##########################################################################
+#########################################################################
+#Use a cronjob to submit regularily the Metric  						 
+#																		 
+#crontab -e 															 
+#(vim) */1 * * * * cd <path_to_the_script> ; python query_freshness.py   
+#(vim) !wq																 
+#crontab -l 															 
+#########################################################################
 
 from datadog import initialize, api
 import time
