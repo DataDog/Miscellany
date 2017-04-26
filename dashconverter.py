@@ -29,7 +29,7 @@ class converter(object):
 	graphs = []
 	board = []
 	board_type = ""
-	widgets =[]
+	widgets = []
 	template_variables = []
 	title = args.title if args.title else "Converted Widget"
 	@classmethod
