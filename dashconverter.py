@@ -15,7 +15,7 @@ args = parser.parse_args()
 
 options = {
     'api_key': args.api_key if args.api_key else os.environ.get('DD_API_KEY'),
-	'app_key': args.app_key if args.app_key else os.environ.get('DD_APP_KEY'),
+    'app_key': args.app_key if args.app_key else os.environ.get('DD_APP_KEY'),
 }
 
 if not all(options.values()):
