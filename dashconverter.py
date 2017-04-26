@@ -1,21 +1,37 @@
 from datadog import initialize, api
+from argparse import ArgumentParser
 import pdb
 import sys
+import os
+
+
+parser = ArgumentParser(description='Convert from screenboard to timeboard and vice versa. Set api-key and app-key via flags or env vars e.g. DD_API_KEY, DD_APP_KEY')
+parser.add_argument('dashboard_id', help='The dashboard ID')
+parser.add_argument('--api-key', help='Datadog API key', required=False)
+parser.add_argument('--app-key', help='Datadog APP key', required=False)
+parser.add_argument('--title', help='Title for the converted dashboard', required=False)
+
+args = parser.parse_args()
 
 options = {
-			'api_key': '***',
-			'app_key': '****'
-		}
+    'api_key': args.api_key if args.api_key else os.environ.get('DD_API_KEY'),
+	'app_key': args.app_key if args.app_key else os.environ.get('DD_APP_KEY'),
+}
+
+if not all(options.values()):
+	parser.print_help()
+	sys.exit(1)
+
 initialize(**options)
 
 class converter(object):
-	
+
 	graphs = []
 	board = []
 	board_type = ""
 	widgets =[]
 	template_variables = []
-	title = "Converted Widget"
+	title = args.title if args.title else "Converted Widget"
 	@classmethod
 	def getdash(cls, dash):
 		# Get the dashboard or the screenboard associated with the ID in the arg
@@ -34,7 +50,7 @@ class converter(object):
 				cls.template_variables = cls.board['template_variables']
 			except:
 				pass
-		else: 
+		else:
 			cls.board_type = "timeboard"
 			return cls.board_type
 
@@ -45,8 +61,8 @@ class converter(object):
 
 	@classmethod
 	def widget_transform(cls):
-		# Transform the widget list so they are properly formatted 
-		# Take off the Screenboard widgets not available in the Timeboards 
+		# Transform the widget list so they are properly formatted
+		# Take off the Screenboard widgets not available in the Timeboards
 		# Returns the list of the different widgets
 
 		if cls.board_type == "screenboard":
@@ -56,7 +72,7 @@ class converter(object):
 			## Filter the illegal widgets
 			forbidden_widget = ['free_text','alert_value','check_status','event_timeline','event_stream','image','note','alert_graph','iframe']
 			tmp = [screenwidgets[x]['type'] not in forbidden_widget for x in range(len(screenwidgets))]
-			
+
 			## Add the valid widgets
 			for x in range(len(tmp)):
 				if tmp[x]:
@@ -73,13 +89,13 @@ class converter(object):
 		# Takes the widgets as input and output the widgets properly formatted.
 		# Appens an additionnal attribute for the hostmap.
 		# no output, just tranforms the cls.graphs
-		
+
 		for i in range(len(widgets)):
-			
+
 			if 'conditional_formats' not in widgets[i]['tile_def']['requests'][0]:
 				widgets[i]['tile_def']['requests'][0]['conditional_formats'] = []
 			#pdb.set_trace()
-			
+
 			if widgets[i]['type'] == 'hostmap':
 
 				cls.graphs.append({
@@ -90,7 +106,7 @@ class converter(object):
 					},
 					"title":  widgets[i]['tile_def']['requests'][0]['q']
 				})
-			else:			
+			else:
 				cls.graphs.append({
 					"definition":{
 					"events": [],
@@ -99,7 +115,7 @@ class converter(object):
 					},
 					"title": widgets[i]['tile_def']['requests'][0]['q']
 				})
-		
+
 		## Convert the widgets
 	@classmethod
 	def convert_t2s(cls, graphs):
@@ -131,8 +147,8 @@ class converter(object):
 
 			if graphs[i]['definition']['viz'] not in ['hostmap',"distribution","heatmap"]:
 				cls.widgets.append({
-					'height': height, 
-					'width': width, 
+					'height': height,
+					'width': width,
 					'timeframe': '4h',
 					'x' : pos_x,
 					'y' : tmp_y,
@@ -148,8 +164,8 @@ class converter(object):
 				graphs[i]['definition']['requests'][0]['type'] = 'line'
 				graphs[i]['definition']['requests'][0]['aggregator'] = 'avg'
 				cls.widgets.append({
-					'height': height, 
-					'width': width, 
+					'height': height,
+					'width': width,
 					'timeframe': '4h',
 					'x' : pos_x,
 					'y' : tmp_y,
@@ -163,15 +179,15 @@ class converter(object):
 
 			elif graphs[i]['definition']['viz'] == "hostmap":
 				cls.widgets.append({
-					'height': height, 
-					'width': width, 
+					'height': height,
+					'width': width,
 					'timeframe': '4h',
 					'x' : pos_x,
 					'y' : tmp_y,
 					"tile_def":graphs[i]['definition'],
 					"title": graphs[i]['definition']['requests'][0]['q'],
 					"type":"hostmap"
-				})			
+				})
 
 	@classmethod
 	def main(cls, dash):
@@ -189,7 +205,7 @@ class converter(object):
 		else:
 			graphs = cls.widget_transform()
 			cls.convert_t2s(graphs)
-			output = api.Screenboard.create(board_title=cls.title, description='description', widgets=cls.widgets, template_variables=cls.template_variables)			
+			output = api.Screenboard.create(board_title=cls.title, description='description', widgets=cls.widgets, template_variables=cls.template_variables)
 			print "http://app.datadoghq.com/screen/" + str(output['id'])
 
-converter().main(sys.argv[1])
+converter().main(args.dashboard_id)
