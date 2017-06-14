@@ -29,8 +29,6 @@ def get_host_tag_counts(hosts, tag):
         tags = set()
         for src, src_tags in host["tags_by_source"].iteritems():
             [tags.add(t) for t in filter(tag_pattern.match, src_tags)]
-        # Filter out all tags that do not match tag search pattern
-        # tags = filter(tag_pattern.match, tags)
         for t in tags:
             if t not in host_count_by_tag:
                 host_count_by_tag[t] = 0
