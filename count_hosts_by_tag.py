@@ -53,8 +53,8 @@ if __name__ == "__main__":
         errors.append("You must supply your Datadog API key by either passing a -k/--apikey argument or defining \
                        a DATADOG_API_KEY environment variable.")
     if not app_key:
-        errors.append("You must supply your Datadog app key by either passing a -a/--appkey argument or defining \
-                       a DATADOG_API_KEY environment variable.")
+        errors.append("You must supply your Datadog application key by either passing a -a/--appkey argument or defining \
+                       a DATADOG_APP_KEY environment variable.")
     if errors:
         for error in errors:
             print error
