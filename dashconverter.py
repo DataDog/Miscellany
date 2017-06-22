@@ -1,5 +1,4 @@
 from datadog import initialize, api
-import pdb
 import sys
 
 options = {
@@ -44,9 +43,10 @@ class converter(object):
 			cls.board_type = "screenboard"
 	@classmethod
 	def delete_dash(cls, dash):
+		print " \n If you have any warning above about outdated widget types, you should not delete the original dashboard. Follow the described procedure to properly convert the dashboard. \n"
 		delete = raw_input("Do you want to delete the dash (Y/n): ")
 		if delete =="Y" and cls.board_type == "screenboard":
-			#pdb.set_trace()
+
 			print "deleting screenboard: " + cls.board['board_title']
 			api.Screenboard.delete(dash)
 				
@@ -99,7 +99,7 @@ class converter(object):
 					widgets[i]['tile_def']['requests'][0]['conditional_formats'] = []
 			else: 
 				widgets[i]['tile_def'] = 'outdated'
-				print "One of the widgets is outdated and won't be ported.\n To solve this, just click on edit the dashboard, open a widget, hit done and save the dashboard.\n Then run the script again."
+				print "One of the widgets' type is outdated and won't be ported.\n To solve this, just click on edit the dashboard, open a widget, hit done and save the dashboard.\n Then run the script again."
 				print widgets[i]
 
 			if widgets[i]['type'] == 'hostmap':
@@ -110,7 +110,7 @@ class converter(object):
 					"requests":widgets[i]['tile_def']['requests'],
 					"viz":widgets[i]['type'],
 					},
-					"title":  widgets[i]['tile_def']['requests'][0]['q']
+					"title":  widgets[i]['title_text']
 				})
 			elif widgets[i]['tile_def'] == 'outdated':
 				pass
@@ -121,9 +121,9 @@ class converter(object):
 					"requests":widgets[i]['tile_def']['requests'],
 					"viz":widgets[i]['type'],
 					},
-					"title": widgets[i]['tile_def']['requests'][0]['q']
+					"title": widgets[i]['title_text']
 				})
-			#pdb.set_trace()
+
 		## Convert the widgets
 	@classmethod
 	def convert_t2s(cls, graphs):
@@ -150,10 +150,12 @@ class converter(object):
 				pos_y = pos_y + height + margin
 				pos_x = width + margin
 
-			if 'conditional_formats' not in graphs[i]['definition']['requests'][0]:
-				graphs[i]['definition']['requests'][0]['conditional_formats'] = []
-	
-			if graphs[i]['definition']['viz'] not in ['hostmap',"distribution","heatmap"]:
+			if 'viz' not in graphs[i]['definition']:
+				print "One of the widgets' type is outdated and won't be ported.\n To solve this, just click on edit the dashboard, open a widget, hit done and save the dashboard.\n Then run the script again."
+				graphs[i]['definition']['viz'] = "timeseries" # Defaults to timeseries to avoid having an empty screenboard.
+				print graphs[i] # If the vizualisation is a QVW, the user will have to open the original dashboard, Open and Save the faulty widget.
+
+			if graphs[i]['definition']['viz'] not in ["hostmap","distribution","heatmap"]:
 				cls.widgets.append({
 					'height': height, 
 					'width': width, 
@@ -198,7 +200,7 @@ class converter(object):
 					"title_text": graphs[i]['title'],
 					"title": True,
 					"type":"hostmap"
-				})	
+				})
 
 	@classmethod
 	def main(cls, dash):
