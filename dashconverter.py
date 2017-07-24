@@ -89,8 +89,9 @@ class converter(object):
 	def convert_s2t(cls, widgets):
 		# Function to convert Screenboard to Timeboard.
 		# Takes the widgets as input and output the widgets properly formatted.
-		# Appens an additionnal attribute for the hostmap.
+		# Appends an additional attribute for the hostmap.
 		# no output, just tranforms the cls.graphs
+		# If "show a title" is unchecked, use the query as the new widget title.
 
 		for i in range(len(widgets)):
 
@@ -100,10 +101,11 @@ class converter(object):
 			else:
 				widgets[i]['tile_def'] = 'outdated'
 				print "One of the widgets' type is outdated and won't be ported.\n To solve this, just click on edit the dashboard, open a widget, hit done and save the dashboard.\n Then run the script again."
-				print widgets[i]
+
+			if not (('title_text' in widgets[i]) and (isinstance(widgets[i]['title_text'],str))):
+				widgets[i]['title_text'] = widgets[i]['tile_def']['requests'][0]['q']
 
 			if widgets[i]['type'] == 'hostmap':
-
 				cls.graphs.append({
 					"definition":{
 					"style": widgets[i]['tile_def']['style'],
@@ -115,13 +117,14 @@ class converter(object):
 			elif widgets[i]['tile_def'] == 'outdated':
 				pass
 			else:
+
 				cls.graphs.append({
 					"definition":{
 					"events": [],
 					"requests":widgets[i]['tile_def']['requests'],
 					"viz":widgets[i]['type'],
 					},
-					"title": widgets[i]['title_text'] if ('title_text' in widgets[i]) and (isinstance(widgets[i]['title_text'],str)) else widgets[i]['tile_def']['requests'][0]['q']
+					"title": widgets[i]['title_text']
 				})
 
 		## Convert the widgets
