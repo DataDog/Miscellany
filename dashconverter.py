@@ -8,7 +8,7 @@ options = {
 initialize(**options)
 
 class converter(object):
-	
+
 	graphs = []
 	board = []
 	board_type = ""
@@ -33,7 +33,7 @@ class converter(object):
 				cls.template_variables = cls.board['template_variables']
 			except:
 				pass
-		else: 
+		else:
 			cls.board_type = "timeboard"
 			return cls.board_type
 
@@ -49,7 +49,7 @@ class converter(object):
 
 			print "deleting screenboard: " + cls.board['board_title']
 			api.Screenboard.delete(dash)
-				
+
 		elif delete == "Y" and cls.board_type == "timeboard":
 			print "deleting timeboard " + cls.board['dash']['title']
 			api.Timeboard.delete(dash)
@@ -63,8 +63,8 @@ class converter(object):
 
 	@classmethod
 	def widget_transform(cls):
-		# Transform the widget list so they are properly formatted 
-		# Take off the Screenboard widgets not available in the Timeboards 
+		# Transform the widget list so they are properly formatted
+		# Take off the Screenboard widgets not available in the Timeboards
 		# Returns the list of the different widgets
 
 		if cls.board_type == "screenboard":
@@ -74,7 +74,7 @@ class converter(object):
 			## Filter the illegal widgets
 			forbidden_widget = ['free_text','alert_value','check_status','event_timeline','event_stream','image','note','alert_graph','iframe']
 			tmp = [screenwidgets[x]['type'] not in forbidden_widget for x in range(len(screenwidgets))]
-			
+
 			## Add the valid widgets
 			for x in range(len(tmp)):
 				if tmp[x]:
@@ -89,21 +89,23 @@ class converter(object):
 	def convert_s2t(cls, widgets):
 		# Function to convert Screenboard to Timeboard.
 		# Takes the widgets as input and output the widgets properly formatted.
-		# Appens an additionnal attribute for the hostmap.
+		# Appends an additional attribute for the hostmap.
 		# no output, just tranforms the cls.graphs
-		
+		# If "show a title" is unchecked, use the query as the new widget title.
+
 		for i in range(len(widgets)):
 
 			if 'tile_def' in widgets[i]:
 				if 'conditional_formats' not in widgets[i]['tile_def']['requests'][0]:
 					widgets[i]['tile_def']['requests'][0]['conditional_formats'] = []
-			else: 
+			else:
 				widgets[i]['tile_def'] = 'outdated'
 				print "One of the widgets' type is outdated and won't be ported.\n To solve this, just click on edit the dashboard, open a widget, hit done and save the dashboard.\n Then run the script again."
-				print widgets[i]
+
+			if not (('title_text' in widgets[i]) and (isinstance(widgets[i]['title_text'],str))):
+				widgets[i]['title_text'] = widgets[i]['tile_def']['requests'][0]['q']
 
 			if widgets[i]['type'] == 'hostmap':
-
 				cls.graphs.append({
 					"definition":{
 					"style": widgets[i]['tile_def']['style'],
@@ -114,7 +116,8 @@ class converter(object):
 				})
 			elif widgets[i]['tile_def'] == 'outdated':
 				pass
-			else:			
+			else:
+
 				cls.graphs.append({
 					"definition":{
 					"events": [],
@@ -157,8 +160,8 @@ class converter(object):
 
 			if graphs[i]['definition']['viz'] not in ["hostmap","distribution","heatmap"]:
 				cls.widgets.append({
-					'height': height, 
-					'width': width, 
+					'height': height,
+					'width': width,
 					'timeframe': '4h',
 					'x' : pos_x,
 					'y' : tmp_y,
@@ -175,8 +178,8 @@ class converter(object):
 				graphs[i]['definition']['requests'][0]['type'] = 'line'
 				graphs[i]['definition']['requests'][0]['aggregator'] = 'avg'
 				cls.widgets.append({
-					'height': height, 
-					'width': width, 
+					'height': height,
+					'width': width,
 					'timeframe': '4h',
 					'x' : pos_x,
 					'y' : tmp_y,
@@ -191,8 +194,8 @@ class converter(object):
 
 			elif graphs[i]['definition']['viz'] == "hostmap":
 				cls.widgets.append({
-					'height': height, 
-					'width': width, 
+					'height': height,
+					'width': width,
 					'timeframe': '4h',
 					'x' : pos_x,
 					'y' : tmp_y,
@@ -219,8 +222,8 @@ class converter(object):
 		else:
 			graphs = cls.widget_transform()
 			cls.convert_t2s(graphs)
-			output = api.Screenboard.create(board_title=cls.title, description='description', widgets=cls.widgets, template_variables=cls.template_variables)			
-			cls.delete_dash(dash)			
+			output = api.Screenboard.create(board_title=cls.title, description='description', widgets=cls.widgets, template_variables=cls.template_variables)
+			cls.delete_dash(dash)
 			print "Your new Screenboard is available at: http://app.datadoghq.com/screen/" + str(output['id'])
 
 converter().main(sys.argv[1])
