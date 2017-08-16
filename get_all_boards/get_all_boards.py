@@ -35,13 +35,13 @@ if __name__ == "__main__":
     if not api_key:
         errors.append("""
                       You must supply your Datadog API key by either passing a
-                      -k/--apikey argument or defining a DATADOG_API_KEY or
-                      DD_API_KEY environment variable.""")
+                      -k/--apikey argument or defining a DD_API_KEY environment
+                      variable.""")
     if not app_key:
         errors.append("""
                       You must supply your Datadog application key by either
-                      passing a -a/--appkey argument or defining a
-                      DATADOG_APP_KEY or DD_APP_KEY environment variable.""")
+                      passing a -a/--appkey argument or defining a DD_APP_KEY
+                      environment variable.""")
     if errors:
         for error in errors:
             print textwrap.dedent(error)
