@@ -1,0 +1,23 @@
+init_config:
+
+instances:
+        # If the time between checks is greater than the time specified by this
+        # key, the agent will be considered "down" during this time.
+    -   downtime_threshold: 60
+        # Uptime data older than the time specified by the rentention key will
+        # be discarded.
+        # One year in seconds: 60 * 60 * 24 * 365.25 = 31557600
+        retention: 31557600
+        uptime_log_directory: '/var/log/datadog'
+        metrics:
+            - name: 'uptime.hour'
+              timespan: 3600
+            # One day in seconds:
+            - name: 'uptime.day'
+              timespan: 86400
+            # One week in seconds:
+            - name: 'uptime.week'
+              timespan: 604800
+            # One month in seconds: 60 * 60 * 24 * 30 = 2592000
+            - name: 'uptime.month'
+              timespan: 2592000

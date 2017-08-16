@@ -5,7 +5,7 @@ import json
 import yaml
 
 def load_config():
-    f = open(str(sys.path[0] + '/process-metrics.yaml'))
+    f = open(str(sys.path[0] + '/cross-org-metric-broker.yaml'))
     config = yaml.safe_load(f)
     f.close()
 
