@@ -9,6 +9,7 @@ future.
 
 # Run Code
 - Setup a python virtualenv: `virtualenv empty_dash`
+- Activate the virtualenv: `source empty_dash/bin/activate`
 - Run `pip install -r requirements.txt`
 - Run `python empty_dash.py -k <your-api-key> -a <your-app-key>`
   - Alternatively set `DATADOG_API_KEY` or `DD_API_KEY` and `DATADOG_APP_KEY` or
