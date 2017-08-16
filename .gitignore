@@ -3,6 +3,10 @@
 ### virtualenv
 empty_dash/empty_dash
 
+## s3_permissions
+### virtualenv
+s3_permissions/s3_permissions
+
 # Taken from https://github.com/github/gitignore/blob/master/Python.gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/
