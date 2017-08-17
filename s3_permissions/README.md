@@ -7,6 +7,17 @@ write is given to all users, and `2` when read and write are given to all users.
 This script is just for POC and demostration purposes and should not be used for
 production. It may be the basis for production monitoring scripts of your own.
 
+This script could stand to be enhanced with resources such as:
+- http://docs.aws.amazon.com/awssupport/latest/APIReference/API_DescribeTrustedAdvisorChecks.html
+- http://boto3.readthedocs.io/en/latest/reference/services/support.html
+
+These would give additional datapoints that could be alerted on.
+
+Metrics in datadog based on this code look like:
+![metrics](metrics.png)
+
+And the code output will show which buckets are exposed:
+![output](output.png)
 
 # Run Code
 - Setup a python virtualenv: `virtualenv s3_permissions`
