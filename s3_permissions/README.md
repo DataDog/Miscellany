@@ -1,5 +1,12 @@
 # S3 Permissions
-TODO!
+This script will check S3 bucket ACL permissions for read/write access for
+`AllUser` and report a metric to Datadog that uses a custom value to alert on.
+This script uses `0` when no read or write ACLs are in place, `1` when read or
+write is given to all users, and `2` when read and write are given to all users.
+
+This script is just for POC and demostration purposes and should not be used for
+production. It may be the basis for production monitoring scripts of your own.
+
 
 # Run Code
 - Setup a python virtualenv: `virtualenv s3_permissions`
