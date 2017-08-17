@@ -4,6 +4,11 @@ This script will check S3 bucket ACL permissions for read/write access for
 This script uses `0` when no read or write ACLs are in place, `1` when read or
 write is given to all users, and `2` when read and write are given to all users.
 
+Bucket ACLs are only one vector in which you can expose your bucket, so I would
+suggest using this only as an example of how you can combine the AWS APIs and
+the Datadog API to send custom metrics. I highly suggest consulting AWS as to
+attack/exposure vectors and how to query those via a programmatic means.
+
 This script is just for POC and demostration purposes and should not be used for
 production. It may be the basis for production monitoring scripts of your own.
 
