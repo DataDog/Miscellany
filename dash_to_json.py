@@ -69,6 +69,7 @@ def dash_to_json(dash, board_type, filename):
             "width": dash.get('width', 1024),
             "template_variables": dash.get('template_variables', [])
         }
+    print "Writing {} to {}".format(board_type, filename)
     with open(filename, 'wt') as out:
         json.dump(dash_dict, out, sort_keys=True, indent=4, separators=(',', ': '))
 
@@ -83,6 +84,8 @@ def create_dash(dash_dict, board_type):
                                    template_variables=template_variables, read_only=read_only)
         if res.get('errors', None):
             print res
+        else:
+            print "Successfully created timeboard"
     elif board_type == "screenboard":
         title = dash_dict.get('board_title', 'New Screenboard')
         description = dash_dict.get('description', '')
@@ -93,6 +96,8 @@ def create_dash(dash_dict, board_type):
                                      widgets=widgets, template_variables=template_variables, width=width)
         if res.get('errors', None):
             print res
+        else:
+            print "Successfully created screenboard"
     else:
         print_error("Board type undefined")
 
