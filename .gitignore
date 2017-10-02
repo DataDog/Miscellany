@@ -7,6 +7,10 @@ empty_dash/empty_dash
 ### virtualenv
 s3_permissions/s3_permissions
 
+## get_all_boards
+### virtualenv
+get_all_boards/get_all_boards
+
 # Taken from https://github.com/github/gitignore/blob/master/Python.gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -107,4 +111,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# osx
 .DS_Store
