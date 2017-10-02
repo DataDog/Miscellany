@@ -1,4 +1,12 @@
 # Project specific ignores
+## empty_dash
+### virtualenv
+empty_dash/empty_dash
+
+## s3_permissions
+### virtualenv
+s3_permissions/s3_permissions
+
 ## get_all_boards
 ### virtualenv
 get_all_boards/get_all_boards
@@ -103,3 +111,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# osx
+.DS_Store
