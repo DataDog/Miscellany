@@ -1,20 +1,38 @@
 from datadog import initialize, api
+from argparse import ArgumentParser
+
 import sys
+import os
+
+
+parser = ArgumentParser(description='Convert from screenboard to timeboard and vice versa. Set api-key and app-key via flags or env vars e.g. DD_API_KEY, DD_APP_KEY')
+parser.add_argument('dashboard_id', help='The dashboard ID')
+parser.add_argument('--api-key', help='Datadog API key', required=False)
+parser.add_argument('--app-key', help='Datadog APP key', required=False)
+parser.add_argument('--title', help='Title for the converted dashboard', required=False)
+
+args = parser.parse_args()
 
 options = {
-	'api_key': '****',
-	'app_key': '****'
+    'api_key': args.api_key if args.api_key else os.environ.get('DD_API_KEY'),
+    'app_key': args.app_key if args.app_key else os.environ.get('DD_APP_KEY'),
 }
+
+if not all(options.values()):
+	parser.print_help()
+	sys.exit(1)
+
 initialize(**options)
+
 
 class converter(object):
 
 	graphs = []
 	board = []
 	board_type = ""
-	widgets =[]
+	widgets = []
 	template_variables = []
-	title = "Converted Widget"
+	title = args.title if args.title else "Converted Widget"
 	@classmethod
 	def getdash(cls, dash):
 		# Get the dashboard or the screenboard associated with the ID in the arg
@@ -115,7 +133,7 @@ class converter(object):
 					"title":  widgets[i]['title_text']
 				})
 			elif widgets[i]['tile_def'] == 'outdated':
-				pass
+    				pass
 			else:
 
 				cls.graphs.append({
@@ -226,4 +244,5 @@ class converter(object):
 			cls.delete_dash(dash)
 			print "Your new Screenboard is available at: http://app.datadoghq.com/screen/" + str(output['id'])
 
-converter().main(sys.argv[1])
+
+converter().main(args.dashboard_id)
