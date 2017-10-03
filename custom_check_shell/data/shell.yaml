@@ -2,9 +2,9 @@ init_config:
 
 instances:
   # Memory that is free
-  - command: "free | grep Mem | awk '{print $3/$2 * 100.0}'"
+  - command: "rand"
     Defaults: dd-agent !requiretty
-    metric_name: example.mem.free.pct
+    metric_name: example.shellcheck.rand
     metric_type: gauge
     tags:
-      - custom:freemem
+      - custom:rand

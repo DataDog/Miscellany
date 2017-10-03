@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
     # Re-check to see if able to load the DD API Key
     if [[ $APIKEY != "" && ! -z $APIKEY ]]; then
       sudo apt-get update
-      sudo apt-get install apt-transport-https
+      sudo apt-get install apt-transport-https rand
       sudo sh -c "echo 'deb https://apt.datadoghq.com/ stable main' > /etc/apt/sources.list.d/datadog.list"
       sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C7A7DA52
       sudo apt-get update
