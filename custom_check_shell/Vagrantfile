@@ -1,0 +1,48 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# This script will bring up a vagrant with an unmounted volume
+# And test that the datadog agent and report metrics on this volume
+# You will need to set DD_API_KEY when you run vagrant, i.e.
+# `DD_API_KEY=<YOURAPIKEYHERE> vagrant up`
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/precise64"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+  end
+  # runs as vagrant user for this specific VM image
+  # /home/vagrant/data
+  config.vm.provision "shell", inline: "mkdir -p ~/data"
+  config.vm.provision :file, source: './data', destination: '~/data'
+  config.vm.provision "shell", inline: <<-SHELL
+    echo "Setting up Datadog..."
+    # Get the API Key from the host environment
+    APIKEY=#{ENV['DD_API_KEY']}
+    # NOTE: Change you values below if you want something different
+    TAGS='name:custom-check-shell-test'
+    HOSTNAME='custom-check-shell-test-kelner'
+    # Re-check to see if able to load the DD API Key
+    if [[ $APIKEY != "" && ! -z $APIKEY ]]; then
+      sudo apt-get update
+      sudo apt-get install -y apt-transport-https rand
+      sudo sh -c "echo 'deb https://apt.datadoghq.com/ stable main' > /etc/apt/sources.list.d/datadog.list"
+      sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C7A7DA52
+      sudo apt-get update
+      sudo apt-get install -y datadog-agent
+      # Hacky but it works...
+      sudo sh -c "sed 's/api_key:.*/api_key: $APIKEY/' /etc/dd-agent/datadog.conf.example > /etc/dd-agent/datadog.conf"
+      sudo sh -c "sed 's/# tags:.*/tags: $TAGS/' /etc/dd-agent/datadog.conf > /etc/dd-agent/tmp.conf"
+      sudo sh -c "sed 's/# hostname:.*/hostname: $HOSTNAME/' /etc/dd-agent/tmp.conf > /etc/dd-agent/temp.conf"
+      sudo sh -c "mv /etc/dd-agent/temp.conf /etc/dd-agent/datadog.conf"
+      echo "Adding Custom Check to dd-agent"
+      sudo sh -c "cp /home/vagrant/data/shell.yaml /etc/dd-agent/conf.d/shell.yaml"
+      sudo sh -c "cp /home/vagrant/data/shell.py /etc/dd-agent/checks.d/shell.py"
+      sudo /etc/init.d/datadog-agent start
+    else
+      echo "No DD_API_KEY set!! Cannot setup Datadog. Please see the README.md."
+    fi
+    echo "------------------------------------------"
+    echo "Provisioning Complete!"
+  SHELL
+end
