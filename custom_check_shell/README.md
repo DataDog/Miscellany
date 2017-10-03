@@ -11,6 +11,7 @@ article](https://help.datadoghq.com/hc/en-us/articles/115000722623-How-can-I-gat
 
 # Metrics
 Custom metrics will show up in Datadog as `shell.example.shellcheck.rand`
+![rand metric dd](rand_metric.png)
 
 # Looking in
 - `vagrant ssh`
