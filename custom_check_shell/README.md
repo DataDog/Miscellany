@@ -10,7 +10,7 @@ article](https://help.datadoghq.com/hc/en-us/articles/115000722623-How-can-I-gat
 `DD_API_KEY=<YOURAPIKEYHERE> vagrant up`
 
 # Metrics
-Custom metrics will show up in Datadog as `example.shellcheck.rand`
+Custom metrics will show up in Datadog as `shell.example.shellcheck.rand`
 
 # Looking in
 - `vagrant ssh`
