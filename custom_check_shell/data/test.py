@@ -1,3 +1,4 @@
+# This is used for testing in the vagrant box -- not for use with the custom check
 import tempfile
 import subprocess
 stdout_f=tempfile.TemporaryFile()
