@@ -14,8 +14,8 @@ parser.add_argument('--title', help='Title for the converted dashboard', require
 args = parser.parse_args()
 
 options = {
-    'api_key': args.api_key if args.api_key else os.environ.get('DD_API_KEY'),
-    'app_key': args.app_key if args.app_key else os.environ.get('DD_APP_KEY'),
+	'api_key': args.api_key if args.api_key else os.environ.get('DD_API_KEY'),
+	'app_key': args.app_key if args.app_key else os.environ.get('DD_APP_KEY'),
 }
 
 if not all(options.values()):
@@ -32,7 +32,7 @@ class converter(object):
 	board_type = ""
 	widgets = []
 	template_variables = []
-	title = args.title if args.title else "Converted Widget"
+	title = args.title or ""
 	@classmethod
 	def getdash(cls, dash):
 		# Get the dashboard or the screenboard associated with the ID in the arg
@@ -40,6 +40,9 @@ class converter(object):
 
 		try:
 			cls.board = api.Timeboard.get(dash)
+			cls.template_variables = cls.board['dash']['template_variables']
+			if not cls.title:
+				cls.title = "Screenboard (converted from " + cls.board['dash']['title'] + ")"
 		except:
 			pass
 		print cls.board_type
@@ -49,6 +52,8 @@ class converter(object):
 			try:
 				cls.board = api.Screenboard.get(dash)
 				cls.template_variables = cls.board['template_variables']
+				if not cls.title:
+					cls.title = "Timeboard (converted from " + cls.board['board_title'] + ")"
 			except:
 				pass
 		else:
@@ -133,7 +138,7 @@ class converter(object):
 					"title":  widgets[i]['title_text']
 				})
 			elif widgets[i]['tile_def'] == 'outdated':
-    				pass
+					pass
 			else:
 
 				cls.graphs.append({
