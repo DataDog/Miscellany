@@ -70,11 +70,11 @@ Mini_Bits = Metrics_Getter(options['api_key'], options['app_key'])
 #Create exception for if JSON file is not properly generated
 jsonResults = Mini_Bits.create_metrics_query()
 
-#Create logic for if there is no JSON file to use, do not proceed
+#if there is no JSON file to use, do not proceed
 resultsDict = Mini_Bits.convert_JSON_To_Dict(jsonResults)
 
-#Instantiate file name or ask for user input
+#Instantiate file name or ask for user input as to where file location is
 myFile = 'APIcsv.csv'
 
-#Create logic for if there is no file name (do not proceed to this function, and if there is no dictionary to use)
+#if there is no file name, do not proceed to this function, and also if there is no dictionary to use!
 Mini_Bits.convert_Dict_To_CSV(resultsDict, myFile)
