@@ -20,6 +20,7 @@ if __name__=="__main__":
 
     monitor_list = []
 
+    # Examples: ID, query, name, tags, in that order :)
     nginx_monitor = Monitor(5026334,
                             "avg(last_1m):avg:nginx.net.request_per_s{*} > 75",
                             "NGINX Web Server is not happy!",
