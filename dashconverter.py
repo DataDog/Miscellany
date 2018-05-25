@@ -4,6 +4,11 @@ from argparse import ArgumentParser
 import sys
 import os
 
+# python2 compatability
+try:
+    input = raw_input
+except NameError:
+    pass
 
 parser = ArgumentParser(
     description='Convert from screenboard to timeboard and vice versa. Set api-key and app-key via flags or env vars e.g. DD_API_KEY, DD_APP_KEY')
