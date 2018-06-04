@@ -13,7 +13,7 @@ app_key = '<APPLICATION KEY>'
 
 options = {
     'api_key': api_key,
-    'applicationc_key': app_key
+    'application_key': app_key
 }
 
 datadog.initialize(**options)
