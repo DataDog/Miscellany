@@ -12,5 +12,5 @@ options = {
 initialize(**options)
 
 sb = api.Screenboard.get(123456)
-file = open("sb.json","w") 
+file = open("sb.json", "w")
 file.write(json.dumps(sb, indent=4, sort_keys=True))

@@ -26,15 +26,15 @@ widgets = [
         "tile_def": {
             "autoscale": True,
             "requests": [
-                    {
-                        "q": "avg:aws.ec2.network_out{host:i-4988043403}",
-                        "style": {
-                            "palette": "warm",
-                            "type": "solid",
-                            "width": "normal"
-                        },
-                        "type": "line"
-                    }
+                {
+                    "q": "avg:aws.ec2.network_out{host:i-4988043403}",
+                    "style": {
+                        "palette": "warm",
+                        "type": "solid",
+                        "width": "normal"
+                    },
+                    "type": "line"
+                }
             ],
             "viz": "timeseries"
         },
