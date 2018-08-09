@@ -7,11 +7,9 @@ These scripts and tools live in this repo
 | Name                                     | Language                          | Function                          |
 | -----------------------------------------|-----------------------------------|-----------------------------------|  
 | [count_hosts_by_tag](./count_hosts_by_tag.py) | Python | This script will return the number of hosts with a given tag applied. If the tag is only the `key` of a `key:value` pair, all related values will be counted. |
-| [weatherExample](./custom_agent_checks/weatherExample.py) | Python | Example script that submits the temperature and wind speed from the Wunderground API to Datadog as metrics | 
-| [sql_redacted](./custom_agent_checks/sql_redacted.py) | Python | Submits a metric based on a SQL query | 
-| [import_screenboard](./Dashboards/import_screenboard.py) | Python | Creates a new screenboard from json | 
-| [export_screenboard](./Dashboards/export_screenboard.py) | Python | Exports a single screenboard to a json file | 
-| [base_scripts](./base_scripts) | Python | A collection of generic scripts that can be used as a starting point for creating your own custom scripts | 
+| [mute_monitors_with_tags](./monitors/mute_monitors_with_tags.py) | Python | This script mutes all monitors that are tagged with a set of monitor tags |
+| [linux_odfs_API](./linux_odfs_API.sh) | Bash | Script to capture linux open file descriptor metrics |
+| [query_freshness](./query_freshness.py) | Python | Report the "freshness" (how long ago a metric was submitted) of a metric. See this [KB](https://help.datadoghq.com/hc/en-us/articles/115001360786-How-to-track-the-freshness-of-a-metric-) for more info |
 | [custom_check_shell](./custom_check_shell) | Python/Bash | Spins up a VM using vagrant that installs the Datadog agent on it with a simple custom check using shell | 
 | [empty_dash](./empty_dash) | Python | Creates an empty dashboard for test purposes | 
 | [get_all_boards](./get_all_boards) | Python | Gets all boards for a given organization and print out their json. Useful for malformed boards created via the API | 
@@ -27,9 +25,14 @@ These scripts and tools live in this repo
 | [hosts_with_aws_without_agent](./hosts_with_aws_without_agent.py) | Python | List of ec2 instances without the datadog-agent installed | 
 | [merge_screenboards](./merge_screenboards.py) | Python | Takes two screenboards and combines them into one | 
 | [migrate_dashboard](./migrate_dashboard.py) | Python | Migrate a screenboard from one account to another | 
+| [import_screenboard](./Dashboards/import_screenboard.py) | Python | Creates a new screenboard from json | 
+| [export_screenboard](./Dashboards/export_screenboard.py) | Python | Exports a single screenboard to a json file | 
+| [base_scripts](./base_scripts) | Python | A collection of generic scripts that can be used as a starting point for creating your own custom scripts | 
 | [remove_lingering_aws_host_tags](./remove_lingering_aws_host_tags.py) | Python | This is a tool for removing AWS host-level tags from your infrastructure in Datadog. It is intended for users who have removed their EC2 instances from their AWS integration and if they no longer want to see AWS tags associated with the hosts that still run datadog-agents. | 
 | [remove_single_tag_tmp](./remove_single_tag_tmp.py) | Python | Removes a single tag from a host | 
 | [update_multiple_monitors_example](./update_multiple_monitors_example.py) | Python | example of how to update multiple monitors at once | 
+| [weatherExample](./custom_agent_checks/weatherExample.py) | Python | Example script that submits the temperature and wind speed from the Wunderground API to Datadog as metrics | 
+| [sql_redacted](./custom_agent_checks/sql_redacted.py) | Python | Submits a metric based on a SQL query | 
 
 
 ## Additional tools
