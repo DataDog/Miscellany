@@ -1,0 +1,10 @@
+init_config:
+
+instances:
+  # Memory that is free
+  - command: "rand"
+    Defaults: dd-agent !requiretty
+    metric_name: example.shellcheck.rand
+    metric_type: gauge
+    tags:
+      - custom:rand
