@@ -2,6 +2,24 @@
 import re
 import requests
 
+# example usage:
+#$ python count_hosts_by_tag.py -k <api_key> -a <app_key> windows
+#Querying hosts with tag "windows"...
+#2 	 windows
+#
+#$ python count_hosts_by_tag.py -k <api_key> -a <app_key> availability-zone
+#Querying hosts with tag "availability-zone"...
+#340 	 availability-zone:us-east-1a
+#203 	 availability-zone:us-east-1c
+#142 	 availability-zone:us-east-1d
+#30 	 availability-zone:us-east-1b
+#14 	 availability-zone:us-east-1e
+#14 	 availability-zone:eastus
+#13 	 availability-zone:europe-west1-b
+#12 	 availability-zone:us-west-2b
+#9 	 availability-zone:us-central1-b
+#9 	 availability-zone:us-central1-a
+#7 	 availability-zone:us-west-2c
 
 def get_all_hosts(api_key, app_key):
     params = {
