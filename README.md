@@ -7,6 +7,7 @@ These scripts and tools live in this repo
 
 | Name                                     | Language                          | Function                          |
 | -----------------------------------------|-----------------------------------|-----------------------------------|  
+| [count_hosts_by_tag](./count_hosts_by_tag.py) | Python | This script will return the number of hosts with a given tag applied. If the tag is only the `key` of a `key:value` pair, all related values will be counted. |
 | [weatherExample](./custom_agent_checks/weatherExample.py) | Python | Example script that submits the temperature and wind speed from the Wunderground API to Datadog as metrics | 
 | [sql_redacted](./custom_agent_checks/sql_redacted.py) | Python | Submits a metric based on a SQL query | 
 | [import_screenboard](./Dashboards/import_screenboard.py) | Python | Creates a new screenboard from json | 
