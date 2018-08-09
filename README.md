@@ -2,7 +2,6 @@
 Intended to be a repository for miscellaneous scripts and tools from Datadog to be shared with the public.
 
 ## Scripts & Tools
-
 These scripts and tools live in this repo
 
 | Name                                     | Language                          | Function                          |
@@ -34,7 +33,6 @@ These scripts and tools live in this repo
 
 
 ## Additional tools
-
 These are some additional tools and scripts written by Datadog.
 
 | Name                                     | Language                          | Function                          |
@@ -42,7 +40,12 @@ These are some additional tools and scripts written by Datadog.
 | [csv_exporter](https://github.com/DataDog/csv_exporter) | Python | Exports a given metric from Datadog as a csv | 
 
 ## Contributing
-
 When adding a new script/tool, be sure to do the following:
 - Open a PR for review
 - Add a link and description to one of the tables above
+
+## Getting started
+For any Python code, you'll want to run:
+```
+pip install datadog
+```
