@@ -9,7 +9,7 @@ resource "datadog_monitor" "metric_monitor" {
   name = "${var.name}"
   type = "metric alert"
   message = "${var.message}"
-  query = "avg(last_5m):max:system.disk.in_use{${var.tags}} by {host}"
+  query = "${var.query}"
   thresholds {
     critical          = "${var.critical-threshold}"
     warning           = "${var.warning-threshold}"
@@ -31,8 +31,8 @@ variable "name" {
 variable "message" {
   description = "The message for the monitor"
 }
-variable "tags" {
-  description = "The tags to narrow the query"
+variable "query" {
+  description = "The query to use for the metric monitor"
 }
 variable "critical-threshold" {
   description = "The critical threshold to trip the monitor into alert status"
