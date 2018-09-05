@@ -5,7 +5,7 @@ import sys
 import textwrap
 from datadog import initialize
 from datadog import api
-
+import json
 
 def createMonitor():
     print "Creating a test monitor"
@@ -30,7 +30,7 @@ def createMonitor():
         tags=tags,
         options=options
     )
-    print result
+    print json.dumps(result, indent=4, sort_keys=True)
     return result['id']
 
 if __name__ == "__main__":
