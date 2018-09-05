@@ -15,9 +15,49 @@ in the
     https://virtualenv.pypa.io/en/stable/reference/#environment-variables)
       - The `#kelnerhax` way is to cheat like so:
         `DATADOG_API_KEY=<secret> DATADOG_APP_KEY=<nuh-uh> python create_monitor.py`
-- Result should be something like:
+- Result should be something like:o
 ```
 Creating a test monitor
-{'multi': False, 'name': 'Bytes received on host0', 'tags': ['cake:test', 'solutions-engineering'], 'deleted': None, 'type': 'query alert', 'created_at': 1536126047000, 'created': '2018-09-05T05:40:47.314990+00:00', 'org_id': 11287, 'modified': '2018-09-05T05:40:47.314990+00:00', 'options': {'notify_audit': False, 'locked': False, 'silenced': {}, 'no_data_timeframe': 20, 'require_full_window': True, 'new_host_delay': 300, 'notify_no_data': True, 'evaluation_delay': 360, 'thresholds': {'critical': 100.0, 'warning': 80.0, 'critical_recovery': 70.0, 'warning_recovery': 50.0}}, 'overall_state_modified': None, 'overall_state': 'No Data', 'query': 'avg(last_1h):sum:system.net.bytes_rcvd{host:host0} > 100', 'message': 'We may need to add web hosts if this is consistently high.', 'creator': {'email': 'chris.kelner@datadoghq.com', 'handle': 'chris.kelner@datadoghq.com', 'id': 587333, 'name': 'Chris Kelner'}, 'id': 6221554}
+{
+    "created": "2018-09-05T05:50:30.878346+00:00",
+    "created_at": 1536126630000,
+    "creator": {
+        "email": "<redacted>@datadoghq.com",
+        "handle": "<redacted>@datadoghq.com",
+        "id": <redacted>,
+        "name": "<redacted>"
+    },
+    "deleted": null,
+    "id": 6221581,
+    "message": "We may need to add web hosts if this is consistently high.",
+    "modified": "2018-09-05T05:50:30.878346+00:00",
+    "multi": false,
+    "name": "Bytes received on host0",
+    "options": {
+        "evaluation_delay": 360,
+        "locked": false,
+        "new_host_delay": 300,
+        "no_data_timeframe": 20,
+        "notify_audit": false,
+        "notify_no_data": true,
+        "require_full_window": true,
+        "silenced": {},
+        "thresholds": {
+            "critical": 100.0,
+            "critical_recovery": 70.0,
+            "warning": 80.0,
+            "warning_recovery": 50.0
+        }
+    },
+    "org_id": <redacted>,
+    "overall_state": "No Data",
+    "overall_state_modified": null,
+    "query": "avg(last_1h):sum:system.net.bytes_rcvd{host:host0} > 100",
+    "tags": [
+        "cake:test",
+        "solutions-engineering"
+    ],
+    "type": "query alert"
+}
 ```
 ![img](monitor.png)
