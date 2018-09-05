@@ -2,18 +2,11 @@
 # Datadog Monitor w/o Module
 # https://www.terraform.io/docs/providers/datadog/r/monitor.html
 #
-# Note: take note of how we can include terraform values in our monitor's
-# template -- if we wanted a very specific monitor for a specific host, where
-# we likely had some very static resource, we could include things like the ip
-# address for that host easily by invoking `${aws_instance.web.public_ip}` - but
-# typically you'd want to leverage datadog to get this information, e.g.
-# `{{host.ip}}` as you see in the second example; this only serves as an example
 resource "datadog_monitor" "common_disk_full" {
   name = "[${var.common_name}] {{host.name}} {{device.name}} disks are full - [${var.monitor_suffix}]"
   type = "metric alert"
   message = <<EOT
-  {{host.name}} with ip ${aws_instance.web.public_ip} disk are full, let's
-  understand why @slack-channel
+  {{host.name}} disk are full, let's understand why @slack-channel-testing123
 
   {{#is_alert}}
 
@@ -21,11 +14,7 @@ resource "datadog_monitor" "common_disk_full" {
   @pagerduty-Datadog-Demo
 
   {{/is_alert}}
-
-  ## Links
-  ** provisioned by terraform, [modify here](https://github.com/ckelner/terraform-datadog) or your changes will be discarded **
 EOT
-  # note that we are using the `role` tag we applied to our EC2 instance
   query = "avg(last_5m):max:system.disk.in_use{role:nginx} by {name,host,device} > 0.9"
   thresholds {
     warning = 0.8
