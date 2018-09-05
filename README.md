@@ -34,6 +34,7 @@ These scripts and tools live in this repo
 | [update_multiple_monitors_example](./update_multiple_monitors_example.py) | Python | example of how to update multiple monitors at once | 
 | [weatherExample](./custom_agent_checks/weatherExample.py) | Python | Example script that submits the temperature and wind speed from the Wunderground API to Datadog as metrics | 
 | [sql_redacted](./custom_agent_checks/sql_redacted.py) | Python | Submits a metric based on a SQL query | 
+| [create_monitor_terraform](./create_monitor_terraform) | Terraform | Creates a monitor using Terraform |
 
 
 ## Additional tools
