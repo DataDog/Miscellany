@@ -9,11 +9,18 @@ resource "datadog_monitor" "metric_monitor" {
   name = "${var.name}"
   type = "metric alert"
   message = "${var.message}"
-  query = "avg(last_5m):max:system.disk.in_use{${var.tags}} by {host} > ${var.threshold}"
+  query = "avg(last_5m):max:system.disk.in_use{${var.tags}} by {host}"
   thresholds {
-    critical = "${var.threshold}"
+    critical          = "${var.critical-threshold}"
+    warning           = "${var.warning-threshold}"
+    warning_recovery  = "${var.warning-recovery}"
+    critical_recovery = "${var.critical-recovery}"
   }
+  evaluation_delay = 360
+  no_data_timeframe = 20
+  include_tags = true
   notify_no_data = false
+  tags = ["cake:test", "solutions-engineering", "kelner:hax"]
 }
 #############################################################################
 # Variables
@@ -27,8 +34,17 @@ variable "message" {
 variable "tags" {
   description = "The tags to narrow the query"
 }
-variable "threshold" {
-  description = "The threshold to trip the monitor into alert status"
+variable "critical-threshold" {
+  description = "The critical threshold to trip the monitor into alert status"
+}
+variable "warning-threshold" {
+  description = "The warning threshold to trip the monitor into warning status"
+}
+variable "warning-recovery" {
+  description = "The threshold to resolve the monitor's warning status"
+}
+variable "critical-recovery" {
+  description = "The threshold to resolve the monitor's alert status"
 }
 #############################################################################
 # Outputs
