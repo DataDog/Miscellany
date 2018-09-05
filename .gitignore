@@ -120,3 +120,11 @@ ENV/
 
 # Log files (if you are creating logs in debug mode, uncomment this)
 # *.logs
+
+# terraform
+# Compiled files
+*.tfstate
+*.tfstate.backup
+# Module directory
+.terraform/
+*.out
