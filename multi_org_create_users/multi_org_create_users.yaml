@@ -1,0 +1,21 @@
+users:
+  - handle: one@example.com
+    name: "User One"
+    access_role: st
+
+  - handle: two@example.com
+    name: "User Two"
+    access_role: st
+
+organizations:
+  - account_name: account-a
+    api_key: key_value
+    app_key: key_value
+
+  - account_name: account-b
+    api_key: key_value
+    app_key: key_value
+
+  - account_name: account-c
+    api_key: key_value
+    app_key: key_value
