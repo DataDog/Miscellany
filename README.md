@@ -32,9 +32,11 @@ These scripts and tools live in this repo
 | [remove_lingering_aws_host_tags](./remove_lingering_aws_host_tags.py) | Python | This is a tool for removing AWS host-level tags from your infrastructure in Datadog. It is intended for users who have removed their EC2 instances from their AWS integration and if they no longer want to see AWS tags associated with the hosts that still run datadog-agents. |
 | [remove_single_tag_tmp](./remove_single_tag_tmp.py) | Python | Removes a single tag from a host |
 | [update_multiple_monitors_example](./update_multiple_monitors_example.py) | Python | example of how to update multiple monitors at once |
-| [create_monitor](./create_monitor) | Python | simple example of creating metric query monitor with thresholds | 
+| [create_monitor](./create_monitor) | Python | simple example of creating metric query monitor with thresholds |
 | [weatherExample](./custom_agent_checks/weatherExample.py) | Python | Example script that submits the temperature and wind speed from the Wunderground API to Datadog as metrics |
 | [sql_redacted](./custom_agent_checks/sql_redacted.py) | Python | Submits a metric based on a SQL query |
+| [multi_org_create_users](./multi_org_create_users) | Python | Creates multiple Datadog users across multiple Datadog Orgs |
+| [create_monitor_terraform](./create_monitor_terraform) | Terraform | Creates a monitor using Terraform |
 
 
 ## Additional tools

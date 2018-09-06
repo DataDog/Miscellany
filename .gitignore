@@ -121,6 +121,14 @@ ENV/
 # Log files (if you are creating logs in debug mode, uncomment this)
 # *.logs
 
+# terraform
+# Compiled files
+*.tfstate
+*.tfstate.backup
+# Module directory
+.terraform/
+*.out
+
 # virtualenv ignore
 # https://github.com/github/gitignore/blob/master/Global/VirtualEnv.gitignore
 .Python
