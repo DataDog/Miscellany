@@ -18,45 +18,42 @@ width = 1024
 
 widgets = [
     {
-        "board_id": 360007,
-        "height": 16,
-        "isShared": False,
-        "legend": True,
-        "legend_size": "0",
-        "tile_def": {
-            "autoscale": True,
-            "requests": [
-                {
-                    "q": "avg:aws.ec2.network_out{host:i-4988043403}",
-                    "style": {
-                        "palette": "warm",
-                        "type": "solid",
-                        "width": "normal"
-                    },
-                    "type": "line"
-                }
-            ],
-            "viz": "timeseries"
-        },
-        "time": {
-            "live_span": "1d"
-        },
-        "title": True,
-        "title_align": "left",
-        "title_size": 16,
-        "title_text": "Network (MB) In/Out",
-        "type": "timeseries",
-        "width": 47,
-        "x": 103,
-        "y": 511
+        "board_id": 275605,
+            "generated_title": "system.cpu.user",
+            "height": 32,
+            "isShared": False,
+            "legend": False,
+            "legend_size": "0",
+            "tile_def": {
+                "autoscale": True,
+                "requests": [
+                    {
+                        "aggregator": "avg",
+                        "conditional_formats": [],
+                        "q": "avg:system.cpu.user{*}+avg:system.cpu.system{*}",
+                        "style": {
+                            "palette": "dog_classic",
+                            "type": "solid",
+                            "width": "normal"
+                        },
+                        "type": "line"
+                    }
+                ],
+                "viz": "timeseries"
+            },
+            "time": {},
+            "title": True,
+            "title_align": "left",
+            "title_size": 16,
+            "title_text": "",
+            "type": "timeseries",
+            "width": 47,
+            "x": 4,
+            "y": 2
     }
 ]
 
-template_variables = [{
-    "name": "host1",
-    "prefix": "host",
-    "default": "host:my-host"
-}]
+template_variables = []
 
 api.Screenboard.create(board_title=board_title,
                        description=description,
