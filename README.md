@@ -1,8 +1,15 @@
 # Miscellany
 Intended to be a repository for miscellaneous scripts and tools from Datadog to be shared with the public.
 
+## Contributing
+When adding a new script/tool, be sure to do the following:
+- Open a PR for review
+- Add a link and description to one of the tables above
+
+We encourage creating a subfolder with a seperate README that gives more details on the script/tool.
+
 ## Scripts & Tools
-These scripts and tools live in this repo
+These scripts and tools live in this repo, some scripts/tools have their own README in thheir subfolder with further explaintation and usage.
 
 | Name                                     | Language                          | Function                          |
 | -----------------------------------------|-----------------------------------|-----------------------------------|  
@@ -45,11 +52,6 @@ These are some additional tools and scripts written by Datadog.
 | Name                                     | Language                          | Function                          |
 | -----------------------------------------|-----------------------------------|-----------------------------------|  
 | [csv_exporter](https://github.com/DataDog/csv_exporter) | Python | Exports a given metric from Datadog as a csv |
-
-## Contributing
-When adding a new script/tool, be sure to do the following:
-- Open a PR for review
-- Add a link and description to one of the tables above
 
 ## Getting started
 For any Python code, you'll want to run:
