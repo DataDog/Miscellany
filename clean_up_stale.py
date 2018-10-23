@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import argparse
 import os
 import sys
@@ -23,7 +24,7 @@ def get_stale_objs(endpoint, email, stale_time):
         if endpoint == 'Screenboard' or endpoint == 'Timeboard':
             oid, o_email, o_modified = _parse_response_dash(obj)
         elif endpoint == 'Monitor':
-            oid, o_email, o_modified = _parse_response_mt(obj)
+            oid, o_email, o_modified = _parse_response_mtr(obj)
         
         if o_email == email and (datetime.utcnow() - o_modified).total_seconds() > stale_time:
             stale_objs.add(oid)
@@ -42,12 +43,12 @@ def _parse_response_dash(dash):
 
     return (dash['id'], dash['created_by']['email'], datetime.strptime(dash['modified'][:-6], '%Y-%m-%dT%H:%M:%S.%f'))
 
-def _parse_response_mt(mt):
+def _parse_response_mtr(mtr):
     ''' Helper: Return 3-tuple of monitor ID, email and modified datetime '''
     # convert the modified timestamp to datetime
     # offset is stripped since it is always +00:00 on org 2 and does not match +HHMM format for %z
 
-    return (mt['id'], mt['creator']['email'], datetime.strptime(mt['modified'][:-6], '%Y-%m-%dT%H:%M:%S.%f'))
+    return (mtr['id'], mtr['creator']['email'], datetime.strptime(mtr['modified'][:-6], '%Y-%m-%dT%H:%M:%S.%f'))
 
 def _confirm_deletion(objs):
     ''' Helper: Confirm deletion of objs; takes [Y/n] '''
@@ -83,9 +84,9 @@ if __name__ == "__main__":
         "-t", "--staletime", help="Stale time for deletion", type=int, default=7889231)
     args = parser.parse_args()
 
-    api_key    = args.apikey or os.getenv("DD_API_KEY", None)
-    app_key    = args.appkey or os.getenv("DD_APP_KEY", None)
-    email      = args.email  or os.getenv("DD_EMAIL",   None)
+    api_key = args.apikey or os.getenv("DD_API_KEY", None)
+    app_key = args.appkey or os.getenv("DD_APP_KEY", None)
+    email   = args.email  or os.getenv("DD_EMAIL",   None)
 
     # time since last modified in seconds; used as threshold for removing old objs
     stale_time  = args.staletime
