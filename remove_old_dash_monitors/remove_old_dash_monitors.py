@@ -12,24 +12,27 @@ API_OBJS = OrderedDict([('Screenboard', 'screenboards'),
                         ('Timeboard'  , 'dashes'),
                         ('Monitor'    , ''      )])
 
-def get_stale_objs(endpoint, email, stale_time):
-    ''' Returns all "stale" dashboard or monitor IDs that belong to email older than stale_time '''
+def get_old_objs(endpoint, email, time_to_remove):
+    ''' Returns all "old" dashboard or monitor IDs that belong to email older than time_to_remove '''
     func = "api." + endpoint + ".get_all()"
     response = eval(func)
-    stale_objs = set()
+    old_objs = set()
     objs = response[API_OBJS[endpoint]] if API_OBJS[endpoint] else response
 
     for obj in objs:
         oid, o_email, o_modified = 0, "", datetime.utcnow()
+
         if endpoint == 'Screenboard' or endpoint == 'Timeboard':
             oid, o_email, o_modified = _parse_response_dash(obj)
         elif endpoint == 'Monitor':
             oid, o_email, o_modified = _parse_response_mtr(obj)
-        
-        if o_email == email and (datetime.utcnow() - o_modified).total_seconds() > stale_time:
-            stale_objs.add(oid)
 
-    return stale_objs
+        o_timediff = (datetime.utcnow() - o_modified).total_seconds()
+
+        if o_email == email and o_timediff > time_to_remove:
+            old_objs.add(oid)
+
+    return old_objs
 
 def delete_objs(endpoint, objs):
     func = "api." + endpoint + ".delete(obj)"
@@ -39,14 +42,14 @@ def delete_objs(endpoint, objs):
 def _parse_response_dash(dash):
     ''' Helper: Return 3-tuple of dash ID, email and modified datetime '''
     # convert the modified timestamp to datetime
-    # offset is stripped since it is always +00:00 on org 2 and does not match +HHMM format for %z
+    # offset is stripped since it is always +00:00 on org 2, 11287 and does not match +HHMM format for %z
 
     return (dash['id'], dash['created_by']['email'], datetime.strptime(dash['modified'][:-6], '%Y-%m-%dT%H:%M:%S.%f'))
 
 def _parse_response_mtr(mtr):
     ''' Helper: Return 3-tuple of monitor ID, email and modified datetime '''
     # convert the modified timestamp to datetime
-    # offset is stripped since it is always +00:00 on org 2 and does not match +HHMM format for %z
+    # offset is stripped since it is always +00:00 on org 2, 11287 and does not match +HHMM format for %z
 
     return (mtr['id'], mtr['creator']['email'], datetime.strptime(mtr['modified'][:-6], '%Y-%m-%dT%H:%M:%S.%f'))
 
@@ -75,13 +78,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Create an empty dashboard for testing purposes")
     parser.add_argument(
-        "-k", "--apikey",    help="Your Datadog API key",    type=str, default=None)
+        "-k", "--apikey", help="Your Datadog API key", type=str, default=None)
     parser.add_argument(
-        "-a", "--appkey",    help="Your Datadog app key",    type=str, default=None)
+        "-a", "--appkey", help="Your Datadog app key", type=str, default=None)
     parser.add_argument(
-        "-e", "--email",     help="Your Datadog email",      type=str, default=None)
+        "-e", "--email", help="Your Datadog email", type=str, default=None)
     parser.add_argument(
-        "-t", "--staletime", help="Stale time for deletion", type=int, default=7889231)
+        "-t", "--time", help="Time since last modified; used for deletion", type=int, default=7889231)
     args = parser.parse_args()
 
     api_key = args.apikey or os.getenv("DD_API_KEY", None)
@@ -89,7 +92,7 @@ if __name__ == "__main__":
     email   = args.email  or os.getenv("DD_EMAIL",   None)
 
     # time since last modified in seconds; used as threshold for removing old objs
-    stale_time  = args.staletime
+    time_to_remove  = args.time
     errors = []
 
     # check for args/env vars and print errors
@@ -121,17 +124,17 @@ if __name__ == "__main__":
         }
         initialize(**options)
 
-        # get all stale dashboards and monitors
-        stale_objs = [(endpoint, get_stale_objs(endpoint, email, stale_time)) for endpoint in API_OBJS.keys()]
+        # get all old dashboards and monitors
+        old_objs = [(endpoint, get_old_objs(endpoint, email, time_to_remove)) for endpoint in API_OBJS.keys()]
 
         # check if any to delete, confirm deletion, then delete
-        if sum([len(obj[1]) for obj in stale_objs]) == 0:
-            print "No stale dashboards or monitors were found!"
-        elif (_confirm_deletion(stale_objs)):
-            for endpoint, objs in stale_objs:
+        if sum([len(obj[1]) for obj in old_objs]) == 0:
+            print "No old dashboards or monitors were found!"
+        elif (_confirm_deletion(old_objs)):
+            for endpoint, objs in old_objs:
                 delete_objs(endpoint, objs)
 
-            print "Deleted all stale dashboards and monitors."
+            print "Deleted all old dashboards and monitors."
         else:
-            print "Cancelled delete operation."
+            print "Cancelled removal operation."
 
