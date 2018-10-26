@@ -20,6 +20,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [custom_check_shell](./custom_check_shell) | Python/Bash | Spins up a VM using vagrant that installs the Datadog agent on it with a simple custom check using shell |
 | [empty_dash](./empty_dash) | Python | Creates an empty dashboard for test purposes |
 | [get_all_boards](./get_all_boards) | Python | Gets all boards for a given organization and print out their json. Useful for malformed boards created via the API |
+| [Remove old dashboards & monitors](./remove_old_dash_monitors) | Python | Will remove all old dashboards and monitors from an account belonging to the email as specified in the script's parameter. |
 | [get_hostname_agentversion](./get_hostname_agentversion) | Python | Gets the version of the agent running for each host |
 | [s3_permissions](./s3_permissions) | Python | Checks S3 bucket ACL permissions for read/write access and reports a metric to Datadog |
 | [uptime](./uptime) | Python | Custom check to track uptime. At the time that this check was written, it wasn't possible to view a monitor's uptime on a dashboard or via the API, or to view uptime with multiple decimals of precision, but please check if those features are available before using this check. |
