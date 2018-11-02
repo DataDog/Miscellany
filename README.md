@@ -45,7 +45,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [sql_redacted](./custom_agent_checks/sql_redacted.py) | Python | Submits a metric based on a SQL query |
 | [multi_org_create_users](./multi_org_create_users) | Python | Creates multiple Datadog users across multiple Datadog Orgs |
 | [create_monitor_terraform](./create_monitor_terraform) | Terraform | Creates a monitor using Terraform |
-
+| [query hosts and create tags](./query_hosts_create_tags.py) | Python | queries hosts api using pagination and creates new tags |
 
 ## Additional tools
 These are some additional tools and scripts written by Datadog.
