@@ -33,6 +33,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [hosts_with_aws_without_agent](./hosts_with_aws_without_agent.py) | Python | List of ec2 instances without the datadog-agent installed |
 | [merge_screenboards](./merge_screenboards.py) | Python | Takes two screenboards and combines them into one |
 | [migrate_dashboard](./migrate_dashboard.py) | Python | Migrate a screenboard from one account (or org) to another |
+| [migrate_monitors](./migrate_monitors.py) | Python | Migrate monitors by query from one account (or org) to another |
 | [dash_to_json](./dash_to_json.py) | Python | Convert Dashboard to JSON and Create Dashboard from JSON |
 | [import_screenboard](./Dashboards/import_screenboard.py) | Python | Creates a new screenboard from json |
 | [export_screenboard](./Dashboards/export_screenboard.py) | Python | Exports a single screenboard to a json file |
