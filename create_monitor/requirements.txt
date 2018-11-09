@@ -3,6 +3,6 @@ chardet==3.0.4
 datadog==0.16.0
 decorator==4.1.2
 idna==2.6
-requests==2.18.4
+requests==2.20.0
 simplejson==3.11.1
 urllib3==1.22
