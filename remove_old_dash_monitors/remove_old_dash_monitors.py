@@ -70,7 +70,11 @@ def _confirm_deletion(objs):
     no  = {'no', 'n'}
 
     while True:
-        print question.format(str([str(id) for id in objs[0][1]]), str([str(id) for id in objs[1][1]]), str([str(id) for id in objs[2][1]]))
+        sb_str = [str(id) for id in objs[0][1]]
+        tb_str = [str(id) for id in objs[1][1]]
+        mt_str = [str(id) for id in objs[2][1]]
+        print question.format(sb_str, tb_str, mt_str)
+
         choice = raw_input().lower()
 
         if choice in yes:
@@ -141,7 +145,9 @@ if __name__ == "__main__":
         initialize(**options)
 
         # get all old dashboards and monitors
-        old_objs = [(endpoint, get_old_objs(endpoint, email, removal_time, exclude_tags, exclude_dashes, force_delete_all)) for endpoint in API_OBJS.keys()]
+        old_objs = [(endpoint, \
+                     get_old_objs(endpoint, email, removal_time, exclude_tags, exclude_dashes, force_delete_all)) \
+                     for endpoint in API_OBJS.keys()]
 
         # check if any to delete, confirm deletion, then delete
         if sum([len(obj[1]) for obj in old_objs]) == 0:
