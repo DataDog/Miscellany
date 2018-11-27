@@ -1,7 +1,7 @@
 # Custom Check Shell
 Spins up a VM using vagrant that installs the Datadog agent on it with a simple
 custom check using shell as described in [this Datadog KB
-article](https://help.datadoghq.com/hc/en-us/articles/115000722623-How-can-I-gather-metrics-from-the-UNIX-shell-).
+article](https://docs.datadoghq.com/integrations/faq/how-can-i-gather-metrics-from-the-unix-shell/).
 
 # Prerequesites
 - [Vagrant](https://www.vagrantup.com/)
