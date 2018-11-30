@@ -1,13 +1,11 @@
 # Custom Check Shell
-Spins up a VM using vagrant that installs the Datadog agent on it with a simple
-custom check using shell as described in [this Datadog KB
-article](https://docs.datadoghq.com/integrations/faq/how-can-i-gather-metrics-from-the-unix-shell/).
+Spins up a VM using vagrant that installs the Datadog agent on it with a custom check using shell.
 
 # Prerequesites
 - [Vagrant](https://www.vagrantup.com/)
 
 # Run
-`DD_API_KEY=<YOURAPIKEYHERE> vagrant up`
+`DD_API_KEY=<YOUR_DD_API_KEY> vagrant up`
 
 # Metrics
 Custom metrics will show up in Datadog as `shell.example.shellcheck.rand`
