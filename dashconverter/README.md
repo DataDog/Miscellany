@@ -1,7 +1,4 @@
----
-title: How to Transform a Timeboard to a Screenboard or vice versa ?
-kind: faq
----
+# How to Transform a Timeboard to a Screenboard or vice versa ?
 
 To transform a Timeboard to a Screenboard you can use the [script here][1].
 
