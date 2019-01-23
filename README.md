@@ -48,7 +48,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [create_monitor_terraform](./create_monitor_terraform)                    | Terraform   | Creates a monitor using Terraform                                                                                                                                                                                                                                                    |
 | [query hosts and create tags](./query_hosts_create_tags.py)               | Python      | queries hosts api using pagination and creates new tags                                                                                                                                                                                                                              |
 | [get all groups in a monitor](./monitors/get_groups_in_monitor.py)               | Python      | queries for all groups in a monitor and outputs a list of them                                                                                                                                                                                                                              |
-
+| [create a csv file with a list of log in handles](./create_email_list.py)     | Python       | creates a CSV file in the same directory as the script containing a list of all user log in handles |
 ## Additional tools
 These are some additional tools and scripts written by Datadog.
 
