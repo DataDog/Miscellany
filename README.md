@@ -6,7 +6,7 @@ When adding a new script/tool, be sure to do the following:
 - Open a PR for review
 - Add a link and description to one of the tables above
 
-We encourage creating a subfolder with a seperate README that gives more details on the script/tool.
+We encourage creating a subfolder with a separate README that gives more details on the script/tool.
 
 ## Scripts & Tools
 These scripts and tools live in this repo, some scripts/tools have their own README in thheir subfolder with further explaintation and usage.
