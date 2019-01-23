@@ -49,6 +49,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [query hosts and create tags](./query_hosts_create_tags.py)               | Python      | queries hosts api using pagination and creates new tags                                                                                                                                                                                                                              |
 | [get all groups in a monitor](./monitors/get_groups_in_monitor.py)               | Python      | queries for all groups in a monitor and outputs a list of them                                                                                                                                                                                                                              |
 | [create a csv file with a list of log in handles](./create_email_list.py)     | Python       | creates a CSV file in the same directory as the script containing a list of all user log in handles |
+| [Powershell script to call JSON REST endpoint, pass those key-value pairs to DogstatsD](./requester.ps1)     | Powershell       | A Powershell script which will call a given HTTP GET endpoint, and then submit the key-value pairs found in the resulting JSON body to DogsStatsD. Resource endpoint must be a non-nested JSON body ({"a":"1","b":"2"} -> custom metrics: a\|1, b\|2 |
 ## Additional tools
 These are some additional tools and scripts written by Datadog.
 
