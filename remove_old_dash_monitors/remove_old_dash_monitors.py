@@ -12,25 +12,32 @@ API_OBJS = OrderedDict([('Screenboard', 'screenboards'),
                         ('Timeboard'  , 'dashes'),
                         ('Monitor'    , ''      )])
 
-def get_old_objs(endpoint, email, time_to_remove):
-    ''' Returns all "old" dashboard or monitor IDs that belong to email older than time_to_remove '''
+def get_old_objs(endpoint, email, removal_time, exclude_tags, exclude_dashes, force_delete_all):
+    ''' Returns all "old" dashboard or monitor IDs that belong to email older than removal_time '''
     func = "api." + endpoint + ".get_all()"
     response = eval(func)
     old_objs = set()
     objs = response[API_OBJS[endpoint]] if API_OBJS[endpoint] else response
 
     for obj in objs:
-        oid, o_email, o_modified = 0, "", datetime.utcnow()
+        oid, o_email, o_modified, tags = 0, "", datetime.utcnow(), []
 
         if endpoint == 'Screenboard' or endpoint == 'Timeboard':
             oid, o_email, o_modified = _parse_response_dash(obj)
         elif endpoint == 'Monitor':
-            oid, o_email, o_modified = _parse_response_mtr(obj)
+            oid, o_email, o_modified, tags = _parse_response_mtr(obj)
 
         o_timediff = (datetime.utcnow() - o_modified).total_seconds()
 
-        if o_email == email and o_timediff > time_to_remove:
-            old_objs.add(oid)
+        if (force_delete_all or o_email == email) and o_timediff > removal_time:
+            if endpoint == 'Screenboard' or endpoint == 'Timeboard':
+                # if dashboard, check exclude_dashes
+                if str(oid) not in exclude_dashes:
+                    old_objs.add(oid)
+            elif endpoint == 'Monitor':
+                # if monitor, check exclude_tags
+                if not [t for t in tags if t in exclude_tags]:
+                    old_objs.add(oid)
 
     return old_objs
 
@@ -47,11 +54,11 @@ def _parse_response_dash(dash):
     return (dash['id'], dash['created_by']['email'], datetime.strptime(dash['modified'][:-6], '%Y-%m-%dT%H:%M:%S.%f'))
 
 def _parse_response_mtr(mtr):
-    ''' Helper: Return 3-tuple of monitor ID, email and modified datetime '''
+    ''' Helper: Return 4-tuple of monitor ID, email, modified datetime, and tags '''
     # convert the modified timestamp to datetime
     # offset is stripped since it is always +00:00 on org 2, 11287 and does not match +HHMM format for %z
 
-    return (mtr['id'], mtr['creator']['email'], datetime.strptime(mtr['modified'][:-6], '%Y-%m-%dT%H:%M:%S.%f'))
+    return (mtr['id'], mtr['creator']['email'], datetime.strptime(mtr['modified'][:-6], '%Y-%m-%dT%H:%M:%S.%f'), mtr['tags'])
 
 def _confirm_deletion(objs):
     ''' Helper: Confirm deletion of objs; takes [Y/n] '''
@@ -63,7 +70,11 @@ def _confirm_deletion(objs):
     no  = {'no', 'n'}
 
     while True:
-        print question.format(str([str(id) for id in objs[0][1]]), str([str(id) for id in objs[1][1]]), str([str(id) for id in objs[2][1]]))
+        sb_str = [str(id) for id in objs[0][1]]
+        tb_str = [str(id) for id in objs[1][1]]
+        mt_str = [str(id) for id in objs[2][1]]
+        print question.format(sb_str, tb_str, mt_str)
+
         choice = raw_input().lower()
 
         if choice in yes:
@@ -84,15 +95,24 @@ if __name__ == "__main__":
     parser.add_argument(
         "-e", "--email", help="Your Datadog email", type=str, default=None)
     parser.add_argument(
-        "-t", "--time", help="Time since last modified; used for deletion", type=int, default=7889231)
+        "-r", "--removaltime", help="Removal time; time since last modification to determine if something should be removed", type=int, default=7889231)
+    parser.add_argument(
+        "-t", "--excludetags", help="Tags to exclude from deletion; only applies to monitors", type=str, default="")
+    parser.add_argument(
+        "-d", "--excludedashes", help="Dashboard IDs to exclude from deletion", type=str, default="")
+    parser.add_argument(
+        "-f", "--forcedeleteall", help="Force delete all regardless of owner/email", action='store_true', default=False)
     args = parser.parse_args()
 
     api_key = args.apikey or os.getenv("DD_API_KEY", None)
     app_key = args.appkey or os.getenv("DD_APP_KEY", None)
     email   = args.email  or os.getenv("DD_EMAIL",   None)
 
-    # time since last modified in seconds; used as threshold for removing old objs
-    time_to_remove  = args.time
+    # time since last modified in seconds; used to determine if something is "old"
+    removal_time  = args.removaltime
+    exclude_tags = args.excludetags.split(',')
+    exclude_dashes = args.excludedashes.split(',')
+    force_delete_all = args.forcedeleteall
     errors = []
 
     # check for args/env vars and print errors
@@ -125,7 +145,9 @@ if __name__ == "__main__":
         initialize(**options)
 
         # get all old dashboards and monitors
-        old_objs = [(endpoint, get_old_objs(endpoint, email, time_to_remove)) for endpoint in API_OBJS.keys()]
+        old_objs = [(endpoint, \
+                     get_old_objs(endpoint, email, removal_time, exclude_tags, exclude_dashes, force_delete_all)) \
+                     for endpoint in API_OBJS.keys()]
 
         # check if any to delete, confirm deletion, then delete
         if sum([len(obj[1]) for obj in old_objs]) == 0:
