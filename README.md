@@ -2,7 +2,7 @@
 Intended to be a repository for miscellaneous scripts and tools from Datadog to be shared with the public.
 
 ## Disclaimer
-These projects are for example purposes only and are NOT guaranteed to be bug free or production quality. Use at your own risk. They are NOT intended to be used in production environment as-is, however you may _adapt_ them to do so. In many cases you may have to adapt the code to work within your constraints and environments.
+These projects are not a part of Datadog's subscription services and are provided for example purposes only. They are NOT guaranteed to be bug free and are not production quality. If you choose to use to adapt them for use in a production environment, you do so at your own risk.
 
 ## Contributing
 When adding a new script/tool, be sure to do the following:
