@@ -1,6 +1,9 @@
 # Miscellany
 Intended to be a repository for miscellaneous scripts and tools from Datadog to be shared with the public.
 
+## Disclaimer
+These projects are for example purposes only and are NOT guaranteed to be bug free and production quality. They are NOT intended to be used in production environment (however you may _adapt_ them to do so). You must adapt the code to work within your constraints and environments.
+
 ## Contributing
 When adding a new script/tool, be sure to do the following:
 - Open a PR for review
