@@ -1,0 +1,9 @@
+{
+    "source_api_key": "<api_key>",
+    "source_app_key": "<app_key>",
+    "source_api_host": "https://api.datadoghq.com/",
+
+    "dest_api_key": "<api_key>",
+    "dest_app_key": "<app_key>",
+    "dest_api_host": "https://api.datadoghq.eu/"
+}
