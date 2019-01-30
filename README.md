@@ -12,7 +12,7 @@ When adding a new script/tool, be sure to do the following:
 We encourage creating a subfolder with a separate README that gives more details on the script/tool.
 
 ## Scripts & Tools
-These scripts and tools live in this repo, some scripts/tools have their own README in thheir subfolder with further explaintation and usage.
+These scripts and tools live in this repo, some scripts/tools have their own README in their subfolder with further explaintation and usage.
 
 | Name                                                                      | Language    | Function                                                                                                                                                                                                                                                                             |
 |---------------------------------------------------------------------------|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -53,6 +53,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [get all groups in a monitor](./monitors/get_groups_in_monitor.py)               | Python      | queries for all groups in a monitor and outputs a list of them                                                                                                                                                                                                                              |
 | [create a csv file with a list of log in handles](./create_email_list.py)     | Python       | creates a CSV file in the same directory as the script containing a list of all user log in handles |
 | [Powershell script to call JSON REST endpoint, pass those key-value pairs to DogstatsD](./requester.ps1)     | Powershell       | A Powershell script which will call a given HTTP GET endpoint, and then submit the key-value pairs found in the resulting JSON body to DogsStatsD. Resource endpoint must be a non-nested JSON body ({"a":"1","b":"2"} -> custom metrics: a\|1, b\|2 |
+| [Dogmover](./Dogmover)							| Python	| Migrate screenboards, timeboards and monitors from one organization to another (supports migrations between US>EU instances.)
 ## Additional tools
 These are some additional tools and scripts written by Datadog.
 
