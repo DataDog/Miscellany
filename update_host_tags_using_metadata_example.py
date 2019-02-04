@@ -12,8 +12,6 @@ import pprint
 
 from datadog import initialize, api
 
-# source /opt/datadog/datadog-agent/venv/bin/activate
-
 DD_API_KEY = os.getenv('DD_API_KEY', '')
 DD_APP_KEY = os.getenv('DD_APP_KEY', '')
 
