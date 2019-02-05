@@ -55,7 +55,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [Powershell script to call JSON REST endpoint, pass those key-value pairs to DogstatsD](./requester.ps1)     | Powershell       | A Powershell script which will call a given HTTP GET endpoint, and then submit the key-value pairs found in the resulting JSON body to DogsStatsD. Resource endpoint must be a non-nested JSON body ({"a":"1","b":"2"} -> custom metrics: a\|1, b\|2                                                                                                                                                                                                            |
 | [Dogmover](./Dogmover)							| Python	| Migrate screenboards, timeboards and monitors from one organization to another (supports migrations between US>EU instances.)                                                                                                                                                                                                  |
 | [Update Host Tags with Host Metadata (example)](./update_host_tags_using_metadata_example.py)							| Python	| Queries the host API then creates tags based off of the gohai (or other) metadata.                                                                                                                                                                      |
-
+| [Historic usage to CSV](./historic_usage_to_csv.py)							| Python	| This script is meant to pull historical usage metrics and export them to CSV.                                                                                                                                                                      |
 
 
 ## Additional tools
