@@ -32,6 +32,9 @@ class UsageReport(object):
         error_messages = []
         try:
             metrics = requests.get(self.url).json()
+            if metrics.get('errors', None):
+                print(metrics['errors'])
+                return usage_metrics
             usage_metrics = metrics.get('usage', None)
             error_messages = metrics.get('errors', [])
             for m in error_messages:
@@ -47,15 +50,17 @@ class UsageReport(object):
     def gen_usage_report(self):
         # Get usage metrics from Datadog
         metrics = self.get_usage_metrics()
-        print(metrics)
+        # print(metrics)
+        file_exists = os.path.isfile(self.filename)
         with open(self.filename, mode='a+') as output_file:
             metric_writer = csv.writer(output_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            if self.type == 'hosts':
-                metric_writer.writerow(['hour', 'total_host_count', 'container_count', 'apm_host_count', 'agent_host_count', 'gcp_host_count', 'aws_host_count'])
-            elif self.type == 'timeseries':
-                metric_writer.writerow(['hour', 'num_custom_timeseries'])
-            elif self.type == 'logs':
-                metric_writer.writerow(['hour', 'indexed_events_count', 'ingested_events_bytes'])
+            if not file_exists:
+                if self.type == 'hosts':
+                    metric_writer.writerow(['hour', 'total_host_count', 'container_count', 'apm_host_count', 'agent_host_count', 'gcp_host_count', 'aws_host_count'])
+                elif self.type == 'timeseries':
+                    metric_writer.writerow(['hour', 'num_custom_timeseries'])
+                elif self.type == 'logs':
+                    metric_writer.writerow(['hour', 'indexed_events_count', 'ingested_events_bytes'])
             for m in metrics:
                 hour = m.get('hour', False)
                 if self.type == 'hosts':
