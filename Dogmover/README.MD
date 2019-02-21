@@ -1,4 +1,7 @@
 # DogMover
+
+![Alt text](./dogmover.png "A moving dog.")
+
 This tool was originally built to help migrate customers screenboards, timeboards and monitors from our US instance to our EU instance. The tool also supports moving the data within the same instances (eg., EU to EU, or US to US and even EU to US.)
 
 ## Install
