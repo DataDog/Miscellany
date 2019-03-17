@@ -56,6 +56,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [Dogmover](./Dogmover)							| Python	| Migrate screenboards, timeboards and monitors from one organization to another (supports migrations between US>EU instances.)                                                                                                                                                                                                  |
 | [Update Host Tags with Host Metadata (example)](./update_host_tags_using_metadata_example.py)							| Python	| Queries the host API then creates tags based off of the gohai (or other) metadata.                                                                                                                                                                      |
 | [Historic usage to CSV](./historic_usage_to_csv.py)							| Python	| This script is meant to pull historical usage metrics and export them to CSV.                                                                                                                                                                      |
+| [dd_aws_add_account.py](./dd_aws_add_account.py)							| Python	| script for creating aws integration                                                                                                                                                                 |
 
 
 ## Additional tools
