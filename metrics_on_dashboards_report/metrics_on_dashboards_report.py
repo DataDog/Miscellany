@@ -1,5 +1,9 @@
 #make sure the datadogpy library is downloaded in this machine or environment first
-from datadog import initialize,api
+try:
+    from datadog import initialize,api
+except ImportError:
+    print("please make sure the datadogpy library is downloaded in this machine or environment first.  You can find installation instructions at https://github.com/DataDog/datadogpy")
+    quit()
 import re
 
 def get_all_dashboard_id_list(resp, is_screenboard):
@@ -9,6 +13,7 @@ def get_all_dashboard_id_list(resp, is_screenboard):
         getter = 'screenboards'
     else:
         getter = 'dashes'
+
     dashboard_id_list = [int(d['id']) for d in resp.get(getter)]
     return dashboard_id_list
 
@@ -25,7 +30,6 @@ def get_metric_report(ids_list, metrics_to_eval, is_screenboard):
         getter = 'title'
     #Get the screen or timeboard
     for id in ids_list:
-        #this prints just to let the user know it's not frozen, just working still
         #discrepencies in data returned require different instructions for screenboards vs. timeboards
         if is_screenboard:
             getter_two = 'widgets'
@@ -51,8 +55,16 @@ while choice != 'y':
     print('\n')
     app_key = raw_input ('Thank you.  Please enter a valid app_key\n')
     print('\n')
-    num_of_metrics_to_search = input('How many metrics would you like to search for?\n')
-    print('\n')
+
+    is_number = False
+    while not is_number:
+        try:
+            num_of_metrics_to_search = input('How many metrics would you like to search for?\n')
+            print('\n')
+            is_number = True
+        except NameError:
+            print('Whoops!  This entry must be an integer.  Please try again. \n')
+            
     #declare empty list to populate with metrics
     metrics_to_eval = []
     #gather metric names from user
@@ -70,17 +82,27 @@ options = {
     'api_key' : api_key,
     'app_key' : app_key
 }
+
 initialize(**options)
-print('Intialized!\n')
+#Test to see that we're properly initialized by making a call to the API that requires no arguments
+test_resp = api.DashboardList.get_all()
+if test_resp.get('errors') is None:
+    print('Intialized!\n')
+else:
+    print('There was a problem Initialiizing the API.  Please restart and check your API and App Keys for validity.')
+    quit()
 
 #return every dashboard
 print('Getting All Screenboards\n')
 screen_resp = api.Screenboard.get_all()
+
 print('All Screenboards Received!\n')
+
 print('Getting All Timeboards\n')
 time_resp = api.Timeboard.get_all()
-print('All Timeboards Received!\n')
 
+
+print('All Timeboards Received!\n')
 
 #get lists of ids from every dashboard
 print('Getting Screenboard Id\'s\n')
