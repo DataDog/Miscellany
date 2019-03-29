@@ -1,3 +1,5 @@
+# NOTE: This is from the new API
+
 from datadog import initialize, api
 
 def get_original_dashboard(api_key, app_key, dashboard_id):
