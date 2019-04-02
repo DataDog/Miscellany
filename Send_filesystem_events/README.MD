@@ -1,6 +1,6 @@
 # README
 
-This script will send an event to the event stream when it detects a change in any file in the directory tree that it is monitoring. It is useful in cases where you might want to monitor if files in a directory containing SSH keys or AWS secrets may have been modified or deleted. The script only sends events to the event stream, if you need an alert when a file is deleted or modified, you can [set up an event monitor](https://docs.datadoghq.com/monitors/monitor_types/event/) on the events it sends.
+This script will send an event to the event stream when it detects a change in a file or folder in the directory tree that it is watching. It is useful in cases where you might want to monitor if files in a directory containing SSH keys or AWS secrets may have been modified or deleted. The script only sends events to the event stream, if you need an alert when a file is deleted or modified, you can [set up an event monitor](https://docs.datadoghq.com/monitors/monitor_types/event/) on the events it sends.
 
 I've tested this script on Ubuntu 16.04, and it should work with most flavors of Linux running a kernel version of 2.6 or higher. Please note that it does *not* work with MacOS or Windows operating systems.
 
