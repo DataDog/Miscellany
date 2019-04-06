@@ -1,5 +1,6 @@
 # DD User Report (JSON)
-Pretty prints a json list of users from a Datadog Account
+Pretty prints a json list of users from a Datadog Account.  
+Useful for large orgs with 100s or 1000s or users
 
 ## Args
 - `"-k", "--apikey", help="Your Datadog API key"`
