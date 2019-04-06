@@ -7,7 +7,8 @@ from datadog import initialize
 from datadog import api
 import json
 
-def getAndPrintUsers(admin_only, enabled_only, verified_only):
+
+def getAndPrintUsers(admin_only, enabled_only, verified_only, standard_only):
     '''
         {
             "access_role": "st",
@@ -30,10 +31,40 @@ def getAndPrintUsers(admin_only, enabled_only, verified_only):
     # is verified (non-pending)
     # "verified": true
     '''
+
     print "Getting users from target Datadog account..."
-    result = api.User.get_all()
-    # admin_only, enabled_only, verified_only
-    print json.dumps(result, indent=4, sort_keys=True)
+    users = api.User.get_all()["users"]
+
+    if admin_only:
+        admins = []
+        for user in users:
+            if user["is_admin"]:
+                admins.append(user)
+        users = admins
+
+    if enabled_only:
+        enabled = []
+        for user in users:
+            if user["disabled"] is False:
+                enabled.append(user)
+        users = enabled
+
+    if verified_only:
+        verified = []
+        for user in users:
+            if user["verified"]:
+                verified.append(user)
+        users = verified
+
+    if standard_only:
+        standard = []
+        for user in users:
+            if user["access_role"] == "st":
+                standard.append(user)
+        users = standard
+
+    print json.dumps(users, indent=4, sort_keys=True)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -45,15 +76,20 @@ if __name__ == "__main__":
     parser.add_argument(
         "-o", "--adminonly", help="Only print admins", action='store_true', default=False)
     parser.add_argument(
+        "-s", "--standardonly", help="Only print standard users", action='store_true', default=False)
+    parser.add_argument(
         "-e", "--enabledonly", help="Only print enabled accounts", action='store_true', default=False)
     parser.add_argument(
         "-v", "--verifiedonly", help="Only print verified (non-pending) accounts", action='store_true', default=False)
     args = parser.parse_args()
-    api_key = args.apikey or os.getenv("DATADOG_API_KEY", None) or os.getenv("DD_API_KEY", None)
-    app_key = args.appkey or os.getenv("DATADOG_APP_KEY", None) or os.getenv("DD_APP_KEY", None)
+    api_key = args.apikey or os.getenv(
+        "DATADOG_API_KEY", None) or os.getenv("DD_API_KEY", None)
+    app_key = args.appkey or os.getenv(
+        "DATADOG_APP_KEY", None) or os.getenv("DD_APP_KEY", None)
     admin_only = args.adminonly
     enabled_only = args.enabledonly
     verified_only = args.verifiedonly
+    standard_only = args.standardonly
     errors = []
     if not api_key:
         errors.append("""
@@ -76,18 +112,5 @@ if __name__ == "__main__":
             'app_key': app_key
         }
         initialize(**options)
-        getAndPrintUsers(admin_only, enabled_only, verified_only)
-
-#for user in users:
-#  emails.append(user["handle"])
-#  if user["name"] is None:
-#  	names.append(user["handle"])
-#  else:
-#  	names.append(user["name"])
-
-#all_emails = ",".join(emails)
-#all_users = ",".join(names)
-
-#with open("email_list.csv", "a") as f:
-#	f.write(all_users+"\n")
-#	f.write(all_emails)
+        getAndPrintUsers(admin_only, enabled_only,
+                         verified_only, standard_only)
