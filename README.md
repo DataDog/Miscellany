@@ -58,7 +58,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [Update Host Tags with Host Metadata (example)](./update_host_tags_using_metadata_example.py)							| Python	| Queries the host API then creates tags based off of the gohai (or other) metadata.                                                                                                                                                                      |
 | [Historic usage to CSV](./historic_usage_to_csv.py)							| Python	| This script is meant to pull historical usage metrics and export them to CSV.                                                                                                                                                                      |
 | [dd_aws_add_account.py](./dd_aws_add_account.py)							| Python	| script for creating aws integration                                                                                                                                                                 |
-
+| [Send_filesystem_events](./send_filesystem_events)                        | Python    | This script uses inotify to send an event to the event stream when it detects a change in files or folders in a given directory.   |
 
 ## Additional tools
 These are some additional tools and scripts written by Datadog.
