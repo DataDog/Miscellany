@@ -60,6 +60,8 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [dd_aws_add_account.py](./dd_aws_add_account.py)							| Python	| script for creating aws integration                                                                                                                                                                 |
 | [Send_filesystem_events](./send_filesystem_events)                        | Python    | This script uses inotify to send an event to the event stream when it detects a change in files or folders in a given directory.   |
 
+| [create_users_and_emails_list.py](./create_users_and_emails_list.py)							| Python	| script to get a list of user emails as csv                                                                          |
+
 ## Additional tools
 These are some additional tools and scripts written by Datadog.
 
