@@ -59,9 +59,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [Historic usage to CSV](./historic_usage_to_csv.py)							| Python	| This script is meant to pull historical usage metrics and export them to CSV.                                                                                                                                                                      |
 | [dd_aws_add_account.py](./dd_aws_add_account.py)							| Python	| script for creating aws integration                                                                                                                                                                 |
 | [Send_filesystem_events](./send_filesystem_events)                        | Python    | This script uses inotify to send an event to the event stream when it detects a change in files or folders in a given directory.   |
-
 | [create_users_and_emails_list.py](./create_users_and_emails_list.py)							| Python	| script to get a list of user emails as csv                                                                          |
-
 | [DD User Report (JSON)](./dd-user-report-json)							| Python	| Generates various different user reports and pretty prints the json for further processing -- useful for large orgs with 100s or 1000s or users  |
 
 ## Additional tools
