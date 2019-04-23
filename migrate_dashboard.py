@@ -1,11 +1,13 @@
-# currently only for screenboards
-# TODO: add timeboards
+# Note: this script utilizes the updated Dashboard API endpoint that unifies the screenboard and timeboard APIs
+# See API documentation for additional details: https://docs.datadoghq.com/api/?lang=python#dashboards
+
+# Scripts that access the deprecated Screenboard and Timeboard endpoints are available in https://github.com/DataDog/Miscellany/tree/master/Dashboards 
 
 from datadog import initialize, api
 
 old_api = "*****"
 old_app = "*****"
-screenboard_id = ****
+dashboard_id = "****"
 
 options = {
     'api_key': old_api,
@@ -14,9 +16,9 @@ options = {
 
 initialize(**options)
 
-screenboard = api.Screenboard.get(screenboard_id)
+dashboard = api.Dashboard.get(dashboard_id)
 
-print(screenboard)
+print(dashboard)
 
 new_api = '*****'
 new_app = '*****'
@@ -28,12 +30,11 @@ options = {
 
 initialize(**options)
 
-new = api.Screenboard.create(
-	board_title=screenboard['board_title'],
-	widgets=screenboard['widgets'],
-	template_variables=screenboard['template_variables'],
-	height=screenboard['height'],
-	width=screenboard['width']
+new = api.Dashboard.create(
+	title=dashboard['title'],
+	widgets=dashboard['widgets'],
+	template_variables=dashboard['template_variables'],
+	layout_type=dashboard['layout_type']
 )
 
 print(new)
