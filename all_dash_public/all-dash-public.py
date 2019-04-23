@@ -17,11 +17,26 @@ def getAllPublicDashboards():
     spinner = Halo(text="Getting all public dashboards; This might take awhile...", spinner="dots")
     spinner.start()
 
-    # Run time consuming work here
-    # You can also change properties for spinner as and when you want
+    # dict to hold the public dashboard info
+    public_dashboards = {}
+    # get all dashboard lists
+    d_lists = api.DashboardList.get_all()["dashboard_lists"]
+    # iterate over the lists
+    for list in d_lists:
+        # ignore those with no dashboards
+        if list["dashboard_count"] > 0:
+            # get each dashboard
+            dashboards = api.DashboardList.get_items(list["id"])["dashboards"]
+            for dash in dashboards:
+                # check if the dashboard is shared (public)
+                if dash["is_shared"] == True:
+                    # save it - but only if it is a new dash we haven't saved already
+                    if dash["id"] not in public_dashboards:
+                        public_dashboards[dash["id"]] = dash
 
     spinner.stop()
-    print json.dumps(result, indent=4, sort_keys=True)
+    # print it!
+    print json.dumps(public_dashboards, indent=4, sort_keys=True)
 
 
 if __name__ == "__main__":
