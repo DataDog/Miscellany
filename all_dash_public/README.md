@@ -1,0 +1,73 @@
+# All Public Dashboards
+This script will get all public dashboards for a given DD org.
+
+# Run Code
+- Use `pyenv` to set your Python version to `2.7.15`
+- Setup a python virtualenv: `virtualenv all_dash`
+- Activate the virtualenv: `source all_dash/bin/activate`
+- Run `pip install -r requirements.txt`
+- Run `python all-dash-public.py -k <your-api-key> -a <your-app-key>`
+  - Alternatively set `DATADOG_API_KEY` or `DD_API_KEY` and `DATADOG_APP_KEY` or
+    `DD_APP_KEY` as environment variables
+
+# Output
+Script will pretty print a json dict of all public dashboards; should look like:
+
+```
+{
+  "23818": {
+      "author": {
+          "handle": "<redacted>",
+          "name": "<redacted>"
+      },
+      "created": "2015-06-05T17:30:28.696235+00:00",
+      "icon": null,
+      "id": 23818,
+      "is_favorite": false,
+      "is_read_only": false,
+      "is_shared": true,
+      "modified": "2015-06-08T18:05:23.081090+00:00",
+      "new_id": "5te-63y-6rm",
+      "popularity": 0,
+      "title": "Docker web infrastructure",
+      "type": "custom_screenboard",
+      "url": "/screen/23818/docker-web-infrastructure"
+  },
+  "137359": {
+      "author": {
+          "handle": "<redacted>",
+          "name": "<redacted>"
+      },
+      "created": "2016-11-16T01:27:57.595832+00:00",
+      "icon": null,
+      "id": 137359,
+      "is_favorite": false,
+      "is_read_only": false,
+      "is_shared": true,
+      "modified": "2018-06-15T15:26:25.450240+00:00",
+      "new_id": "q6e-nnm-d45",
+      "popularity": 3,
+      "title": "AWS Overview",
+      "type": "custom_screenboard",
+      "url": "/screen/137359/aws-overview"
+  },
+  "138348": {
+      "author": {
+          "handle": "<redacted>",
+          "name": "<redacted>"
+      },
+      "created": "2016-11-18T17:56:35.542561+00:00",
+      "icon": null,
+      "id": 138348,
+      "is_favorite": false,
+      "is_read_only": true,
+      "is_shared": true,
+      "modified": "2018-07-05T17:36:53.159331+00:00",
+      "new_id": "pgd-kev-qv9",
+      "popularity": 1,
+      "title": "DEVOPS BOARD",
+      "type": "custom_screenboard",
+      "url": "/screen/138348/devops-board"
+  }
+}
+```
