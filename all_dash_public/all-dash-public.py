@@ -58,19 +58,12 @@ def getAllPublicDashboards():
         if d_list["dashboard_count"] > 0:
             dashboard_items.extend(api.DashboardList.get_items(d_list["id"])["dashboards"])
 
-    # remove all dupes from dashboard_items
-    # in part to satisfy https://github.com/DataDog/Miscellany/pull/68/files#r277914541
+    # iterate over dashboard_items
     for dash in dashboard_items:
-        if dash not in unique_dashboard_items:
-            unique_dashboard_items.append(dash)
-
-    # iterate over unique dashboard_items
-    for dash in unique_dashboard_items:
         # check if the dashboard is shared (public)
-        if dash["is_shared"] == True:
-            # save it - but only if it is a new dash we haven't saved already
-            # @ckelner: likely unnecessary since we guarentee unique above
-            # if dash["id"] not in public_dashboards:
+        # and make sure that we only save uniques
+        if dash["is_shared"] == True and dash["id"] not in public_dashboards:
+            # save it
             public_dashboards[dash["id"]] = dash
 
     spinner.stop()
