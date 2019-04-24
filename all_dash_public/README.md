@@ -1,6 +1,14 @@
 # All Public Dashboards
 This script will get all public dashboards for a given DD org.
 
+# Why does this need a script?
+The Datadog public APIs for Dashboards as-of 2019-04 (https://docs.datadoghq.com/api/?lang=python#dashboards) does not include any indicators that a Dashboard has been made public.  
+
+By using various dashboard list API calls we can get this information though:
+https://docs.datadoghq.com/api/?lang=python#dashboard-lists
+
+[Full logic documented in a comment within the code](https://github.com/DataDog/Miscellany/blob/master/all_dash_public/all-dash-public.py#L12-L42).
+
 # Run Code
 - Use `pyenv` to set your Python version to `2.7.15`
 - Setup a python virtualenv: `virtualenv all_dash`
