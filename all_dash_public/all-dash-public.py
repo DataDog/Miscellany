@@ -87,6 +87,18 @@ def getAllPublicDashboards(api_key, app_key):
     # }
     # present_all_custom_d_list = api.DashboardList.get(1)
 
+    # @ckelner:
+    # An alternative to using the UNPUBLISHED API is to:
+    # 1. get all dashboards: https://docs.datadoghq.com/api/?lang=bash#get-all-dashboards
+    # 2. create a new dashboard list: https://docs.datadoghq.com/api/?lang=bash#create-a-dashboard-list
+    # 3. add all the dashboards to that list: https://docs.datadoghq.com/api/?lang=bash#add-items-to-a-dashboard-list
+    # 4. call the get items API for that list: https://docs.datadoghq.com/api/?lang=bash#get-items-of-a-dashboard-list
+    #
+    # It is worth NOTING that the https://docs.datadoghq.com/api/?lang=bash#get-all-dashboards
+    # endpoint ONLY returns custom dashboards, not integration, hosts, or other
+    # out of the box dashboards -- so if it was used it would still be INCOMPLETE
+    # thus the use of the unpublished API
+
     # gets all dashboards from UNPUBLISHED API ENDPOINT
     # Includes `"type": "preset_dashboard_list"` and `"type": "manual_dashboard_list"`
     all_dash_list = json.loads(requests.get(
