@@ -10,6 +10,9 @@ in a production environment, you do so at your own risk.
 This script uses a Datadog HTTP endpoint which is subject to change at any
 time with no guarantee.
 
+# Motivation
+Currently (2019-04) the DD API does not return all child orgs when querying https://docs.datadoghq.com/api/?lang=bash#get-organization - the orgs array only returns a single org. This was tested against multiple know orgs with many child orgs.
+
 # Run Code
 - Use `pyenv` to set your Python version to `2.7.15`
 - Setup a python virtualenv: `virtualenv all_child_orgs`
