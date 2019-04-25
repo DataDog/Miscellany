@@ -143,10 +143,10 @@ def getAllPublicDashboards(api_key, app_key):
         if d_list["type"] == "preset_dashboard_list":
             # We need to use another UNPUBLISHED API here to get preset dashboards
             preset_list_items = json.loads(requests.get(
-                'https://api.datadoghq.com/api/v1/dashboard/lists/preset/' +
-                str(d_list["id"]) + '/dashboards?' +
-                'api_key=' + api_key +
-                '&application_key=' + app_key).text)["dashboards"]
+                "https://api.datadoghq.com/api/v1/dashboard/lists/preset/" +
+                str(d_list["id"]) + "/dashboards?" +
+                "api_key=" + api_key + "&" +
+                "application_key=" + app_key).text)["dashboards"]
             # poor man's debugging
             # print json.dumps(preset_list_items, indent=4, sort_keys=True)
             dashboard_items.extend(preset_list_items)
@@ -179,9 +179,8 @@ def getAllPublicDashboards(api_key, app_key):
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser(
-        description="Create an empty dashboard for testing purposes")
+        description="Get a list of all public dashboards for a given org")
     parser.add_argument(
         "-k", "--apikey", help="Your Datadog API key", type=str, default=None)
     parser.add_argument(
