@@ -1,3 +1,16 @@
+'''
+    Disclaimer:
+    These projects are not a part of Datadog's subscription services and are
+    provided for example purposes only. They are NOT guaranteed to be bug free
+    and are not production quality. If you choose to use to adapt them for use
+    in a production environment, you do so at your own risk.
+
+    This script uses unpublished Datadog API endpoints which are subject to
+    change at any time with no guarantee.
+
+    See the README.md for how to use this script
+'''
+
 #!/usr/bin/env python
 import argparse
 import os
