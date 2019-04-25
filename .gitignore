@@ -142,3 +142,4 @@ ENV/
 pyvenv.cfg
 .venv
 pip-selfcheck.json
+all_dash_public/public-dashboards.json

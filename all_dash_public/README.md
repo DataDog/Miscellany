@@ -78,4 +78,9 @@ Script will pretty print a json dict of all public dashboards; should look like:
       "url": "/screen/138348/devops-board"
   }
 }
+...
+==============================
+Script complete. Found 1051 public dashboards.
+JSON has been dumped to ./public-dashboards.json
+Exiting...
 ```
