@@ -170,9 +170,9 @@ def getAllPublicDashboards(api_key, app_key):
 
     spinner.stop()
     # print it!
-    print json.dumps(public_dashboards, indent=4, sort_keys=True)
+    print json.dumps(public_dashboards, indent=4)
     with open('public-dashboards.json', 'w') as outfile:
-        json.dumps(public_dashboards, indent=4, sort_keys=True)
+        json.dump(public_dashboards, outfile, indent=4)
     print "="*30
     print "Script complete. Found " + str(count) + " public dashboards."
     print "JSON has been dumped to ./public-dashboards.json"
