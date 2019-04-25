@@ -142,7 +142,6 @@ def getAllPublicDashboards(api_key, app_key):
 
         if d_list["type"] == "preset_dashboard_list":
             # We need to use another UNPUBLISHED API here to get preset dashboards
-            # https://github.com/DataDog/dogweb/blob/prod/dogweb/config/routing/core.py#L477
             preset_list_items = json.loads(requests.get(
                 'https://api.datadoghq.com/api/v1/dashboard/lists/preset/' +
                 str(d_list["id"]) + '/dashboards?' +
