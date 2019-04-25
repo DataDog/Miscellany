@@ -17,6 +17,7 @@ import json
 from halo import Halo
 import requests
 from pycookiecheat import chrome_cookies
+import sys
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -29,13 +30,17 @@ if __name__ == "__main__":
     spinner = Halo(text="Getting all child orgs...", spinner="dots")
     spinner.start()
 
-    # @ckelner: This SHOULD work with partlow, just change the url
-    # to https://support-admin.us1.prod.dog -- could be made an args opt also
+    # @ckelner: Support: This works with our internal systems also, just
+    # change the URL to point at internal systems
     url = "https://app.datadoghq.com"
-    # cookie_path = "/Users/chriskelner/Library/Application Support/Google/Chrome/Profile 2/Cookies"
-    #cookiez = chrome_cookies(url, cookie_file=cookie_path)
     cookiez = chrome_cookies(url)
-    org_summary = requests.get(url + "/account/usage/multi_org_summary", cookies=cookiez).json()["orgs"]
+    r = requests.get(url + "/account/usage/multi_org_summary", cookies=cookiez)
+    if r.status_code == 403:
+        spinner.stop()
+        print "Multi-org not enabled"
+        sys.exit()
+
+    org_summary = r.json()["orgs"]
     # poor man's debugging
     # print json.dumps(org_summary, indent=4)
     '''
