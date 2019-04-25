@@ -29,6 +29,8 @@ if __name__ == "__main__":
     spinner = Halo(text="Getting all child orgs...", spinner="dots")
     spinner.start()
 
+    # @ckelner: This SHOULD work with partlow, just change the url
+    # to https://support-admin.us1.prod.dog -- could be made an args opt also
     url = "https://app.datadoghq.com"
     # cookie_path = "/Users/chriskelner/Library/Application Support/Google/Chrome/Profile 2/Cookies"
     #cookiez = chrome_cookies(url, cookie_file=cookie_path)
