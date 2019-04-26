@@ -91,8 +91,8 @@ if __name__ == "__main__":
         # print json.dumps(org, indent=4)
         org_list.append(
             {
-                "name": org["id"],
-                "public_id": org["name"]
+                "name": org["name"],
+                "public_id": org["id"]
             }
         )
         count+=1
