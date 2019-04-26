@@ -62,6 +62,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [create_users_and_emails_list.py](./create_users_and_emails_list.py)							| Python	| script to get a list of user emails as csv                                                                          |
 | [DD User Report (JSON)](./dd-user-report-json)							| Python	| Generates various different user reports and pretty prints the json for further processing -- useful for large orgs with 100s or 1000s or users  |
 | [Get All Public Dashboards](./all_dash_public)							| Python	| Gets a full list (returned as JSON) of all dashboards that are public for a given organization  |
+| [Get All Child Orgs](./get_all_child_orgs)							| Python	| Gets a full list (returned as JSON) of all child organizations for a given organization  |
 
 ## Additional tools
 These are some additional tools and scripts written by Datadog.

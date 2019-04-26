@@ -1,6 +1,15 @@
 # All Public Dashboards
 This script will get all public dashboards for a given DD org.
 
+## Disclaimer
+These projects are not a part of Datadog's subscription services and are
+provided for example purposes only. They are NOT guaranteed to be bug free
+and are not production quality. If you choose to use to adapt them for use
+in a production environment, you do so at your own risk.
+
+This script uses unpublished Datadog API endpoints which are subject to
+change at any time with no guarantee.
+
 # Why does this need a script?
 The Datadog public APIs for Dashboards as-of 2019-04 (https://docs.datadoghq.com/api/?lang=python#dashboards) does not include any indicators that a Dashboard has been made public.  
 
@@ -78,4 +87,9 @@ Script will pretty print a json dict of all public dashboards; should look like:
       "url": "/screen/138348/devops-board"
   }
 }
+...
+==============================
+Script complete. Found 1051 public dashboards.
+JSON has been dumped to ./public-dashboards.json
+Exiting...
 ```
