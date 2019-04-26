@@ -28,12 +28,12 @@ Script will pretty print a json dict of all public dashboards; should look like:
 ```
 [
   {
-      "public_id": "zzzzz-kelnerhax3",
-      "name": "9cd818ea5"
+      "name": "zzzzz-kelnerhax3",
+      "public_id": "9cd818ea5"
   },
   {
-      "public_id": "zzzzz-kelnerhax4",
-      "name": "a446b1b33"
+      "name": "zzzzz-kelnerhax4",
+      "public_id": "a446b1b33"
   }
 ]
 ==============================
