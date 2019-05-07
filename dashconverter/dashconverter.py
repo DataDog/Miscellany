@@ -194,7 +194,7 @@ class converter(object):
                 # If the vizualisation is a QVW, the user will have to open the original dashboard, Open and Save the faulty widget.
                 print(graphs[i])
 
-            if graphs[i]['definition']['viz'] not in ["hostmap", "distribution", "heatmap"]:
+            if graphs[i]['definition']['viz'] not in ["note", "hostmap", "distribution", "heatmap"]:
                 cls.widgets.append({
                     'height': height,
                     'width': width,
@@ -239,6 +239,23 @@ class converter(object):
                     "title_text": graphs[i]['title'],
                     "title": True,
                     "type": "hostmap"
+                })
+
+            elif graphs[i]['definition']['viz'] == "note":
+                cls.widgets.append({
+                    'title': False,
+                    'height': height,
+                    'width': width,
+                    'x': pos_x,
+                    'y': pos_y,
+                    'html': graphs[i]['definition']['content'],
+                    'text_align': graphs[i]['definition']['text_align'],
+                    'font_size': graphs[i]['definition']['font_size'],
+                    'bgcolor': graphs[i]['definition']['background_color'],
+                    "tick": True,
+                    "tick_pos": graphs[i]['definition']['tick_pos'],
+                    "tick_edge": graphs[i]['definition']['tick_edge'],
+                    "type": "note"
                 })
 
     @classmethod
