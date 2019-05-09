@@ -72,7 +72,7 @@ def getAllPublicDashboards(api_key, app_key):
     # - https://github.com/DataDog/datadogpy/blob/master/datadog/api/dashboard_lists.py#L20
     #
     # However, an endpoint does exists that isn't documented:
-    # https://github.com/DataDog/dogweb/blob/prod/dogweb/config/routing/core.py#L375
+    # https://api.datadoghq.com/api/v1/dashboard/lists
     #
     # We will need to call this manually as it isn't mapped in the python lib
     #
