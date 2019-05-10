@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 """Usage:
   dogmover.py pull (<type>) [--dry-run]
   dogmover.py push (<type>) [--dry-run]
