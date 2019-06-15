@@ -1,6 +1,6 @@
-# DogMover
+# Dogmover
 
-![Alt text](./dogmover.png "A moving dog.")
+![Dogmover](./dogmover.png "A moving dog.")
 
 This tool was originally built to help migrate customers `dashboards`, `monitors`, `users` and `synthetic tests` from our US to EU instance. The tool also supports moving the data within the same instances (eg., EU to EU _or_ US to US)
 
