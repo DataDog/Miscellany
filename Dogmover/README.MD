@@ -2,7 +2,7 @@
 
 ![Alt text](./dogmover.png "A moving dog.")
 
-This tool was originally built to help migrate customers screenboards, timeboards and monitors from our US instance to our EU instance. The tool also supports moving the data within the same instances (eg., EU to EU, or US to US and even EU to US.)
+This tool was originally built to help migrate customers `dashboards`, `monitors`, `users` and `synthetic tests` from our US to EU instance. The tool also supports moving the data within the same instances (eg., EU to EU _or_ US to US)
 
 ## Install
 1. Clone this repository.
@@ -10,25 +10,25 @@ This tool was originally built to help migrate customers screenboards, timeboard
 2. Add your _api_key_, _app_key_ to `config.json` for both the source (the organization where you will pull the data from) and the destination (to where you will be pushing the data to). See `config.json.example`. 
 
 ## Usage
-To pull (export) a organizations screenboards, do:
-`./dogmover.py pull screenboards --dry-run`
-To push (import) a organizations screenboards, do:
-`./dogmover.py push screenboards --dry-run`
+To pull (export) dashboards, run:
+`./dogmover.py pull dashboards --dry-run`
+To push (import) dashboards, run:
+`./dogmover.py push dashboards --dry-run`
 
 The arguments supported are:
-`./dogmover.py pull|push screenboards|timeboards|monitors [--dry-run] `
+`./dogmover.py pull|push screenboards|timeboards|monitors [--dry-run] [-h]`
 
-If you feel safe with the output Dogmover is giving you, run without `--dry-run` to make an actual pull/push.
+If you feel safe with the output Dogmover is giving you, run without `--dry-run` to commit your push/pulls into your Datadog account.
 
 ### Note
-1. When not running in `--dry-run` mode, all pulls will create a JSON file locally on your file system, which can be useful if you are looking to backup data with pull (for say, version controlling). The files are stored in:
+### The --dry-run flag
+If you are not using the `--dry-run` flag, all your pulls will create a JSON file locally on your file system, which can be useful if you are looking to backup your data (for say, version controlling) or to modify the contents before pushing. The files are stored in:
 ``` 
-./screnboards/*.json
-./timeboards/*.json
+./dashboards/*.json
 ./monitors/*.json
+./users/*.json
+./synthetics/*.json
 ```
 
-2. If you are pushing monitors, all your monitors will be automatically muted to suppress monitors from triggering false/positive alerts as we help migrate customers from one instance to another. This is done as a scheduled downtime, remove it in the GUI if this is not what you want.
-
-### Known issues
-1. EU instance is not supported in Datadogpy <0.3.0, please make sure to run `pip install -r requirements.txt --upgrade` or Dogmover may not work as expected for you.
+### Pushing monitors will schedule a managed downtime
+Pushing monitors will automatically schedule a managed downtime for _all_ your monitors, this is to suppress false/positive alerts. You can remove this scheduled downtime by navigating to `Monitors -> Manage downtime` in Datadog.
