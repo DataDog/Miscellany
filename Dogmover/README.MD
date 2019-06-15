@@ -16,7 +16,7 @@ To push (import) dashboards, run:
 `./dogmover.py push dashboards --dry-run`
 
 The arguments supported are:
-`./dogmover.py pull|push screenboards|timeboards|monitors [--dry-run] [-h]`
+`./dogmover.py pull|push dashboards|monitors|users|synthetics [--dry-run] [-h]`
 
 If you feel safe with the output Dogmover is giving you, run without `--dry-run` to commit your push/pulls into your Datadog account.
 
