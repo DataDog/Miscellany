@@ -1,4 +1,4 @@
-# Datadog-SNMP-MIB-Parser
+# PySNMP-MIB-Parser
 Converts a MIB file (in PySNMP format) to a yaml file that can be used by Datadog's SNMP agent integration: https://docs.datadoghq.com/integrations/snmp/
 
 ## Pre-Requisites
