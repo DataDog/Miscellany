@@ -13,7 +13,7 @@ Once your MIB is in PySNMP format you can use this tool to parse the MIB and con
 
 ## Steps for Parsing MIB
 
-1. `git clone https://github.com/adulmovits/Datadog-SNMP-MIB-Parser.git`
+1. Clone this repository.
 2. Run `python parse.py`  
 This script will:  
     a. Prompt you for the location/name of the MIB file  
