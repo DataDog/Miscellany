@@ -63,6 +63,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [DD User Report (JSON)](./dd-user-report-json)							| Python	| Generates various different user reports and pretty prints the json for further processing -- useful for large orgs with 100s or 1000s or users  |
 | [Get All Public Dashboards](./all_dash_public)							| Python	| Gets a full list (returned as JSON) of all dashboards that are public for a given organization  |
 | [Get All Child Orgs](./get_all_child_orgs)							| Python	| Gets a full list (returned as JSON) of all child organizations for a given organization  |
+| [PySNMP-MIB-Parser](./PySNMP-MIB-Parser)							| Python	| Converts a MIB file (in PySNMP format) to a yaml file that can be used by Datadog's [SNMP agent integration](https://docs.datadoghq.com/integrations/snmp/)  |
 
 ## Additional tools
 These are some additional tools and scripts written by Datadog.
