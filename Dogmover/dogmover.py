@@ -208,11 +208,12 @@ def push_synthetics(options):
          with open(synthetic) as f:
             data = json.load(f)
             count = count + 1
-            invalid_keys = ["public_id", "monitor_id", "overall_state", "created_at", "created_by", "modified_by", "modified_at"]
+            invalid_keys = ["public_id", "monitor_id", "overall_state", "created_at", "created_by", "modified_by", "modified_at", "overall_state_modified"]
             list(map(data.pop, invalid_keys))
             print("Pushing {}".format(data["name"].encode('utf8')))   
             if not arguments["--dry-run"]:
                 r = requests.post('{}api/v1/synthetics/tests?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]), json=data)
+                print(r.text)
     print("Pushed '{}' synthetic tests.".format(count))
 
 if __name__ == '__main__':
