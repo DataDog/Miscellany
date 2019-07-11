@@ -24,10 +24,10 @@ initialize(**options)
 new = api.Dashboard.create(
 	title=dashboard['title'],
 	widgets=dashboard['widgets'],
-    	layout_type=dashboard['layout_type'],
-    	description=dashboard['description'],
-    	is_read_only=dashboard['is_read_only'],
-    	notify_list=dashboard['notify_list'],
+	layout_type=dashboard['layout_type'],
+	description=dashboard['description'],
+	is_read_only=dashboard['is_read_only'],
+	notify_list=dashboard['notify_list'],
 	template_variables=dashboard['template_variables'],
 )
 
