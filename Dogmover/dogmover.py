@@ -132,6 +132,18 @@ def pull_synthetics(options):
             print("Pulling: {} and writing to file: {}".format(synthetic["name"].encode('utf8'), path))
     print("Retrieved '{}' synthetic tests.".format(count))  
 
+def pull_awsaccounts(options):
+    path = False
+    count = 0
+
+    r = requests.get('{}api/v1/integration/aws?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]))
+    awsaccounts = r.json()
+    for awsaccount in awsaccounts["accounts"]:
+        count = count + 1
+        path = _json_to_file('awsaccounts', awsaccount["account_id"], awsaccount)
+    print("Retrieved '{}' AWS accounts.".format(count))  
+        
+
 def push_dashboards():
     count = 0
     dashboards = _files_to_json("dashboards")
@@ -216,6 +228,26 @@ def push_synthetics(options):
                 print(r.text)
     print("Pushed '{}' synthetic tests.".format(count))
 
+def push_awsaccounts(options):
+    count = 0
+    awsaccounts = _files_to_json("awsaccounts")
+    if not awsaccounts:
+        exit("No awsaccounts are locally available. Consider pulling awsaccounts first.")
+    
+    for awsaccount in awsaccounts:
+        with open(awsaccount) as f:
+            data = json.load(f)
+            count = count + 1
+            print("Pushing {}".format(data["account_id"].encode('utf8')))
+            if not arguments["--dry-run"]:
+                r = requests.post('{}api/v1/integration/aws?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]), json=data)
+                json_data = json.loads(r.text)
+                json_data["account_id"] = data["account_id"]
+                print(json.dumps(json_data))
+                path = _json_to_file('awsaccounts.out', data["account_id"], json_data)
+    print("Pushed '{}' AWS accounts.".format(count))
+    print("You can now use the json files in the awsaccounts.out folder to automate the AWS External ID onboarding using AWS APIs.")
+
 if __name__ == '__main__':
     arguments = docopt(__doc__, version='0.1.1rc')
 
@@ -232,6 +264,8 @@ if __name__ == '__main__':
             pull_users()
         elif arguments['<type>'] == 'synthetics':
             pull_synthetics(_init_options("pull"))
+        elif arguments['<type>'] == 'awsaccounts':
+            pull_awsaccounts(_init_options("pull"))
     elif arguments["push"]:
         _init_options("push")
         if arguments['<type>'] == 'dashboards':
@@ -242,3 +276,5 @@ if __name__ == '__main__':
             push_users()
         elif arguments['<type>'] == 'synthetics':
             push_synthetics(_init_options("push"))
+        elif arguments['<type>'] == 'awsaccounts':
+            push_awsaccounts(_init_options("push"))
