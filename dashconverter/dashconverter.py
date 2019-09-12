@@ -17,6 +17,7 @@ parser.add_argument('--api-key', help='Datadog API key', required=False)
 parser.add_argument('--app-key', help='Datadog APP key', required=False)
 parser.add_argument(
     '--title', help='Title for the converted dashboard', required=False)
+parser.add_argument('--api-host', help='Datadog API endpoint URL', required=False)
 
 args = parser.parse_args()
 
@@ -24,6 +25,8 @@ options = {
     'api_key': args.api_key if args.api_key else os.environ.get('DD_API_KEY'),
     'app_key': args.app_key if args.app_key else os.environ.get('DD_APP_KEY'),
 }
+if args.api_host:
+    options.update({'api_host': args.api_host})
 
 if not all(options.values()):
     parser.print_help()
@@ -271,7 +274,7 @@ class converter(object):
             output = api.Timeboard.create(title=cls.title, description='description',
                                           graphs=cls.graphs, template_variables=cls.template_variables, read_only=False)
             cls.delete_dash(dash)
-            print("Your new Timeboard is available at: http://app.datadoghq.com" + output['url'])
+            print('Your new Timeboard is available at: {url}'.format(url=api._api_host + output['url']))
 
         else:
             graphs = cls.widget_transform()
@@ -279,7 +282,7 @@ class converter(object):
             output = api.Screenboard.create(board_title=cls.title, description='description',
                                             widgets=cls.widgets, template_variables=cls.template_variables)
             cls.delete_dash(dash)
-            print("Your new Screenboard is available at: http://app.datadoghq.com/screen/" + str(output['id']))
+            print('Your new Screenboard is available at: {url}'.format(url=api._api_host + '/screen/' + str(output['id'])))
 
 
 converter().main(args.dashboard_id)
