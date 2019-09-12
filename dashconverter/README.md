@@ -28,7 +28,7 @@ Note: As the widgets available on both dashboards are different you have a list 
 
 Because Screenboard widgets have individual time windows, when converting a Timeboard to a Screenboard, all the widgets are set to 4h. This can be changed with the variable timeframe. Additionally, the size of the widgets is set to the default size, you can modify this with the variables height and width.
 
-You have to enter your API and APP keys in the script for it to work.
+You have to enter your API and APP keys in the script for it to work. Optionally you can provide the Datadog API URL as an cli argument with e.g. `--api-host https://app.datadoghq.eu` if you want to use the Datadog EU datacenter.
 
 A concrete use case for this is to transform this screenboard:
 
