@@ -159,6 +159,7 @@ class converter(object):
                     "definition": {
                         "events": [],
                         "requests": widgets[i]['tile_def']['requests'],
+                        "markers": widgets[i]['tile_def']['markers'] if 'markers' in widgets[i]['tile_def'] else [],
                         "viz": widgets[i]['type'],
                     },
                     "title": widgets[i]['title_text']
