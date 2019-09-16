@@ -8,13 +8,13 @@ url = "https://app.datadoghq.com/reports/v2/overview?api_key="+api_key+"&applica
 headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
 r = requests.get(url,headers=headers)
 
-print "status:", r.status_code
+print("status:", r.status_code)
 
 def get_host_agentVersion(data):
 	host_agent = agent_version(data)
 	with open ("host_agent_all.json",'w') as outfile:
 		json.dump(host_agent, outfile)
-	print "saved host_agent_all.json"
+	print("saved host_agent_all.json")
 
 def agent_version(data):
 	host_agent = []
@@ -28,12 +28,12 @@ def agent_version(data):
 			#	host_agent.append({"host_name": hosts["host_name"],"agent_version": hosts["meta"]["agent_version"]})
 			host_agent.append({"host_name": hosts["host_name"],"agent_version": hosts["meta"]["agent_version"]})
 	
-	print "extract host and agent version"
+	print("extract host and agent version")
 	return host_agent	
 
 if r.status_code == 200:
 	data = r.json()
 	with open ("JSON_API_permalink.json",'w') as outfile:
 		json.dump(r.json(), outfile)
-	print "saved JSON_API_permalink.json"
+	print("saved JSON_API_permalink.json")
 	get_host_agentVersion(data)
