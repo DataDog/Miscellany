@@ -139,7 +139,7 @@ class converter(object):
                 widgets[i]['tile_def'] = 'outdated'
                 print("One of the widgets' type is outdated and won't be ported.\n To solve this, just click on edit the dashboard, open a widget, hit done and save the dashboard.\n Then run the script again.")
 
-            if not (('title_text' in widgets[i]) and (isinstance(widgets[i]['title_text'], str))):
+            if not (('title_text' in widgets[i]) and (isinstance(widgets[i]['title_text'], str if sys.version_info[0] >= 3 else basestring))):
                 widgets[i]['title_text'] = widgets[i]['tile_def']['requests'][0]['q']
 
             if widgets[i]['type'] == 'hostmap':
