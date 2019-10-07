@@ -12,14 +12,14 @@ Example, try with --dry-run first:
     dogmover.py push dashboards
 
     Supported arguments:
-    dogmover.py pull|push dashboards|monitors|users|synthetics (--dry-run|-h)
+    dogmover.py pull|push dashboards|monitors|users|synthetics|awsaccounts (--dry-run|-h)
 
 Options:
   -h, --help
   -d, --dry-run
 """
 __author__ = "Misiu Pajor <misiu.pajor@datadoghq.com>"
-__version__ = "2.0.0"
+__version__ = "2.0.1"
 from docopt import docopt
 import json
 import os

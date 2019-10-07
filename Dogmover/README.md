@@ -2,7 +2,7 @@
 
 ![Dogmover](./dogmover.png "A moving dog.")
 
-This tool was originally built to help migrate customers `dashboards`, `monitors`, `users` and `synthetic tests` from our US to EU instance. The tool also supports moving these resources within the same instances (eg., EU to EU _or_ US to US)
+This tool was originally built to help migrate customers `dashboards`, `monitors`, `users`, `synthetic tests` and `awsaccounts` from our US to EU instance. The tool also supports moving these resources within the same instances (eg., EU to EU _or_ US to US)
 
 ## Install
 1. Clone this repository.
@@ -16,7 +16,7 @@ To push (import) dashboards, run:
 `./dogmover.py push dashboards --dry-run`
 
 The arguments supported are:
-`./dogmover.py pull|push dashboards|monitors|users|synthetics [--dry-run] [-h]`
+`./dogmover.py pull|push dashboards|monitors|users|synthetics|awsaccounts [--dry-run] [-h]`
 
 If you feel safe with the output Dogmover is giving you, run without `--dry-run` to commit your push/pulls into your Datadog account.
 
@@ -28,6 +28,7 @@ If you are not using the `--dry-run` flag, all your pulls will create a JSON fil
 ./monitors/*.json
 ./users/*.json
 ./synthetics/*.json
+./awsaccounts/*.json
 ```
 
 ### Pushing monitors will schedule a managed downtime
