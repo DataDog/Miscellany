@@ -7,7 +7,8 @@ This tool was originally built to help migrate customers `dashboards`, `monitors
 ## Install
 1. Clone this repository.
 2. Install all python dependencies: `pip install -r requirements.txt --upgrade`
-2. Add your _api_key_, _app_key_ to `config.json` for both the source (the organization where you will pull the resources from) and the destination (to where you will be pushing the resources to). See `config.json.example`. 
+3. Add your _api_key_, _app_key_ to `config.json` for both the source (the organization where you will pull the resources from) and the destination (to where you will be pushing the resources to). See `config.json.example`. 
+
 
 ## Usage
 To pull (export) dashboards, run:
@@ -16,9 +17,19 @@ To push (import) dashboards, run:
 `./dogmover.py push dashboards --dry-run`
 
 The arguments supported are:
-`./dogmover.py pull|push dashboards|monitors|users|synthetics|awsaccounts [--dry-run] [-h]`
+`./dogmover.py pull|push dashboards|monitors|users|synthetics|awsaccounts|logpipelines [--dry-run] [-h]`
 
 If you feel safe with the output Dogmover is giving you, run without `--dry-run` to commit your push/pulls into your Datadog account.
+
+
+## Install via container
+1. Create image with Python 2 and relevant dependencies `docker build -t "dogmover" .`
+2. Make sure the `dogmover.py` is executable `chmod +x dogmover.py`
+3. Add your _api_key_, _app_key_ to `config.json` for both the source (the organization where you will pull the resources from) and the destination (to where you will be pushing the resources to). See `config.json.example`. 
+
+## Usage via container
+Usage is similar to the one without container:
+`docker run --rm -v $(pwd):/dogmover dogmover pull|push dashboards|monitors|users|synthetics|awsaccounts|logpipelines [--dry-run] [-h]`
 
 ### Note
 ### The --dry-run flag

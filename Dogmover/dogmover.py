@@ -12,7 +12,7 @@ Example, try with --dry-run first:
     dogmover.py push dashboards
 
     Supported arguments:
-    dogmover.py pull|push dashboards|monitors|users|synthetics|awsaccounts (--dry-run|-h)
+    dogmover.py pull|push dashboards|monitors|users|synthetics|awsaccounts|logpipeline (--dry-run|-h)
 
 Options:
   -h, --help
@@ -34,9 +34,9 @@ def _init_options(action):
             config = json.load(f)
     except IOError:
         exit("No configuration file named: {} could be found.".format(config_file))
-    
+
     options = {}
-    if action == "pull":   
+    if action == "pull":
         options = {
             'api_key': config["source_api_key"],
             'app_key': config["source_app_key"],
@@ -111,7 +111,7 @@ def pull_users():
             if not arguments["--dry-run"]:
                 path = _json_to_file('users', user["handle"], json_data["user"])
             print("Pulling user: {} with role: {}, writing to file: {}".format(user["handle"].encode('utf8'), user["access_role"], path))
-    print("Retrieved '{}' users.".format(count))    
+    print("Retrieved '{}' users.".format(count))
 
 def pull_synthetics(options):
     path = False
@@ -130,7 +130,7 @@ def pull_synthetics(options):
             )).json()
             path = _json_to_file('synthetics', synthetic["public_id"], json_data)
             print("Pulling: {} and writing to file: {}".format(synthetic["name"].encode('utf8'), path))
-    print("Retrieved '{}' synthetic tests.".format(count))  
+    print("Retrieved '{}' synthetic tests.".format(count))
 
 def pull_awsaccounts(options):
     path = False
@@ -141,8 +141,18 @@ def pull_awsaccounts(options):
     for awsaccount in awsaccounts["accounts"]:
         count = count + 1
         path = _json_to_file('awsaccounts', awsaccount["account_id"], awsaccount)
-    print("Retrieved '{}' AWS accounts.".format(count))  
-        
+    print("Retrieved '{}' AWS accounts.".format(count))
+
+def pull_logpipelines(options):
+    path = False
+    count = 0
+
+    r = requests.get('{}api/v1/logs/config/pipelines?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]))
+    rJSON = r.json()
+    for item in rJSON:
+        count = count + 1
+        path = _json_to_file('logpipelines', item["id"], item)
+    print("Retrieved '{}' log pipelines.".format(count))
 
 def push_dashboards():
     count = 0
@@ -154,8 +164,8 @@ def push_dashboards():
         with open(dashboard) as f:
             data = json.load(f)
             count = count + 1
-            print("Pushing {}".format(data["title"].encode('utf8')))   
-            if not arguments["--dry-run"]:  
+            print("Pushing {}".format(data["title"].encode('utf8')))
+            if not arguments["--dry-run"]:
                 api.Dashboard.create(
                     title=data["title"],
                     description=data["description"],
@@ -222,7 +232,7 @@ def push_synthetics(options):
             count = count + 1
             invalid_keys = ["public_id", "monitor_id", "overall_state", "created_at", "created_by", "modified_by", "modified_at", "overall_state_modified"]
             list(map(data.pop, invalid_keys))
-            print("Pushing {}".format(data["name"].encode('utf8')))   
+            print("Pushing {}".format(data["name"].encode('utf8')))
             if not arguments["--dry-run"]:
                 r = requests.post('{}api/v1/synthetics/tests?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]), json=data)
                 print(r.text)
@@ -233,7 +243,7 @@ def push_awsaccounts(options):
     awsaccounts = _files_to_json("awsaccounts")
     if not awsaccounts:
         exit("No awsaccounts are locally available. Consider pulling awsaccounts first.")
-    
+
     for awsaccount in awsaccounts:
         with open(awsaccount) as f:
             data = json.load(f)
@@ -247,6 +257,32 @@ def push_awsaccounts(options):
                 path = _json_to_file('awsaccounts.out', data["account_id"], json_data)
     print("Pushed '{}' AWS accounts.".format(count))
     print("You can now use the json files in the awsaccounts.out folder to automate the AWS External ID onboarding using AWS APIs.")
+
+def push_logpipelines(options):
+    count = 0
+    fJSON = _files_to_json("logpipelines")
+    if not fJSON:
+        exit("No logpipelines are locally available. Consider pulling logpipelines first.")
+
+    for item in fJSON:
+        with open(item) as f:
+            data = json.load(f)
+            count = count + 1
+            print("Pushing {}".format(data["id"].encode('utf8')))
+            itemId = data['id']
+            del data['id']
+            del data['is_read_only']
+            del data['type']
+            # print(json.dumps(data, indent=2, sort_keys=True))
+            headers = {'content-type': 'application/json'}
+            if not arguments["--dry-run"]:
+                r = requests.post('{}api/v1/logs/config/pipelines?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]), headers=headers, json=data)
+                # print("request result:" + r.text)
+                json_data = json.loads(r.text)
+                json_data["id"] = itemId
+                # print("json dump" + json.dumps(json_data, indent=2, sort_keys=True))
+                path = _json_to_file('logpipelines.out', itemId, json_data)
+    print("Pushed '{}' log pipelines.".format(count))
 
 if __name__ == '__main__':
     arguments = docopt(__doc__, version='0.1.1rc')
@@ -266,6 +302,8 @@ if __name__ == '__main__':
             pull_synthetics(_init_options("pull"))
         elif arguments['<type>'] == 'awsaccounts':
             pull_awsaccounts(_init_options("pull"))
+        elif arguments['<type>'] == 'logpipelines':
+            pull_logpipelines(_init_options("pull"))
     elif arguments["push"]:
         _init_options("push")
         if arguments['<type>'] == 'dashboards':
@@ -278,3 +316,5 @@ if __name__ == '__main__':
             push_synthetics(_init_options("push"))
         elif arguments['<type>'] == 'awsaccounts':
             push_awsaccounts(_init_options("push"))
+        elif arguments['<type>'] == 'logpipelines':
+            push_logpipelines(_init_options("push"))
