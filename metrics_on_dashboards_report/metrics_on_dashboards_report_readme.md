@@ -1,12 +1,18 @@
+*****************************
+#TODO: test on demo account
+*****************************
+
 #Metrics on Dashboards Report
 
 ####Overview
-This program is a simple console program written in Python 2.7.10, and utilizes the datadogpy API library to return a list of dashboards that have any metric in a series of user provided metrics present in their queries.
+This program is a simple console program written in Python 3.7.1, and utilizes the datadogpy API library to return a list of dashboards that have any metric in a series of user provided metrics present in their queries.
 
 This program requires that the datadogpy library be installed on the machine or environment on which the program is running.  Download and installation instructions can be found [here](https://github.com/DataDog/datadogpy)
 
+The command to install datadogpy is `pip3 install datadog`
+
 ####How to Run It
-Once you have copied this program locally, it can be run in a terminal from the directory it is stored in by running `python metrics_on_dashboards_report.py`.  Simply follow the on screen instructions, and receive a report of Dashboards where any of the metrics you provide are used.
+Once you have copied this program locally, it can be run in a terminal from the directory it is stored in by running `python3 metrics_on_dashboards_report.py`.  Simply follow the on screen instructions, and receive a report of Dashboards where any of the metrics you provide are used.
 
 ####Sample Run Through
 Below is a sample run of the program:
