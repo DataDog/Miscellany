@@ -2,7 +2,7 @@
 
 ![Dogmover](./dogmover.png "A moving dog.")
 
-This tool was originally built to help migrate customers `dashboards`, `monitors`, `users`, `synthetic tests` and `awsaccounts` from our US to EU instance. The tool also supports moving these resources within the same instances (eg., EU to EU _or_ US to US)
+This tool was originally built to help migrate customers `dashboards`, `monitors`, `users`, `synthetic tests`, `aws accounts` and `log pipelines` from our US to EU instance. The tool also supports moving these resources within the same instances (eg., EU to EU _or_ US to US)
 
 ## Install
 1. Clone this repository.
@@ -40,6 +40,7 @@ If you are not using the `--dry-run` flag, all your pulls will create a JSON fil
 ./users/*.json
 ./synthetics/*.json
 ./awsaccounts/*.json
+./logpipelines/*.json
 ```
 
 ### Pushing monitors will schedule a managed downtime
