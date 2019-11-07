@@ -19,7 +19,7 @@ Options:
   -d, --dry-run
 """
 __author__ = "Misiu Pajor <misiu.pajor@datadoghq.com>"
-__version__ = "2.0.1"
+__version__ = "2.0.2"
 from docopt import docopt
 import json
 import os
@@ -89,6 +89,9 @@ def pull_monitors():
 
     monitors = api.Monitor.get_all()
     for monitor in monitors:
+        if monitor["type"] == "synthetics alert":
+                print("Skipping {}. Synthetic monitors will be automatically re-created when you push your synthetic tests.".format(monitor["name"]))
+                continue
         count = count + 1
         new_monitor = {}
         for k, v in monitor.items():
