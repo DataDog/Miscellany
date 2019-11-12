@@ -2,7 +2,7 @@
 
 ![Dogmover](./dogmover.png "A moving dog.")
 
-This tool was originally built to help migrate customers `dashboards`, `monitors`, `users`, `synthetic tests`, `aws accounts` and `log pipelines` from our US to EU instance. The tool also supports moving these resources within the same instances (eg., EU to EU _or_ US to US)
+This tool was originally built to help migrate customers `dashboards`, `monitors`, `users`, `synthetic tests`, `aws accounts`, `log pipelines` and `notebooks` from our US to EU instance. The tool also supports moving these resources within the same instances (eg., EU to EU _or_ US to US)
 
 ## Install
 1. Clone this repository.
@@ -17,7 +17,7 @@ To push (import) dashboards, run:
 `./dogmover.py push dashboards --dry-run`
 
 The arguments supported are:
-`./dogmover.py pull|push dashboards|monitors|users|synthetics|awsaccounts|logpipelines [--dry-run] [-h]`
+`./dogmover.py pull|push dashboards|monitors|users|synthetics|awsaccounts|logpipelines|notebooks [--dry-run] [-h]`
 
 If you feel safe with the output Dogmover is giving you, run without `--dry-run` to commit your push/pulls into your Datadog account.
 
@@ -29,7 +29,7 @@ If you feel safe with the output Dogmover is giving you, run without `--dry-run`
 
 ## Usage via container
 Usage is similar to the one without container:
-`docker run --rm -v $(pwd):/dogmover dogmover pull|push dashboards|monitors|users|synthetics|awsaccounts|logpipelines [--dry-run] [-h]`
+`docker run --rm -v $(pwd):/dogmover dogmover pull|push dashboards|monitors|users|synthetics|awsaccounts|logpipelines|notebooks [--dry-run] [-h]`
 
 ### Note
 ### The --dry-run flag
@@ -41,7 +41,11 @@ If you are not using the `--dry-run` flag, all your pulls will create a JSON fil
 ./synthetics/*.json
 ./awsaccounts/*.json
 ./logpipelines/*.json
+./notebooks/*.json
 ```
 
 ### Pushing monitors will schedule a managed downtime
 Pushing monitors will automatically schedule a managed downtime for _all_ your monitors, this is to suppress false/positive alerts. You can remove this scheduled downtime by navigating to `Monitors -> Manage downtime` in Datadog.
+
+### Notebooks is currently only available to datadog employees
+Requires feature flag `notebooks_api` to be enabled on sourc/dest organisation.
