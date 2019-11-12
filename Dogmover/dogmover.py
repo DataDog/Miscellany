@@ -170,7 +170,6 @@ def pull_notebooks(options):
     for notebook in notebooks["notebooks"]:
         count = count + 1
         path = _json_to_file('notebooks', str(notebook["id"]), notebook)
-        print(path)
     print("Retrieved '{}' notebooks.".format(count))     
 
 def push_dashboards():
@@ -254,7 +253,6 @@ def push_synthetics(options):
             print("Pushing {}".format(data["name"].encode('utf8')))
             if not arguments["--dry-run"]:
                 r = requests.post('{}api/v1/synthetics/tests?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]), json=data)
-                print(r.text)
     print("Pushed '{}' synthetic tests.".format(count))
 
 def push_awsaccounts(options):
@@ -314,7 +312,6 @@ def push_notebooks(options):
             print("Pushing: {}".format(data["name"].encode('utf8')))
             if not arguments["--dry-run"]:
                 r = requests.post('{}api/v1/notebook?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]), json=data)
-                print(r.text)
     print("Pushed '{}' notebooks".format(count))
 
 
