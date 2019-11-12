@@ -276,14 +276,11 @@ def push_logpipelines(options):
             del data['id']
             del data['is_read_only']
             del data['type']
-            # print(json.dumps(data, indent=2, sort_keys=True))
             headers = {'content-type': 'application/json'}
             if not arguments["--dry-run"]:
                 r = requests.post('{}api/v1/logs/config/pipelines?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]), headers=headers, json=data)
-                # print("request result:" + r.text)
                 json_data = json.loads(r.text)
                 json_data["id"] = itemId
-                # print("json dump" + json.dumps(json_data, indent=2, sort_keys=True))
                 path = _json_to_file('logpipelines.out', itemId, json_data)
     print("Pushed '{}' log pipelines.".format(count))
 
