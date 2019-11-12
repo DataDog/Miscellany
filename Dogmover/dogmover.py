@@ -12,7 +12,7 @@ Example, try with --dry-run first:
     dogmover.py push dashboards
 
     Supported arguments:
-    dogmover.py pull|push dashboards|monitors|users|synthetics|awsaccounts|logpipeline (--dry-run|-h)
+    dogmover.py pull|push dashboards|monitors|users|synthetics|awsaccounts|logpipelines (--dry-run|-h)
 
 Options:
   -h, --help
