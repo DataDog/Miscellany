@@ -47,5 +47,5 @@ If you are not using the `--dry-run` flag, all your pulls will create a JSON fil
 ### Pushing monitors will schedule a managed downtime
 Pushing monitors will automatically schedule a managed downtime for _all_ your monitors, this is to suppress false/positive alerts. You can remove this scheduled downtime by navigating to `Monitors -> Manage downtime` in Datadog.
 
-### Notebooks is currently only available to datadog employees
+### Notebooks is behind a beta feature flag
 Requires feature flag `notebooks_api` to be enabled on sourc/dest organisation.
