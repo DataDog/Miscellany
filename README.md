@@ -64,6 +64,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [Get All Public Dashboards](./all_dash_public)							| Python	| Gets a full list (returned as JSON) of all dashboards that are public for a given organization  |
 | [Get All Child Orgs](./get_all_child_orgs)							| Python	| Gets a full list (returned as JSON) of all child organizations for a given organization  |
 | [PySNMP-MIB-Parser](./PySNMP-MIB-Parser)							| Python	| Converts a MIB file (in PySNMP format) to a yaml file that can be used by Datadog's [SNMP agent integration](https://docs.datadoghq.com/integrations/snmp/)  |
+| [aws_hosts_without_agent.py](./aws_hosts_without_agent.py)	| Python	| Gets a list of hostnames and IPs for AWS hosts not running the agent |
 
 ## Additional tools
 These are some additional tools and scripts written by Datadog.
