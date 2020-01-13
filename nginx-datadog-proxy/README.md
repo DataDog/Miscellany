@@ -8,10 +8,10 @@ The dockerfile in this repository is using nginx with the `ngx_http_proxy_connec
 `docker build -t datadog-nginx-forward-proxy .` 
 
 2. Run the container
-`docker run -d p 8888:8888 datadog-nginx-forward-proxy` 
+`docker run -d -p 8888:8888 datadog-nginx-forward-proxy` 
 
 ## Configure your Datadog agent to use the proxy
-Traditional web proxies are supported natively by the Datadog agent. If you need to connect to the Internet through a proxy, edit your agent configuration file `datadog.yaml` to include:
+Traditional web proxies are supported natively by the Datadog agent. If you need to connect to the internet through a proxy, edit your agent configuration file `datadog.yaml` to include:
 ```
 proxy:
     https: "http://<PROXY_SERVER>:8888"
