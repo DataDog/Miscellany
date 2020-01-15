@@ -16,8 +16,11 @@ This Datadog check will convert that output to two Datadog metrics with the tags
 
 **Optional**
 This check can create a Datadog service check if you set `create_service_check: true` in conf.yaml, the result will be:
+
 message = `PING OK - Packet loss = 0%, RTA = 0.80 ms` (performance data is stripped from the message)
+
 status = `OK` (since your plugin returned exit code `0`)
+
 tags = tags you've defined in `conf.yaml`
 
 
@@ -30,7 +33,9 @@ To install the Datadog Nagios Plugin Wrapper check:
 5. Edit the conf.yaml to run your custom Nagios plugins.
 
 At this point you should have the following structure setup:
+
 ```<agent root>/conf.d/nagios_plugin_wrapper.d/conf.yaml```
+
 ```<agent root>/checks.d/nagios_plugin_wrapper.py```
 
 6. [Restart the agent](https://docs.datadoghq.com/agent/faq/agent-commands/#start-stop-restart-the-agent)
