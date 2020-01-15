@@ -15,13 +15,12 @@ This Datadog check will convert that output to two Datadog metrics with the tags
 - `<metric_namespace>.rta` with a timeseries value of: `0.80`
 
 **Optional**
+
 This check can create a Datadog service check if you set `create_service_check: true` in conf.yaml, the result will be:
 
-message = `PING OK - Packet loss = 0%, RTA = 0.80 ms` (performance data is stripped from the message)
-
-status = `OK` (since your plugin returned exit code `0`)
-
-tags = tags you've defined in `conf.yaml`
+- message = `PING OK - Packet loss = 0%, RTA = 0.80 ms` (performance data is stripped from the message)
+- status = `OK` (since your plugin returned exit code `0`)
+- tags = tags you've defined in `conf.yaml`
 
 
 ## Setup
