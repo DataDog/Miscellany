@@ -1,0 +1,41 @@
+init_config:
+
+instances:
+    ## @param min_collection_interval - integer - required
+    ## Runs this check at 60 second intervals
+  - min_collection_interval: 60
+    ## @param metric_namepace - string - required
+    ## Namespace for the metric created
+    metric_namespace: "nagios.check_random"
+    ## @param check_command - string - required
+    ## Absolute path to your nagios plugin (with/without) arguments
+    check_command: "/etc/datadog-agent/checks.d/check_random.sh"
+    ## @param create_service_check - bool - optional
+    ## Defines if you want to create a datadog service check for this check
+    create_service_check: false
+    ## @param tags - list of key:value element - optional
+    ## List of tags to attach to every metric, event and service check emitted by this integration.
+    ## Learn more about tagging: https://docs.datadoghq.com/tagging/
+    tags:
+      - check:check_random
+      - location:my-datacenter-01
+
+    ## @param min_collection_interval - int - optional
+    ## Runs this check at 60 second intervals
+  - min_collection_interval: 60
+    ## @param metric_namepace - string - required
+    ## Namespace for the metric created
+    metric_namespace: "nagios.check_tcp"
+    ## @param check_command - string - required
+    ## Absolute path to your nagios plugin (with/without) arguments
+    check_command: "/etc/datadog-agent/checks.d/check_tcp.sh"
+    ## @param create_service_check - bool - optional
+    ## Defines if you want to create a datadog service check for this check
+    create_service_check: true
+    ## @param tags - list of key:value element - optional
+    ## List of tags to attach to every metric, event and service check emitted by this integration.
+    ## Learn more about tagging: https://docs.datadoghq.com/tagging/
+    tags:
+      - check:check_tcp
+      - location:my-datacenter-02
+
