@@ -7,6 +7,7 @@ Not a problem, this repository was created to help you with just that.
 In short, this Datadog check will act as a wrapper so that you can reuse your existing Nagios plugins without having to rewrite them. It will create custom metrics in Datadog based on the performance data your plugin returns, it can also create service checks that follow the Nagios API Plugin standard (ala, "exit codes").
 
 For example, you might have a Nagios plugin that returns an exit code of `0` (ie., "OK") and the following output:
+
 ```PING OK - Packet loss = 0%, RTA = 0.80 ms | percent_packet_loss=0, rta=0.80``` 
 
 This Datadog check will convert that output to two Datadog metrics with the tags you define in `conf.yaml`:
