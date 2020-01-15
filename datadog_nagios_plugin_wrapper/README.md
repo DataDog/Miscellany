@@ -32,10 +32,11 @@ To install the Datadog Nagios Plugin Wrapper check:
 At this point you should have the following structure setup:
 ```<agent root>/conf.d/nagios_plugin_wrapper.d/conf.yaml```
 ```<agent root>/checks.d/nagios_plugin_wrapper.py```
+
 6. [Restart the agent](https://docs.datadoghq.com/agent/faq/agent-commands/#start-stop-restart-the-agent)
 
 ## Validation
-[Run the Agent's status subcommand](https://docs.datadoghq.com/agent/guide/agent-commands/?tab=agentv6v7#service-status)  and look for nagios_plugin_wrapper under the Checks section.
+[Run the Agent's status subcommand](https://docs.datadoghq.com/agent/guide/agent-commands/?tab=agentv6v7#service-status) and look for nagios_plugin_wrapper under the Checks section.
 
 ## Author
 * Misiu Pajor (misiu.pajor@datadoghq.com)
