@@ -1,0 +1,6 @@
+Flask==0.10.1
+ddtrace==0.10.0
+blinker==1.4
+psycopg2==2.7.5 
+sqlalchemy==1.1.5
+json_log_formatter==0.2.0

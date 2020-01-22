@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flaskapp
+  template:
+    metadata:
+      labels:
+        app: flaskapp
+    spec:
+      containers:
+      - name: flaskapp
+        image: sample_flask:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5005
+        volumeMounts:
+        - name: flasklogs
+          mountPath: /var/log/flask
+        env:
+        - name: DD_AGENT_SERVICE_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: DD_AGENT_SERVICE_PORT
+          value: '8126'
+      volumes:
+        - hostPath:
+            path: /var/log/flask
+          name: flasklogs
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flaskapp
+spec:
+  selector:
+    app: flaskapp
+  ports:
+  - name: http
+    protocol: TCP
+    port: 5005
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cm-datadog-confd
+  namespace: default
+data:
+  flasklogs.yaml: |-
+    init_config:
+    instances:
+    logs:
+    - type: file
+      path: /var/log/flask/mylog.json
+      service: flask
+      source: python
+      sourcecategory: sourcecode 
