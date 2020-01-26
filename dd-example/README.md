@@ -43,7 +43,7 @@ kubectl create secret generic datadog-api --from-literal=token=API_KEY
   postgres     ClusterIP   10.99.143.193   <none>        5432/TCP   3m11s
   ```
 - `minikube ssh`
-- Hit the flash endpoints:
+- Hit the flask endpoints:
   ```
   curl http://CLUSTER-IP:5005/
   curl http://CLUSTER-IP:5005/bad
