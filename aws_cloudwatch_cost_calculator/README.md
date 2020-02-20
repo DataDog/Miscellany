@@ -1,4 +1,4 @@
-# Calculate Datadog costs for crawling AWS CloudWatch Metrics
+# Calculate Datadog costs for crawling AWS CloudWatch Custom Metrics
 This script will _estimate_ the cost of Datadog crawling AWS for its CloudWatch metrics.
 
 The purpose of this script is to help answer questions like:
