@@ -2,8 +2,8 @@ from datadog import initialize, api
 import json
 import re
 options = {
-    'api_key': '73320a11a32a33deab5858a6a46440e0',
-    'app_key': 'cdbad717fe7be46c681385cc4bb5d57412922d61'
+    'api_key': '<API_KEY>',
+    'app_key': '<APP_KEY>'
 }
 
 initialize(**options)
