@@ -8,7 +8,6 @@ import re
 
 # init initializes the datadog library to forward to the Datadog API
 def init(api_key, app_key):
-    print('Intializing API...\n\n')
     options = {
     'api_key' : api_key,
     'app_key' : app_key
@@ -16,7 +15,7 @@ def init(api_key, app_key):
 
     initialize(**options)
 
-# test_init confirms that initialization of the datadog library has been successful
+# test_init confirms that initialization of the datadog api wrapper client has been successful
 def test_init():
     test_resp = api.DashboardList.get_all()
     if test_resp.get('errors') is None:

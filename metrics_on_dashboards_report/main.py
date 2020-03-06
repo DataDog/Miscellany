@@ -1,42 +1,27 @@
 
 from datadog import api
 
-import re
-
 import api_init
-import util
 import get
+import config
+
+#testing
+import json
 
 if __name__ == "__main__":
-    #gather information from the user
-    confirm = ''
-    
-    while confirm != 'y':
-        print("This program is designed to return a list of Datadog Dashboards that contain specific metrics.")
-        api_key = util.get_key_from_user("API")
-        print('\n')
-        app_key = util.get_key_from_user("APP")
-        print('\n')
-
-        num_of_metrics_to_search = util.get_num_of_metrics_from_user()
-                
-        metrics_to_eval = util.get_metric_names_from_user(num_of_metrics_to_search)
-        
-        print("\n--------")
-
-        confirm = util.confirm_inputs(api_key, app_key, num_of_metrics_to_search, metrics_to_eval)
-
-    #run the report
-    api_init.init(api_key, app_key)
+    api_init.init(config.API_KEY, config.APP_KEY)
     api_init.test_init()
 
-    print('Getting All Dashboards\n\n')
-    resp = api.Dashboard.get_all()
-    print('All Dashboards Received!\n\n')
+    print("Getting Your Metrics Report\n\n")
 
-    print('Getting Dashboard Id\'s\n\n')
-    id_list = get.all_dashboard_id_list(resp)
-    print("ID\'s received\n\n")
+    if config.CHECK_DASHBOARDS:
+        print("***DASHBOARDS***\n")
+        dash_resp = api.Dashboard.get_all()
+        dash_id_list = get.all_id_list(dash_resp, "dash")
+        get.metric_report(dash_id_list, config.METRICS_TO_EVAL, "dash")
 
-    print('Getting Your Report')
-    get.metric_report(id_list, metrics_to_eval)
+    if config.CHECK_MONITORS:
+        print("***MONITORS***\n")
+        monitor_resp = api.Monitor.get_all()
+        monitor_id_list = get.all_id_list(monitor_resp, "monitor")
+        get.metric_report(monitor_id_list,config.METRICS_TO_EVAL, "monitor")
