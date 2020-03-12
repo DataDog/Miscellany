@@ -1,6 +1,6 @@
 # Dogmover
 
-![Dogmover](./dogmover.png "A moving dog.")
+![Dogmover](https://github.com/DataDog/Miscellany/blob/master/Dogmover/dogmover.png "A moving dog.")
 
 This tool was originally built to help migrate customers `dashboards`, `monitors`, `users`, `synthetic tests`, `aws accounts`, `log pipelines` and `notebooks` from our US to EU instance. The tool also supports moving these resources within the same instances (eg., EU to EU _or_ US to US)
 
