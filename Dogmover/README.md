@@ -2,7 +2,9 @@
 
 ![Dogmover](https://github.com/DataDog/Miscellany/blob/master/Dogmover/dogmover.png "A moving dog.")
 
-This tool was originally built to help migrate customers `dashboards`, `monitors`, `users`, `synthetic tests`, `aws accounts`, `log pipelines` and `notebooks` from our US to EU instance. The tool also supports moving these resources within the same instances (eg., EU to EU _or_ US to US)
+This tool is built to help migrate Datadog `dashboards`, `monitors`, `users`, `synthetic tests`, `aws accounts`, `log pipelines` and `notebooks` from one Datadog organization (eg. in US) to another (eg. in EU). The tool also supports moving these resources within the same instances (eg. EU to EU _or_ US to US).
+
+**Note:** It does _not_ move any historical data (eg., metrics, log messages, synthetic test results) as this is not supported due to security reasons.
 
 ## Install
 1. Clone this repository.
@@ -48,4 +50,4 @@ If you are not using the `--dry-run` flag, all your pulls will create a JSON fil
 Pushing monitors will automatically schedule a managed downtime for _all_ your monitors, this is to suppress false/positive alerts. You can remove this scheduled downtime by navigating to `Monitors -> Manage downtime` in Datadog.
 
 ### Notebooks is behind a beta feature flag
-Requires feature flag `notebooks_api` to be enabled on sourc/dest organisation.
+Requires feature flag `notebooks_api` to be enabled on source/dest organisation. Contact Datadog support to have it enabled on your Datadog organization.
