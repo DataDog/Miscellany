@@ -51,3 +51,7 @@ Pushing monitors will automatically schedule a managed downtime for _all_ your m
 
 ### Notebooks is behind a beta feature flag
 Requires feature flag `notebooks_api` to be enabled on source/dest organisation. Contact Datadog support to have it enabled on your Datadog organization.
+
+
+## Author
+* Misiu Pajor (misiu.pajor@datadoghq.com)
