@@ -47,7 +47,7 @@ kubectl create secret generic datadog-api --from-literal=token=API_KEY
   curl http://CLUSTER-IP:5005/query
   curl http://CLUSTER-IP:5005/log
   ```
-  - where `CLUSTER-UP` is the one found from the previous command
+  - where `CLUSTER-IP` is the one found from the previous command
 
 You will need to hit these endpoints several times to generate traces and logs. If you **have not** setup logs before, you'll need to go through the setup screen, choose containers, choose kubernetes, then wait until the DD app let's you move to the explorer screen.
 
