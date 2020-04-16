@@ -2,7 +2,7 @@
 
 ![Dogmover](https://github.com/DataDog/Miscellany/blob/master/Dogmover/dogmover.png "A moving dog.")
 
-This tool is built to help migrate Datadog `dashboards`, `monitors`, `users`, `synthetic tests`, `aws accounts`, `log pipelines` and `notebooks` from one Datadog organization (eg. in US) to another (eg. in EU). The tool also supports moving these resources within the same instances (eg. EU to EU _or_ US to US).
+This tool is built to help migrate Datadog `dashboards`, `monitors`, `users`, `synthetic API tests`, `aws accounts`, `log pipelines` and `notebooks` from one Datadog organization (eg. in US) to another (eg. in EU). The tool also supports moving these resources within the same instances (eg. EU to EU _or_ US to US).
 
 **Note:** It does _not_ move any historical data (eg., metrics, log messages, synthetic test results) as this is not supported due to security reasons.
 
