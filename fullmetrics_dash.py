@@ -16,8 +16,8 @@ integration = args.integration
 
 ## Keys and timeframe
 
-api_key = "***"
-app_key = "***"
+api_key = "xxx"
+app_key = "xxx"
 timestamp = int(time.time()) - 86400
 
 
@@ -37,7 +37,7 @@ r = requests.get("https://app.datadoghq.com/api/v1/metrics?api_key="+ api_key + 
 r.json()
 metrics_list = []
 
-print "init: ", metrics_list
+print("init: ", metrics_list)
 
 for i in range(len(r.json()['metrics'])):
 	if integration in  r.json()['metrics'][i]:
@@ -45,9 +45,9 @@ for i in range(len(r.json()['metrics'])):
 
 ## Resiliency: Test if metrics are available for the integration
 if len(metrics_list)>0:
-	print "you have", len(metrics_list), "metrics available for "+ integration
+	print("you have", len(metrics_list), "metrics available for "+ integration)
 else:
-	print "you don't have any metrics available for "+ integration + " try a longer timeframe or check the name of the integration"
+	print("you don't have any metrics available for "+ integration + " try a longer timeframe or check the name of the integration")
 	exit()
 
 ## Building the dashboard
@@ -56,7 +56,7 @@ title = integration
 description = "All your "+ integration + " metrics"
 graphs = []
 
-print "building dashboard: ", title
+print("building dashboard: ", title)
 
 ## Building each widget
 
@@ -64,7 +64,7 @@ for i in range(len(metrics_list)):
 
 	#DEBUG
 	if args.verbosity == 1:
-		print "building widget: ", metrics_list[i]
+		print("building widget: ", metrics_list[i])
 	
 	graphs.append({
 	    "definition": {
@@ -87,16 +87,16 @@ read_only = True
 
 #DEBUG
 if args.verbosity == 1:
-	print "this is your graphs", graphs
+	print("this is your graphs", graphs)
 
 try:
 	dashboard = api.Timeboard.create(title=title, description=description, graphs=graphs, template_variables=template_variables, read_only=read_only)
-	print "dashboard for " + integration + " was successfully created check it out here: http://app.datadoghq.com/dash/"+ str(dashboard['dash']['id'])
+	print("dashboard for " + integration + " was successfully created check it out here: http://app.datadoghq.com/dash/"+ str(dashboard['dash']['id']))
 	
 	#DEBUG
 	if args.verbosity == 1:
-		print dashboard
+		print(dashboard)
 
 except:
-	print "Something went wrong, enable debug log by running python fullmetrics_dash.py <integration> 1, current error: ", sys.exc_info()[0]
+	print("Something went wrong, enable debug log by running python fullmetrics_dash.py <integration> 1, current error: ", sys.exc_info()[0])
 	raise
