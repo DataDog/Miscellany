@@ -12,14 +12,14 @@ Example, try with --dry-run first:
     dogmover.py push dashboards
 
     Supported arguments:
-    dogmover.py pull|push dashboards|monitors|users|synthetics|awsaccounts|logpipelines|notebooks (--dry-run|-h)
+    dogmover.py pull|push dashboards|monitors|users|synthetics_api_tests|synthetics_browser_tests|awsaccounts|logpipelines|notebooks (--dry-run|-h)
 
 Options:
   -h, --help
   -d, --dry-run
 """
 __author__ = "Misiu Pajor <misiu.pajor@datadoghq.com>"
-__version__ = "2.0.3"
+__version__ = "2.0.4"
 from docopt import docopt
 import json
 import os
@@ -116,14 +116,15 @@ def pull_users():
             print("Pulling user: {} with role: {}, writing to file: {}".format(user["handle"].encode('utf8'), user["access_role"], path))
     print("Retrieved '{}' users.".format(count))
 
-def pull_synthetics(options):
+
+def pull_synthetics_api_tests(options):
     path = False
     count = 0
 
     r = requests.get('{}api/v1/synthetics/tests?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]))
     synthetics = r.json()
     for synthetic in synthetics["tests"]:
-        if synthetic["type"] == "api": # skip browser checks for now as they do not emit the configuration in the JSON response
+        if synthetic["type"] == "api":
             count = count + 1
             json_data = requests.get('{}api/v1/synthetics/tests/{}?api_key={}&application_key={}'.format(
                 options["api_host"],
@@ -131,9 +132,29 @@ def pull_synthetics(options):
                 options["api_key"],
                 options["app_key"]
             )).json()
-            path = _json_to_file('synthetics', synthetic["public_id"], json_data)
+            path = _json_to_file('synthetics_api_tests', synthetic["public_id"], json_data)
             print("Pulling: {} and writing to file: {}".format(synthetic["name"].encode('utf8'), path))
     print("Retrieved '{}' synthetic tests.".format(count))
+
+def pull_synthetics_browser_tests(options):
+    path = False
+    count = 0
+
+    r = requests.get('{}api/v1/synthetics/tests?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]))
+    synthetics = r.json()
+    for synthetic in synthetics["tests"]:
+        if synthetic["type"] == "browser":
+            count = count + 1
+            json_data = requests.get('{}api/v1/synthetics/tests/browser/{}?api_key={}&application_key={}'.format(
+                options["api_host"],
+                synthetic["public_id"],
+                options["api_key"],
+                options["app_key"]
+            )).json()
+            path = _json_to_file('synthetics_browser_tests', synthetic["public_id"], json_data)
+            print("Pulling: {} and writing to file: {}".format(synthetic["name"].encode('utf8'), path))
+    print("Retrieved '{}' synthetic tests.".format(count))
+
 
 def pull_awsaccounts(options):
     path = False
@@ -238,9 +259,9 @@ def push_users():
                 )
     print("Pushed '{}' users".format(count))
 
-def push_synthetics(options):
+def push_synthetics_api_tests(options):
     count = 0
-    synthetics = _files_to_json("synthetics")
+    synthetics = _files_to_json("synthetics_api_tests")
     if not synthetics:
         exit("No synthetic tests are locally available. Consider synthetics first.")
 
@@ -248,7 +269,24 @@ def push_synthetics(options):
          with open(synthetic) as f:
             data = json.load(f)
             count = count + 1
-            invalid_keys = ["public_id", "monitor_id", "overall_state", "created_at", "created_by", "modified_by", "modified_at", "overall_state_modified"]
+            invalid_keys = ["public_id", "monitor_id"]
+            list(map(data.pop, invalid_keys))
+            print("Pushing {}".format(data["name"].encode('utf8')))
+            if not arguments["--dry-run"]:
+                r = requests.post('{}api/v1/synthetics/tests?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]), json=data)
+    print("Pushed '{}' synthetic tests.".format(count))
+
+def push_synthetics_browser_tests(options):
+    count = 0
+    synthetics = _files_to_json("synthetics_browser_tests")
+    if not synthetics:
+        exit("No synthetic tests are locally available. Consider synthetics first.")
+
+    for synthetic in synthetics:
+         with open(synthetic) as f:
+            data = json.load(f)
+            count = count + 1
+            invalid_keys = ["public_id", "monitor_id"]
             list(map(data.pop, invalid_keys))
             print("Pushing {}".format(data["name"].encode('utf8')))
             if not arguments["--dry-run"]:
@@ -329,8 +367,10 @@ if __name__ == '__main__':
             pull_monitors()
         elif arguments['<type>'] == 'users':
             pull_users()
-        elif arguments['<type>'] == 'synthetics':
-            pull_synthetics(_init_options("pull"))
+        elif arguments['<type>'] == 'synthetics_api_tests':
+            pull_synthetics_api_tests(_init_options("pull"))
+        elif arguments['<type>'] == 'synthetics_browser_tests':
+            pull_synthetics_browser_tests(_init_options("pull"))
         elif arguments['<type>'] == 'awsaccounts':
             pull_awsaccounts(_init_options("pull"))
         elif arguments['<type>'] == 'logpipelines':
@@ -345,8 +385,10 @@ if __name__ == '__main__':
             push_monitors()
         elif arguments['<type>'] == 'users':
             push_users()
-        elif arguments['<type>'] == 'synthetics':
-            push_synthetics(_init_options("push"))
+        elif arguments['<type>'] == 'synthetics_api_tests':
+            push_synthetics_api_tests(_init_options("push"))
+        elif arguments['<type>'] == 'synthetics_browser_tests':
+            push_synthetics_browser_tests(_init_options("push"))
         elif arguments['<type>'] == 'awsaccounts':
             push_awsaccounts(_init_options("push"))
         elif arguments['<type>'] == 'logpipelines':
