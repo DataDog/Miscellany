@@ -53,9 +53,10 @@ If you are not using the `--dry-run` argument, all your pulls will create a JSON
 
 ### The --tag argument
 You can choose to pull synthetic tests that has any of the specified tags set on them, example usage:
+
 `dogmover.py pull synthetic_api_tests --tag env:prod --tag application:abc`
 
---tag currently only works for synthetic api and browser tests.
+`--tag` currently only works for synthetic api and browser tests.
 
 
 ### Pushing monitors will schedule a managed downtime
