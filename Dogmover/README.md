@@ -16,6 +16,7 @@ This tool is built to help migrate Datadog `dashboards`, `monitors`, `users`, `s
 To pull (export) dashboards, run:
 
 `./dogmover.py pull dashboards --dry-run`
+
 To push (import) dashboards, run:
 
 `./dogmover.py push dashboards --dry-run`
