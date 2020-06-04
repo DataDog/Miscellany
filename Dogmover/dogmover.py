@@ -1,25 +1,32 @@
 #!/usr/bin/env python2
 """Usage:
-  dogmover.py pull (<type>) [--dry-run] [-h]
+  dogmover.py pull (<type>) [--tag=tag]... [--dry-run] [-h]
   dogmover.py push (<type>) [--dry-run] [-h]
 
-Example, try with --dry-run first:
-    dogmover.py pull dashboards --dry-run
-    dogmover.py push dashboards --dry-run
-    to make actual changes:
-    dogmover.py pull dashboards
-    and finally push to another organization:
-    dogmover.py push dashboards
+Examples:
+    Dashboards:
+        dogmover.py pull dashboards
+        dogmover.py push dashboards
+
+    Synthetic api tests using --tag that only pulls tests if the tags exist on them:
+        dogmover.py pull synthetic_api_tests --tag env:production --tag application:abc
+        dogmover.py push synthetic_api_tests
+
+    Run with --dry-run without making any changes to your Datadog account:
+        dogmover.py pull dashboards --dry-run
+        dogmover.py push dashboards --dry-run
 
     Supported arguments:
-    dogmover.py pull|push dashboards|monitors|users|synthetics_api_tests|synthetics_browser_tests|awsaccounts|logpipelines|notebooks (--dry-run|-h)
+    dogmover.py pull|push dashboards|monitors|users|synthetics_api_tests|synthetics_browser_tests|awsaccounts|logpipelines|notebooks (--tag=tag) (--dry-run|-h)
+    
+    Note. --tag is currently only supported for synthetics_api_tests and synthetics_browser_tests.
 
 Options:
   -h, --help
   -d, --dry-run
 """
 __author__ = "Misiu Pajor <misiu.pajor@datadoghq.com>"
-__version__ = "2.0.4"
+__version__ = "2.0.5"
 from docopt import docopt
 import json
 import os
@@ -90,7 +97,7 @@ def pull_monitors():
     monitors = api.Monitor.get_all()
     for monitor in monitors:
         if monitor["type"] == "synthetics alert":
-                print("Skipping {}. Synthetic monitors will be automatically re-created when you push your synthetic tests.".format(monitor["name"]))
+                print("Skipping {} as this is a monitor belonging to a synthetic test. Synthetic monitors will be automatically re-created when you push synthetic tests.".format(monitor["name"]))
                 continue
         count = count + 1
         new_monitor = {}
@@ -117,42 +124,50 @@ def pull_users():
     print("Retrieved '{}' users.".format(count))
 
 
-def pull_synthetics_api_tests(options):
+def pull_synthetics_api_tests(options, tag):
     path = False
     count = 0
+    tags = [] if not tag else tag
 
     r = requests.get('{}api/v1/synthetics/tests?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]))
     synthetics = r.json()
     for synthetic in synthetics["tests"]:
         if synthetic["type"] == "api":
-            count = count + 1
-            json_data = requests.get('{}api/v1/synthetics/tests/{}?api_key={}&application_key={}'.format(
-                options["api_host"],
-                synthetic["public_id"],
-                options["api_key"],
-                options["app_key"]
-            )).json()
-            path = _json_to_file('synthetics_api_tests', synthetic["public_id"], json_data)
-            print("Pulling: {} and writing to file: {}".format(synthetic["name"].encode('utf8'), path))
+            for tag in tags:
+                if tag in synthetic["tags"]:
+                    print("Tag: {} found in synthetic test: {}".format(tag, synthetic["name"]))
+                    count = count + 1
+                    json_data = requests.get('{}api/v1/synthetics/tests/{}?api_key={}&application_key={}'.format(
+                        options["api_host"],
+                        synthetic["public_id"],
+                        options["api_key"],
+                        options["app_key"]
+                    )).json()
+                    path = _json_to_file('synthetics_api_tests', synthetic["public_id"], json_data)
+                    print("Pulling: {} and writing to file: {}".format(synthetic["name"].encode('utf8'), path))
     print("Retrieved '{}' synthetic tests.".format(count))
 
-def pull_synthetics_browser_tests(options):
+def pull_synthetics_browser_tests(options, tag):
     path = False
     count = 0
+    tags = [] if not tag else tag
 
     r = requests.get('{}api/v1/synthetics/tests?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]))
     synthetics = r.json()
     for synthetic in synthetics["tests"]:
         if synthetic["type"] == "browser":
-            count = count + 1
-            json_data = requests.get('{}api/v1/synthetics/tests/browser/{}?api_key={}&application_key={}'.format(
-                options["api_host"],
-                synthetic["public_id"],
-                options["api_key"],
-                options["app_key"]
-            )).json()
-            path = _json_to_file('synthetics_browser_tests', synthetic["public_id"], json_data)
-            print("Pulling: {} and writing to file: {}".format(synthetic["name"].encode('utf8'), path))
+            for tag in tags:
+                if tag in synthetic["tags"]:
+                    print("Tag: {} found in synthetic test: {}".format(tag, synthetic["name"]))
+                    count = count + 1
+                    json_data = requests.get('{}api/v1/synthetics/tests/browser/{}?api_key={}&application_key={}'.format(
+                        options["api_host"],
+                        synthetic["public_id"],
+                        options["api_key"],
+                        options["app_key"]
+                    )).json()
+                    path = _json_to_file('synthetics_browser_tests', synthetic["public_id"], json_data)
+                    print("Pulling: {} and writing to file: {}".format(synthetic["name"].encode('utf8'), path))
     print("Retrieved '{}' synthetic tests.".format(count))
 
 
@@ -368,9 +383,9 @@ if __name__ == '__main__':
         elif arguments['<type>'] == 'users':
             pull_users()
         elif arguments['<type>'] == 'synthetics_api_tests':
-            pull_synthetics_api_tests(_init_options("pull"))
+            pull_synthetics_api_tests(_init_options("pull"), arguments["--tag"])
         elif arguments['<type>'] == 'synthetics_browser_tests':
-            pull_synthetics_browser_tests(_init_options("pull"))
+            pull_synthetics_browser_tests(_init_options("pull"), arguments["--tag"])
         elif arguments['<type>'] == 'awsaccounts':
             pull_awsaccounts(_init_options("pull"))
         elif arguments['<type>'] == 'logpipelines':

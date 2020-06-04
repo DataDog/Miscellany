@@ -34,17 +34,25 @@ Usage is similar to the one without container:
 `docker run --rm -v $(pwd):/dogmover dogmover pull|push dashboards|monitors|users|synthetics_api_tests|synthetics_browser_tests|awsaccounts|logpipelines|notebooks [--dry-run] [-h]`
 
 ### Note
-### The --dry-run flag
-If you are not using the `--dry-run` flag, all your pulls will create a JSON file locally on your file system, which can be useful if you are looking to backup your resources (for say, version controlling) or to modify the contents before pushing. The files are stored in:
+### The --dry-run argument
+If you are not using the `--dry-run` argument, all your pulls will create a JSON file locally on your file system, which can be useful if you are looking to backup your resources (for say, version controlling) or to modify the contents before pushing. The files are stored in:
 ``` 
 ./dashboards/*.json
 ./monitors/*.json
 ./users/*.json
-./synthetics/*.json
+./synthetic_api_tests/*.json
+./synthetic_browser_tests/*.json
 ./awsaccounts/*.json
 ./logpipelines/*.json
 ./notebooks/*.json
 ```
+
+### The --tag argument
+You can choose to pull synthetic tests that has any of the specified tags set on them, example usage:
+`dogmover.py pull synthetic_api_tests --tag env:prod --tag application:abc`
+
+--tag currently only works for synthetic api and browser tests.
+
 
 ### Pushing monitors will schedule a managed downtime
 Pushing monitors will automatically schedule a managed downtime for _all_ your monitors, this is to suppress false/positive alerts. You can remove this scheduled downtime by navigating to `Monitors -> Manage downtime` in Datadog.
