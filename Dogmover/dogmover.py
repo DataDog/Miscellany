@@ -179,7 +179,8 @@ def pull_awsaccounts(options):
     awsaccounts = r.json()
     for awsaccount in awsaccounts["accounts"]:
         count = count + 1
-        path = _json_to_file('awsaccounts', awsaccount["account_id"], awsaccount)
+        if not arguments["--dry-run"]:
+            path = _json_to_file('awsaccounts', awsaccount["account_id"], awsaccount)
     print("Retrieved '{}' AWS accounts.".format(count))
 
 def pull_logpipelines(options):
