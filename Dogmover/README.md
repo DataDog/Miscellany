@@ -37,7 +37,7 @@ If you feel safe with the output Dogmover is giving you, run without `--dry-run`
 Usage is similar to the one without container:
 `docker run --rm -v $(pwd):/dogmover dogmover pull|push dashboards|monitors|users|synthetics_api_tests|synthetics_browser_tests|awsaccounts|logpipelines|notebooks [--dry-run] [-h]`
 
-### Note
+## Notes
 ### The --dry-run argument
 If you are not using the `--dry-run` argument, all your pulls will create a JSON file locally on your file system, which can be useful if you are looking to backup your resources (for say, version controlling) or to modify the contents before pushing. The files are stored in:
 ``` 
