@@ -14,11 +14,14 @@ This tool is built to help migrate Datadog `dashboards`, `monitors`, `users`, `s
 
 ## Usage
 To pull (export) dashboards, run:
+
 `./dogmover.py pull dashboards --dry-run`
 To push (import) dashboards, run:
+
 `./dogmover.py push dashboards --dry-run`
 
 The arguments supported are:
+
 `./dogmover.py pull|push dashboards|monitors|users|synthetics_api_tests|synthetics_browser_tests|awsaccounts|logpipelines|notebooks [--dry-run] [-h]`
 
 If you feel safe with the output Dogmover is giving you, run without `--dry-run` to commit your push/pulls into your Datadog account.
