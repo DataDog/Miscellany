@@ -242,20 +242,28 @@ def push_monitors():
     for monitor in monitors:
         with open(monitor) as f:
             data = json.load(f)
-            count = count + 1
-            print("Pushing: {}".format(data["name"].encode('utf8')))
+            print("Pushing monitors:", data["id"], data["name"].encode('utf8'))
             if not arguments["--dry-run"]:
-                api.Monitor.create(type=data['type'],
+                result = api.Monitor.create(type=data['type'],
                                     query=data['query'],
                                     name=data['name'],
                                     message=data['message'],
                                     tags=data['tags'],
                                     options=data['options'])
-    print("Pushed '{}' monitors.".format(count))
-    if not arguments["--dry-run"]:
-        print("Note. All monitors have been automatically muted to supress false/positive alerts. Navigate to Monitors -> Manage downtime to unmute.")
-        api.Monitor.mute_all()
+                if 'errors' in result:
+                    print('Error pushing monitor:',data["id"],json.dumps(result, indent=4, sort_keys=True))
+                    err_count=err_count+1
 
+                else:
+                    count = count + 1
+                    mon_id= result['id']
+                    api.Monitor.mute(mon_id)  
+                    
+    if count > 0:
+        print("Pushed '{}' monitors in muted status, navigate to Monitors -> Manage downtime to unmute.".format(count))
+    if err_count > 0:
+        print("Error pushing '{}' monitors, please check !".format(err_count))
+        
 def push_users():
     count = 0
     users = _files_to_json("users")
