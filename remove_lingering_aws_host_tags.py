@@ -30,7 +30,7 @@ def remove_host_tags_by_source(hostname, source, session):
     res = session.request(
         method='DELETE', url=remove_endpt, params=session.params
     )
-    print 'removed %s tags from %s with response: %s' % (TAG_SOURCE, hostname, res)
+    print('removed %s tags from %s with response: %s' % (TAG_SOURCE, hostname, res))
 
 
 # main
@@ -53,7 +53,7 @@ if REMOVE_FROM_ALL_HOSTS is True:
         if TAG_SOURCE in host['tags_by_source']:
             remove_host_tags_by_source(host_name, TAG_SOURCE, s)
         else:
-            print "no %s tags in %s, skipping." % (TAG_SOURCE, host_name)
+            print("no %s tags in %s, skipping." % (TAG_SOURCE, host_name))
         
 else:
     for host in HOSTS:
