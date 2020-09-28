@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 """Usage:
-  dogmover.py pull (<type>) [--tag=tag]... [--dry-run] [-h]
+  dogmover.py pull (<type>) [--tag tag]... [--dry-run] [-h]
   dogmover.py push (<type>) [--dry-run] [-h]
 
 Examples:
@@ -17,16 +17,16 @@ Examples:
         dogmover.py push dashboards --dry-run
 
     Supported arguments:
-    dogmover.py pull|push dashboards|monitors|users|synthetics_api_tests|synthetics_browser_tests|awsaccounts|logpipelines|notebooks (--tag=tag) (--dry-run|-h)
-    
-    Note. --tag is currently only supported for synthetics_api_tests and synthetics_browser_tests.
+    dogmover.py pull|push dashboards|monitors|users|synthetics_api_tests|synthetics_browser_tests|awsaccounts|logpipelines|notebooks (--tag tag) (--dry-run|-h)
+
+    Note. --tag is currently only supported for synthetics_api_tests, synthetics_browser_tests and monitors.
 
 Options:
   -h, --help
   -d, --dry-run
 """
 __author__ = "Misiu Pajor <misiu.pajor@datadoghq.com>"
-__version__ = "2.0.5"
+__version__ = "2.0.6"
 from docopt import docopt
 import json
 import os
@@ -88,25 +88,37 @@ def pull_dashboards():
         print("Pulling dashboard: {} with id: {}, writing to file: {}".format(dashboard["title"].encode('utf8'), dashboard["id"], path))
     print("Retrieved '{}' dashboards.".format(count))
 
-def pull_monitors():
+def pull_monitors(tag):
     path = False
     count = 0
     good_keys = ['tags', 'deleted', 'query', 'message', 'matching_downtimes', 'multi', 'name', 'type', 'options', 'id']
-    new_monitors = []
-
+    tags = [] if not tag else tag
     monitors = api.Monitor.get_all()
+
     for monitor in monitors:
         if monitor["type"] == "synthetics alert":
-                print("Skipping {} as this is a monitor belonging to a synthetic test. Synthetic monitors will be automatically re-created when you push synthetic tests.".format(monitor["name"]))
+                print("Skipping \"{}\" as this is a monitor belonging to a synthetic test. Synthetic monitors will be automatically re-created when you push synthetic tests.".format(monitor["name"].encode('utf8')))
                 continue
-        count = count + 1
-        new_monitor = {}
-        for k, v in monitor.items():
-            if k in good_keys:
-                new_monitor[k] = v
-        if not arguments["--dry-run"]:
-            path = _json_to_file('monitors', str(new_monitor["id"]), new_monitor)
-        print("Pulling monitor: {} with id: {}, writing to file: {}".format(new_monitor["name"].encode('utf8'), new_monitor["id"], path))
+        all_tags_found = True
+        for tag in tags:
+            if not tag in monitor["tags"]:
+                all_tags_found = False
+                print("Tag: {} not found in monitor: \"{}\" with tags {}".format(tag, monitor["name"].encode('utf8'), monitor["tags"]))
+                break
+
+        if all_tags_found == False:
+            print("Skipping \"{}\" because its tags do not match the filter.".format(monitor["name"].encode('utf8')))
+
+        if all_tags_found == True:
+            count = count + 1
+
+            new_monitor = {}
+            for k, v in monitor.items():
+                if k in good_keys:
+                    new_monitor[k] = v
+            if not arguments["--dry-run"]:
+                path = _json_to_file('monitors', str(new_monitor["id"]), new_monitor)
+            print("Pulling monitor: \"{}\" with id: {}, writing to file: {}".format(new_monitor["name"].encode('utf8'), new_monitor["id"], path))
     print("Retrieved '{}' monitors.".format(count))
 
 def pull_users():
@@ -133,18 +145,26 @@ def pull_synthetics_api_tests(options, tag):
     synthetics = r.json()
     for synthetic in synthetics["tests"]:
         if synthetic["type"] == "api":
+            all_tags_found="true"
             for tag in tags:
-                if tag in synthetic["tags"]:
-                    print("Tag: {} found in synthetic test: {}".format(tag, synthetic["name"]))
-                    count = count + 1
-                    json_data = requests.get('{}api/v1/synthetics/tests/{}?api_key={}&application_key={}'.format(
-                        options["api_host"],
-                        synthetic["public_id"],
-                        options["api_key"],
-                        options["app_key"]
-                    )).json()
-                    path = _json_to_file('synthetics_api_tests', synthetic["public_id"], json_data)
-                    print("Pulling: {} and writing to file: {}".format(synthetic["name"].encode('utf8'), path))
+                if not tag in synthetic["tags"]:
+                    all_tags_found="false"
+                    print("Tag: {} not found in synthetic: \"{}\" with tags {}".format(tag, synthetic["name"].encode('utf8'), synthetic["tags"]))
+                    break
+
+            if all_tags_found == "false":
+                print("Skipping \"{}\" because its tags do not match the filter.".format(synthetic["name"].encode('utf8')))
+
+            if all_tags_found == "true":
+                count = count + 1
+                json_data = requests.get('{}api/v1/synthetics/tests/{}?api_key={}&application_key={}'.format(
+                    options["api_host"],
+                    synthetic["public_id"],
+                    options["api_key"],
+                    options["app_key"]
+                )).json()
+                path = _json_to_file('synthetics_api_tests', synthetic["public_id"], json_data)
+                print("Pulling: {} and writing to file: {}".format(synthetic["name"].encode('utf8'), path))
     print("Retrieved '{}' synthetic tests.".format(count))
 
 def pull_synthetics_browser_tests(options, tag):
@@ -207,7 +227,7 @@ def pull_notebooks(options):
     for notebook in notebooks["notebooks"]:
         count = count + 1
         path = _json_to_file('notebooks', str(notebook["id"]), notebook)
-    print("Retrieved '{}' notebooks.".format(count))     
+    print("Retrieved '{}' notebooks.".format(count))
 
 def push_dashboards():
     count = 0
@@ -235,35 +255,73 @@ def push_dashboards():
 
 def push_monitors():
     count = 0
+    err_count = 0
+    ids = {}
     monitors = _files_to_json("monitors")
     if not monitors:
         exit("No monitors are locally available. Consider pulling monitors first.")
 
+    # first loop to import non composite monitors
     for monitor in monitors:
         with open(monitor) as f:
             data = json.load(f)
-            print("Pushing monitors:", data["id"], data["name"].encode('utf8'))
-            if not arguments["--dry-run"]:
-                result = api.Monitor.create(type=data['type'],
-                                    query=data['query'],
-                                    name=data['name'],
-                                    message=data['message'],
-                                    tags=data['tags'],
-                                    options=data['options'])
-                if 'errors' in result:
-                    print('Error pushing monitor:',data["id"],json.dumps(result, indent=4, sort_keys=True))
-                    err_count=err_count+1
+            if not data["type"] == "composite":
+                old_id = str(data["id"])
+                print("Pushing monitors:", data["id"], data["name"].encode('utf8'))
+                if not arguments["--dry-run"]:
+                    result = api.Monitor.create(type=data['type'],
+                                        query=data['query'],
+                                        name=data['name'],
+                                        message=data['message'],
+                                        tags=data['tags'],
+                                        options=data['options'])
+                    if 'errors' in result:
+                        print('Error pushing monitor:',data["id"],json.dumps(result, indent=4, sort_keys=True))
+                        err_count=err_count+1
 
+                    else:
+                        count = count + 1
+                        new_id= result['id']
+                        api.Monitor.mute(new_id)
+                        print("New monitor ", str(new_id)," has been muted.")
+                        ids[old_id] = str(new_id)
                 else:
-                    count = count + 1
-                    mon_id= result['id']
-                    api.Monitor.mute(mon_id)  
-                    
+                    # Fake new id for dry-run purpose
+                    ids[old_id] = old_id[:3] + "xxx"
+
+
+    # Second loop to import composite monitors
+    for monitor in monitors:
+        with open(monitor) as f:
+            data = json.load(f)
+            if data["type"] == "composite":
+                new_query = data["query"]
+                for old_id, new_id in ids.items():
+                    new_query=new_query.replace(old_id, new_id)
+                print("Pushing composite monitors:", data["id"], data["name"].encode('utf8')," with query ", new_query.encode('utf8'))
+
+                if not arguments["--dry-run"]:
+                    result = api.Monitor.create(type=data['type'],
+                                        query=new_query,
+                                        name=data['name'],
+                                        message=data['message'],
+                                        tags=data['tags'],
+                                        options=data['options'])
+                    if 'errors' in result:
+                        print('Error pushing monitor:',data["id"],json.dumps(result, indent=4, sort_keys=True))
+                        err_count=err_count+1
+
+                    else:
+                        count = count + 1
+                        new_id= result['id']
+                        api.Monitor.mute(new_id)
+                        print("New monitor ", str(new_id)," has been muted.")
+
     if count > 0:
         print("Pushed '{}' monitors in muted status, navigate to Monitors -> Manage downtime to unmute.".format(count))
     if err_count > 0:
         print("Error pushing '{}' monitors, please check !".format(err_count))
-        
+
 def push_users():
     count = 0
     users = _files_to_json("users")
@@ -388,7 +446,7 @@ if __name__ == '__main__':
         if arguments['<type>'] == 'dashboards':
             pull_dashboards()
         elif arguments['<type>'] == 'monitors':
-            pull_monitors()
+            pull_monitors(arguments["--tag"])
         elif arguments['<type>'] == 'users':
             pull_users()
         elif arguments['<type>'] == 'synthetics_api_tests':
@@ -400,7 +458,7 @@ if __name__ == '__main__':
         elif arguments['<type>'] == 'logpipelines':
             pull_logpipelines(_init_options("pull"))
         elif arguments['<type>'] == 'notebooks':
-            pull_notebooks(_init_options("pull"))               
+            pull_notebooks(_init_options("pull"))
     elif arguments["push"]:
         _init_options("push")
         if arguments['<type>'] == 'dashboards':
