@@ -25,7 +25,7 @@ The arguments supported are:
 
 `./dogmover.py pull|push dashboards|monitors|users|synthetics_api_tests|synthetics_browser_tests|awsaccounts|logpipelines|notebooks [--dry-run] [-h]`
 
-If you feel safe with the output Dogmover is giving you, run without `--dry-run` to commit your push/pulls into your Datadog account.
+If you feel safe with the output Dogmover is giving you, run without `--dry-run` to commit your push/pull into your Datadog account.
 
 
 ## Install via container
@@ -44,19 +44,19 @@ If you are not using the `--dry-run` argument, all your pulls will create a JSON
 ./dashboards/*.json
 ./monitors/*.json
 ./users/*.json
-./synthetic_api_tests/*.json
-./synthetic_browser_tests/*.json
+./synthetics_api_tests/*.json
+./synthetics_browser_tests/*.json
 ./awsaccounts/*.json
 ./logpipelines/*.json
 ./notebooks/*.json
 ```
 
 ### The --tag argument
-You can choose to pull synthetic tests that has any of the specified tags set on them, example usage:
+You can choose to pull specific synthetic tests|monitors based on their tags, example usage:
+`dogmover.py pull synthetics_api_tests --tag env:prod --tag application:abc`
+`dogmover.py pull monitors --tag team:web`
 
-`dogmover.py pull synthetic_api_tests --tag env:prod --tag application:abc`
-
-`--tag` currently only works for synthetic api and browser tests.
+`--tag` argument only works for synthetic tests and monitors.
 
 
 ### Pushing monitors will schedule a managed downtime
