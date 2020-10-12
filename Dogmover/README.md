@@ -56,8 +56,7 @@ You can choose to pull specific synthetic tests|monitors based on their tags, ex
 `dogmover.py pull synthetics_api_tests --tag env:prod --tag application:abc`
 `dogmover.py pull monitors --tag team:web`
 
-`--tag` argument only works for synthetic tests and monitors.
-
+`--tag` is currently only supported for synthetics_api_tests, synthetics_browser_tests and monitors.
 
 ### Pushing monitors will schedule a managed downtime
 Pushing monitors will automatically schedule a managed downtime for _all_ your monitors, this is to suppress false/positive alerts. You can remove this scheduled downtime by navigating to `Monitors -> Manage downtime` in Datadog.
