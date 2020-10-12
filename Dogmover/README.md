@@ -27,13 +27,14 @@ The arguments supported are:
 
 If you feel safe with the output Dogmover is giving you, run without `--dry-run` to commit your push/pull into your Datadog account.
 
+## (optional) Usage via container
 
-## Install via container
+###  Install via container
 1. Create image with Python 2 and relevant dependencies `docker build -t "dogmover" .`
 2. Make sure the `dogmover.py` is executable `chmod +x dogmover.py`
 3. Add your _api_key_, _app_key_ to `config.json` for both the source (the organization where you will pull the resources from) and the destination (to where you will be pushing the resources to). See `config.json.example`. 
 
-## Usage via container
+### Usage via container
 Usage is similar to the one without container:
 `docker run --rm -v $(pwd):/dogmover dogmover pull|push dashboards|monitors|users|synthetics_api_tests|synthetics_browser_tests|awsaccounts|logpipelines|notebooks [--dry-run] [-h]`
 
