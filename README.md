@@ -66,6 +66,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [PySNMP-MIB-Parser](./PySNMP-MIB-Parser)							| Python	| Converts a MIB file (in PySNMP format) to a yaml file that can be used by Datadog's [SNMP agent integration](https://docs.datadoghq.com/integrations/snmp/)  |
 | [aws_hosts_without_agent.py](./aws_hosts_without_agent.py)	| Python	| Gets a list of hostnames and IPs for AWS hosts not running the agent |
 | [DD Example](./dd-example)	| N/A	| Spins up a k8s cluster using Minikube with a simple app and database, showcasing the Datadog daemonset, has APM, Logs, and Metrics |
+| [get_active_users](./get_active_users)	| Python	| Collects a list of all active (ie. non disabled or pending) users in an organization to a csv file. |
 
 ## Additional tools
 These are some additional tools and scripts written by Datadog.
