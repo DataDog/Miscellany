@@ -1,0 +1,38 @@
+aws_region = "us-east-2"
+iam = {
+  iam_role_name = "ddog_role"
+  iam_instance_profile_name = "ddog_instance_profile"
+  iam_policy_name = "ddog_policy"
+}
+sg_info = {
+  admin_sg_name = "My Admin SG"
+  internal_sg_name = "My Internal SG"
+}
+instance_info = {
+  ubuntu_xenial_name = "My Ubuntu Xenial Demo Instance"
+  ubuntu_xenial_instance_type = "t2.micro"
+  ubuntu_xenial_ami_string = "ddog-ubuntu-xenial-*"
+}
+ssh_key = {
+  name = "ddog_pub_key"
+  file = "/Users/my.user/.ssh/id_rsa.pub"
+}
+ddog_api_key = "mydatadogapikey"
+owner_id = "myawsownerid"
+networking = {
+  # VPC and IGW Details
+  main_vpc_cidr_block = "10.12.23.0/24" # Small subnet for testing, feel free to change
+  main_vpc_name = "My Org Main VPC"
+  main_igw_name = "My Org Internet Gateway for Main VPC"
+  # Subnet Details
+  main_subnet_00 = "10.12.23.0/27" # 30 useable IPs
+  main_subnet_00_name = "My Org Main Subnet 00"
+  main_subnet_00_route_table_name = "My Org Route Table for Main Subnet 00"
+  main_subnet_01 = "10.12.23.32/28" # 14 useable IPs
+  main_subnet_01_name = "My Org Main Subnet 01"
+  main_subnet_01_route_table_name = "My Org Route Table for Main Subnet 01"
+  main_subnet_02 = "10.12.23.48/28" # 14 useable IPs
+  main_subnet_02_name = "My Org Main Subnet 02"
+  main_subnet_02_route_table_name = "My Org Route Table for Main Subnet 02"
+}
+allowed_cidrs  = ["YOUR.PUBLIC.I.P/32"] # Allowed CIDRs for Admin SG, should be limited

@@ -1,0 +1,11 @@
+**/*terraform.tfvars
+**/*.keys
+**/*.tfstate*
+**/\logfiles\/**
+.*
+!/.gitignore
+**/.delivery**
+**/.terraform
+**/*.tfvars
+**/\files\/**
+**/*.chef
