@@ -66,6 +66,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [PySNMP-MIB-Parser](./PySNMP-MIB-Parser)							| Python	| Converts a MIB file (in PySNMP format) to a yaml file that can be used by Datadog's [SNMP agent integration](https://docs.datadoghq.com/integrations/snmp/)  |
 | [aws_hosts_without_agent.py](./aws_hosts_without_agent.py)	| Python	| Gets a list of hostnames and IPs for AWS hosts not running the agent |
 | [DD Example](./dd-example)	| N/A	| Spins up a k8s cluster using Minikube with a simple app and database, showcasing the Datadog daemonset, has APM, Logs, and Metrics |
+| [get_active_users](./get_active_users)	| Python	| Collects a list of all active (ie. non disabled or pending) users in an organization to a csv file. |
 | [Packer Image Build + Terraform Deploy with AWS Secrets Manager and Datadog Agent](./agent_bootstrapping/README.md) | N/A | A guide that helps you to build an AMI with updates + Datadog Agent preinstalled using Packer, and deploy to AWS using Terraform while storing your Datadog API key in AWS Secrets Manager and using an IAM Instance Profile to retrive it at deployment time. |
 
 ## Additional tools
