@@ -8,31 +8,39 @@ import argparse
 ## Arguments to run the script
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--verbosity", type=int, help="increase output verbosity, use --verbosity 1 to enable")
 parser.add_argument("integration", type=str,
                     help="specify the integration namespace for your dashboard. Ex: mysql, ntp, system")
+parser.add_argument("--site", "-s", type=str, default="us", choices=["us", "eu"], 
+	help="The site to send data, us (datadoghq.com) or eu (datadoghq.eu), default: us")
+parser.add_argument("--verbosity", type=int, help="increase output verbosity, use --verbosity 1 to enable")
 args = parser.parse_args()
 integration = args.integration
 
 ## Keys and timeframe
 
-api_key = "xxx"
-app_key = "xxx"
+api_key = "<API KEY>"
+app_key = "<APP KEY>"
 timestamp = int(time.time()) - 86400
 
-
+if str(args.site) == "eu":
+	api_host = "https://api.datadoghq.eu/"
+	dashboard_site = "https://app.datadoghq.eu"
+else:
+	api_host = "https://app.datadoghq.com/"
+	dashboard_site = "https://app.datadoghq.com"
 ## Init
 
 options = {
-    'api_key': str(api_key),
-    'app_key': str(app_key)
+    'api_key': str(api_key),	
+    'app_key': str(app_key),
+    'api_host': str(api_host)
 }
 
 initialize(**options)
 
 ## Metrics endpoint
 
-r = requests.get("https://app.datadoghq.com/api/v1/metrics?api_key="+ api_key + "&application_key=" + app_key + "&from="+str(timestamp)+"")
+r = requests.get(api_host + "api/v1/metrics?api_key="+ api_key + "&application_key=" + app_key + "&from="+str(timestamp)+"")
 
 r.json()
 metrics_list = []
@@ -54,7 +62,7 @@ else:
 
 title = integration
 description = "All your "+ integration + " metrics"
-graphs = []
+widgets = []
 
 print("building dashboard: ", title)
 
@@ -66,15 +74,14 @@ for i in range(len(metrics_list)):
 	if args.verbosity == 1:
 		print("building widget: ", metrics_list[i])
 	
-	graphs.append({
-	    "definition": {
-	        "events": [],
-	        "requests": [
-	            {"q": "avg:" + str(metrics_list[i]) + "{$host} by {host}"} # changing unicode str to regular str
-	        ],
-	    "viz": "timeseries"
-	    },
-	    "title": str(metrics_list[i])
+	widgets.append({
+        'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {"q": "avg:" + str(metrics_list[i]) + "{*} by {host}"}
+        ],
+        'title': str(metrics_list[i])
+    }
 	})
 
 template_variables = [{
@@ -83,15 +90,22 @@ template_variables = [{
     "default": "*"
 }]
 
-read_only = True
+is_read_only = True
+layout_type = 'ordered'
 
 #DEBUG
 if args.verbosity == 1:
-	print("this is your graphs", graphs)
+	print("These are your widgets: ", widgets)
 
 try:
-	dashboard = api.Timeboard.create(title=title, description=description, graphs=graphs, template_variables=template_variables, read_only=read_only)
-	print("dashboard for " + integration + " was successfully created check it out here: http://app.datadoghq.com/dash/"+ str(dashboard['dash']['id']))
+	dashboard = api.Dashboard.create(title=title,
+                     widgets=widgets,
+                     layout_type=layout_type,
+                     description=description,
+                     is_read_only=is_read_only,
+                     template_variables=template_variables)
+    
+	print("dashboard for " + integration + " was successfully created check it out here: " + str(dashboard_site) + str(dashboard['url']))
 	
 	#DEBUG
 	if args.verbosity == 1:
