@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env
 """Usage:
   dogmover.py pull (<type>) [--tag tag]... [--dry-run] [-h]
   dogmover.py push (<type>) [--dry-run] [-h]
@@ -8,14 +8,14 @@ Examples:
         dogmover.py pull dashboards
         dogmover.py push dashboards
 
-    Synthetic api tests using --tag that only pulls tests if the tags exist on them:
-        dogmover.py pull synthetic_api_tests --tag env:production --tag application:abc
+    Synthetic api tests using --tag that only pulls tests if all the defined tags exist on them:
+        dogmover.py pull synthetic_api_tests p --tag env:production --tag application:abc
         dogmover.py push synthetic_api_tests
 
     Run with --dry-run without making any changes to your Datadog account:
         dogmover.py pull dashboards --dry-run
         dogmover.py push dashboards --dry-run
-
+ 
     Supported arguments:
     dogmover.py pull|push dashboards|monitors|users|synthetics_api_tests|synthetics_browser_tests|awsaccounts|logpipelines|notebooks (--tag tag) (--dry-run|-h)
 
@@ -24,9 +24,10 @@ Examples:
 Options:
   -h, --help
   -d, --dry-run
+  --tag=<k:v>   Specify a tag in the format key:value
 """
 __author__ = "Misiu Pajor <misiu.pajor@datadoghq.com>"
-__version__ = "2.0.6"
+__version__ = "2.1.0"
 from docopt import docopt
 import json
 import os
@@ -176,18 +177,26 @@ def pull_synthetics_browser_tests(options, tag):
     synthetics = r.json()
     for synthetic in synthetics["tests"]:
         if synthetic["type"] == "browser":
+            all_tags_found="true"
             for tag in tags:
-                if tag in synthetic["tags"]:
-                    print("Tag: {} found in synthetic test: {}".format(tag, synthetic["name"]))
-                    count = count + 1
-                    json_data = requests.get('{}api/v1/synthetics/tests/browser/{}?api_key={}&application_key={}'.format(
-                        options["api_host"],
-                        synthetic["public_id"],
-                        options["api_key"],
-                        options["app_key"]
-                    )).json()
-                    path = _json_to_file('synthetics_browser_tests', synthetic["public_id"], json_data)
-                    print("Pulling: {} and writing to file: {}".format(synthetic["name"].encode('utf8'), path))
+                if not tag in synthetic["tags"]:
+                    all_tags_found="false"
+                    print("Tag: {} not found in synthetic: \"{}\" with tags {}".format(tag, synthetic["name"].encode('utf8'), synthetic["tags"]))
+                    break
+
+            if all_tags_found == "false":
+                print("Skipping \"{}\" because its tags do not match the filter.".format(synthetic["name"].encode('utf8')))
+
+            if all_tags_found == "true":
+                count = count + 1
+                json_data = requests.get('{}api/v1/synthetics/tests/browser/{}?api_key={}&application_key={}'.format(
+                    options["api_host"],
+                    synthetic["public_id"],
+                    options["api_key"],
+                    options["app_key"]
+                )).json()
+                path = _json_to_file('synthetics_browser_tests', synthetic["public_id"], json_data)
+                print("Pulling: {} and writing to file: {}".format(synthetic["name"].encode('utf8'), path))
     print("Retrieved '{}' synthetic tests.".format(count))
 
 
