@@ -68,6 +68,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [DD Example](./dd-example)	| N/A	| Spins up a k8s cluster using Minikube with a simple app and database, showcasing the Datadog daemonset, has APM, Logs, and Metrics |
 | [get_active_users](./get_active_users)	| Python	| Collects a list of all active (ie. non disabled or pending) users in an organization to a csv file. |
 | [Packer Image Build + Terraform Deploy with AWS Secrets Manager and Datadog Agent](./agent_bootstrapping/README.md) | N/A | A guide that helps you to build an AMI with updates + Datadog Agent preinstalled using Packer, and deploy to AWS using Terraform while storing your Datadog API key in AWS Secrets Manager and using an IAM Instance Profile to retrive it at deployment time. |
+| [ddog](./ddog/README.md) | Java 1.8+ | A command line tool to troubleshoot connectivity issues for on-premises environments. [Ping](./ddog/README.md#Ping), [SendMetric](./ddog/README.md#SendMetric), [SendLog](./ddog/README.md#SendLog) and [SendTrace](./ddog/README.md#SendTrace) are the available commands. |
 
 ## Additional tools
 These are some additional tools and scripts written by Datadog.
