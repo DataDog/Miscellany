@@ -4,9 +4,9 @@ DDog is yet another CLI tool written in Java to check connectivity towards the D
 ## Commands
 Those are the commands that can be used:
 * [ping](#ping)
-* [send-metric](#send-metric)
-* [send-trace](#send-trace)
-* [send-log](#send-log)
+* [send-metric](#sendmetric)
+* [send-trace](#sendtrace)
+* [send-log](#sendlog)
 
 There is also a CLI help online:
 ```bash
