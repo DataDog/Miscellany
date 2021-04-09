@@ -33,6 +33,7 @@ import json
 import os
 import glob
 import requests
+import sys
 from datadog import initialize, api
 
 def _init_options(action):
@@ -75,6 +76,13 @@ def _json_to_file(path, fileName, data):
 def _files_to_json(type):
     files = glob.glob('{}/*.json'.format(type))
     return files
+
+def _logs_api_permission(req):
+    if req.status_code != 200:
+        print("Request to API not successful. Please verify your permissions to hit the logs API, doc: https://docs.datadoghq.com/logs/guide/logs-rbac-permissions/?tab=ui#logs_public_config_api")
+        return False
+    else:
+        return True
 
 def pull_dashboards():
     path = False
@@ -215,13 +223,52 @@ def pull_awsaccounts(options):
 def pull_logpipelines(options):
     path = False
     count = 0
+    req = requests.get('{}api/v1/logs/config/pipelines?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]))
 
-    r = requests.get('{}api/v1/logs/config/pipelines?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]))
-    rJSON = r.json()
-    for item in rJSON:
-        count = count + 1
-        path = _json_to_file('logpipelines', item["id"], item)
-    print("Retrieved '{}' log pipelines.".format(count))
+    if _logs_api_permission(req):
+        rJSON = req.json()
+        for item in rJSON:
+            count = count + 1
+            path = _json_to_file('logpipelines', item["id"], item)
+        print("Retrieved '{}' log pipelines.".format(count))
+
+def pull_log_archives(options):
+    path = False
+    count = 0
+    req = requests.get('{}api/v2/logs/config/archives?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]))
+
+    if _logs_api_permission(req):
+        rJSON = req.json()
+        for archive in rJSON['data']:
+            count = count + 1
+            path = _json_to_file('log_archives', archive["id"], archive)
+        #    if not arguments["--dry-run"]:
+        #        path = _json_to_file('log_archives', archive["account_id"], awsaccount)
+        print("Retrieved '{}' Log Archives.".format(count))
+
+def pull_log_indexes(options):
+    path = False
+    count = 0
+    req = requests.get('{}api/v1/logs/config/indexes?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]))
+
+    if _logs_api_permission(req):
+        rJSON = req.json()
+        for index in rJSON['indexes']:
+            count = count + 1
+            path = _json_to_file('log_indexes', index["name"], index)
+        print("Retrieved '{}' Log Indexes.".format(count))
+
+def pull_log_metrics(options):
+    path = False
+    count = 0
+    req = requests.get('{}api/v2/logs/config/metrics?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]))
+
+    if _logs_api_permission(req):
+        rJSON = req.json()
+        for metric in rJSON['data']:
+            count = count + 1
+            path = _json_to_file('log_metrics', metric["id"], metric)
+        print("Retrieved '{}' Log Metrics.".format(count))
 
 def pull_notebooks(options):
     path = False
@@ -466,6 +513,12 @@ if __name__ == '__main__':
             pull_awsaccounts(_init_options("pull"))
         elif arguments['<type>'] == 'logpipelines':
             pull_logpipelines(_init_options("pull"))
+        elif arguments['<type>'] == 'log_archives':
+            pull_log_archives(_init_options("pull"))
+        elif arguments['<type>'] == 'log_indexes':
+            pull_log_indexes(_init_options("pull"))
+        elif arguments['<type>'] == 'log_metrics':
+            pull_log_metrics(_init_options("pull"))
         elif arguments['<type>'] == 'notebooks':
             pull_notebooks(_init_options("pull"))
     elif arguments["push"]:
