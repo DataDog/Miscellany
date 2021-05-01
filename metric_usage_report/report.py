@@ -1,12 +1,11 @@
 
+import os
+import json
 from datadog import api
 
 import report_init
-import get
 import config
-import sys
-import json
-import os
+import progress_bar
 
 def search_widget(dashboard, widget, report):
     if str(widget["definition"].get("requests")).find(metric) >= 0:
@@ -38,30 +37,6 @@ def search_dashboard(dashboard, report):
             search_widget(dashboard, widget, report)
 
 
-# Print iterations progress
-def print_progress(iteration, total, prefix='', suffix='', decimals=1, bar_length=100):
-    """
-    Call in a loop to create terminal progress bar
-    @params:
-        iteration   - Required  : current iteration (Int)
-        total       - Required  : total iterations (Int)
-        prefix      - Optional  : prefix string (Str)
-        suffix      - Optional  : suffix string (Str)
-        decimals    - Optional  : positive number of decimals in percent complete (Int)
-        bar_length  - Optional  : character length of bar (Int)
-    """
-    str_format = "{0:." + str(decimals) + "f}"
-    percents = str_format.format(100 * (iteration / float(total)))
-    filled_length = int(round(bar_length * iteration / float(total)))
-    bar = '=' * filled_length + '>' + '-' * (bar_length - filled_length)
-
-    sys.stdout.write('\r%s |%s| %s%s %s' % (prefix, bar, percents, '%', suffix)),
-
-    if iteration == total:
-        sys.stdout.write('\n')
-    sys.stdout.flush()
-
-
 if __name__ == "__main__":
     report_init.init()
 
@@ -80,7 +55,7 @@ if __name__ == "__main__":
             for i, line in enumerate(file):
                 search_dashboard(json.loads(line), report)
 
-                print_progress(i+1, db_count, bar_length = 50)
+                progress_bar.print_progress(i+1, db_count, bar_length = 50)
 
     else:
         print("No cache file found, writing API results to", config.DB_CACHE_PATH)
@@ -98,7 +73,7 @@ if __name__ == "__main__":
                     file.write(json.dumps(db_response))
                     file.write("\n") # concatenating strings is expensive, writing a newline to a file is not
 
-                    print_progress(i+1, db_count, bar_length = 50)
+                    progress_bar.print_progress(i+1, db_count, bar_length = 50)
 
     print("\n", report)
 
