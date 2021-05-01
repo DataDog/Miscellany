@@ -1,14 +1,11 @@
-#Your Datadog API Key
+# Your Datadog API Key
 API_KEY = ""
 
-#Your Datadog Application Key
+# Your Datadog Application Key
 APP_KEY = ""
 
-# should the program check for metrics present in dashboards?
-CHECK_DASHBOARDS = True
+# A list of strings, values should match metrics present in your account
+METRICS_TO_EVAL = ["system.cpu.user", "system.disk.in_use"]
 
-# should the program check for metrics present in monitors?
-CHECK_MONITORS = True
-
-# a list of strings, values should match metrics tpresent in your account
-METRICS_TO_EVAL = []
+# the filename where api results are stored to avoid duplicate requests
+DB_CACHE_PATH = 'db_cache.txt'

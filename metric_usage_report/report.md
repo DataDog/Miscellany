@@ -9,7 +9,7 @@ This program requires that the datadogpy library be installed on the machine or 
 
 The command to install datadogpy for Python3 is `pip3 install datadog`
 
-**NOTE**: This program is not recommended for use with Python3.  Python3 string objects do not use utf-8 encoding, meaning that any non ASCII character in a board or metric name will break this program if it runs in Python2.
+**NOTE**: This program is not recommended for use with Python3. Python3 string objects do not use utf-8 encoding, meaning that any non ASCII character in a board or metric name will break this program if it runs in Python2.
 
 ## How to Run It
 Once you have copied this program locally, it can be run in a terminal from the directory it is stored in by running `python3 main.py`.  All required values should first be entered into the constant variables located in config.py
