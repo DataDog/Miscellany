@@ -25,7 +25,10 @@ def init():
         print(test_resp.get("code"), test_resp.get("errors"))
         quit()
     
-    # get file path to cache api response
+    # set file paths to be created relative to script
     config.DB_CACHE_PATH = os.path.join(os.path.dirname(__file__), config.DB_CACHE_PATH)
+    config.JSON_OUTPUT_PATH = os.path.join(os.path.dirname(__file__), config.JSON_OUTPUT_PATH)
+    config.CSV_OUTPUT_PATH = os.path.join(os.path.dirname(__file__), config.CSV_OUTPUT_PATH)
+    config.MARKDOWN_OUTPUT_PATH = os.path.join(os.path.dirname(__file__), config.MARKDOWN_OUTPUT_PATH)
 
 
