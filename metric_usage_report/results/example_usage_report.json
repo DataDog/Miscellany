@@ -1,0 +1,330 @@
+{
+    "system.cpu.user": {
+        "dashboards": {
+            "edf-ahb-7ab": {
+                "title": "Devlin Screenboard, \"\ud83d\udc36\"",
+                "link": "https://app.datadoghq.com/dashboard/edf-ahb-7ab/devlin-screenboard",
+                "author": "nicholas.devlin@datadoghq.com",
+                "widgets": [
+                    {
+                        "title": "\ud83d\udc36\"",
+                        "link": "https://app.datadoghq.com/dashboard/edf-ahb-7ab/devlin-screenboard?fullscreen_widget=2457158628141370"
+                    }
+                ]
+            },
+            "smx-5hf-wd9": {
+                "title": "Shop.ist Timeboard",
+                "link": "https://app.datadoghq.com/dashboard/smx-5hf-wd9/shopist-timeboard",
+                "author": "alex.isken@datadoghq.com",
+                "widgets": [
+                    {
+                        "title": "untitled",
+                        "link": "https://app.datadoghq.com/dashboard/smx-5hf-wd9/shopist-timeboard?fullscreen_widget=4605663016045112"
+                    },
+                    {
+                        "title": "Avg of system.cpu.user over env:prod, datadog_app:shopist by cluster-name",
+                        "link": "https://app.datadoghq.com/dashboard/smx-5hf-wd9/shopist-timeboard?fullscreen_widget=4078487646149228"
+                    }
+                ]
+            },
+            "a5s-d72-bx2": {
+                "title": "Shop.ist Demo Timeboard",
+                "link": "https://app.datadoghq.com/dashboard/a5s-d72-bx2/shopist-demo-timeboard",
+                "author": "andrew.doberstein@datadoghq.com",
+                "widgets": [
+                    {
+                        "title": "Avg User CPU utilization",
+                        "link": "https://app.datadoghq.com/dashboard/a5s-d72-bx2/shopist-demo-timeboard?fullscreen_widget=4674874774592230"
+                    },
+                    {
+                        "title": "untitled",
+                        "link": "https://app.datadoghq.com/dashboard/a5s-d72-bx2/shopist-demo-timeboard?fullscreen_widget=5950936839155228"
+                    },
+                    {
+                        "title": "untitled",
+                        "link": "https://app.datadoghq.com/dashboard/a5s-d72-bx2/shopist-demo-timeboard?fullscreen_widget=4035130484556644"
+                    },
+                    {
+                        "title": "untitled",
+                        "link": "https://app.datadoghq.com/dashboard/a5s-d72-bx2/shopist-demo-timeboard?fullscreen_widget=8516238246795198"
+                    }
+                ]
+            }
+        },
+        "monitors": [
+            {
+                "status": "Alert",
+                "scopes": [
+                    "*"
+                ],
+                "classification": "metric",
+                "creator": {
+                    "handle": "dany.narcisse@datadoghq.com",
+                    "id": 1389790,
+                    "name": "Dany Narcisse"
+                },
+                "metrics": [
+                    "system.cpu.user"
+                ],
+                "notifications": [],
+                "muted_until_ts": null,
+                "query": "avg(last_5m):avg:system.cpu.user{*} > 35",
+                "id": 34435497,
+                "last_triggered_ts": 1619425857,
+                "name": "[Dany] test monitor",
+                "tags": [],
+                "org_id": 11287,
+                "priority": null,
+                "overall_state_modified": 1619425942,
+                "restricted_roles": [],
+                "type": "metric alert"
+            },
+            {
+                "status": "OK",
+                "scopes": [
+                    "service:web-store"
+                ],
+                "classification": "anomaly",
+                "creator": {
+                    "handle": "ethan.grab@datadoghq.com",
+                    "id": 2122210,
+                    "name": "Ethan Grab"
+                },
+                "metrics": [
+                    "system.cpu.user"
+                ],
+                "notifications": [],
+                "muted_until_ts": null,
+                "query": "avg(last_4h):anomalies(avg:system.cpu.user{service:web-store} by {host}, 'agile', 2, direction='both', alert_window='last_15m', interval=60, count_default_zero='true', seasonality='hourly') >= 1",
+                "id": 32237385,
+                "last_triggered_ts": 1619922165,
+                "name": "Ethan Demo Anomalous CPU Utilization - Anomaly Monitor for web-store service",
+                "tags": [
+                    "datadog_demo_keep:true"
+                ],
+                "org_id": 11287,
+                "priority": null,
+                "overall_state_modified": 1619923197,
+                "restricted_roles": [],
+                "type": "query alert"
+            },
+            {
+                "status": "OK",
+                "scopes": [
+                    "env:prod",
+                    "cluster-name:demo-11287-us-prod-central"
+                ],
+                "classification": "metric",
+                "creator": {
+                    "handle": "brent.warren@datadoghq.com",
+                    "id": 1776207,
+                    "name": "Brent Warren"
+                },
+                "metrics": [
+                    "system.cpu.user"
+                ],
+                "notifications": [
+                    {
+                        "handle": "slack-demos-alerts-shopist",
+                        "name": "Slack demos-alerts-shopist"
+                    },
+                    {
+                        "handle": "pagerduty-demos",
+                        "name": "Pagerduty: demos"
+                    }
+                ],
+                "muted_until_ts": null,
+                "query": "avg(last_15m):avg:system.cpu.user{env:prod,cluster-name:demo-11287-us-prod-central} by {host} > 80",
+                "id": 32380160,
+                "last_triggered_ts": 1619789360,
+                "name": "CPU Usage is high for {{host.name}} in {{host.region}}  (Brent Warren Demo)",
+                "tags": [
+                    "demo:shopistcpu",
+                    "fse:shop.ist",
+                    "datadog_app:shopist",
+                    "datadog_demo_keep:true",
+                    "env:prod"
+                ],
+                "org_id": 11287,
+                "priority": 4,
+                "overall_state_modified": 1619790091,
+                "restricted_roles": [],
+                "type": "query alert"
+            }
+        ]
+    },
+    "system.disk.in_use": {
+        "dashboards": {
+            "r5y-wbu-6qk": {
+                "title": "Garrett's Timeboard Demo",
+                "link": "https://app.datadoghq.com/dashboard/r5y-wbu-6qk/garretts-timeboard-demo",
+                "author": "garrett.young@datadoghq.com",
+                "widgets": [
+                    {
+                        "title": "disk utilization from $service by host (Forecast - Linear)",
+                        "link": "https://app.datadoghq.com/dashboard/r5y-wbu-6qk/garretts-timeboard-demo?fullscreen_widget=7061463199094440"
+                    }
+                ]
+            },
+            "zht-wg3-cjv": {
+                "title": "Executive Dashboard",
+                "link": "https://app.datadoghq.com/dashboard/zht-wg3-cjv/executive-dashboard",
+                "author": "benjamin.crom@datadoghq.com",
+                "widgets": [
+                    {
+                        "title": "Monthly Storage Forecast",
+                        "link": "https://app.datadoghq.com/dashboard/zht-wg3-cjv/executive-dashboard?fullscreen_widget=21"
+                    }
+                ]
+            },
+            "xpx-vub-ehw": {
+                "title": "Health Status Multi-Cloud View",
+                "link": "https://app.datadoghq.com/dashboard/xpx-vub-ehw/health-status-multi-cloud-view",
+                "author": "et.thomatos@datadoghq.com",
+                "widgets": [
+                    {
+                        "title": "Disk Usage",
+                        "link": "https://app.datadoghq.com/dashboard/xpx-vub-ehw/health-status-multi-cloud-view?fullscreen_widget=2116455955015609"
+                    },
+                    {
+                        "title": "Disk Usage",
+                        "link": "https://app.datadoghq.com/dashboard/xpx-vub-ehw/health-status-multi-cloud-view?fullscreen_widget=6471917436048856"
+                    },
+                    {
+                        "title": "Disk Usage",
+                        "link": "https://app.datadoghq.com/dashboard/xpx-vub-ehw/health-status-multi-cloud-view?fullscreen_widget=2010546731394720"
+                    },
+                    {
+                        "title": "Disk Usage Forecast",
+                        "link": "https://app.datadoghq.com/dashboard/xpx-vub-ehw/health-status-multi-cloud-view?fullscreen_widget=7872394918541564"
+                    },
+                    {
+                        "title": "Disk Usage Forecast",
+                        "link": "https://app.datadoghq.com/dashboard/xpx-vub-ehw/health-status-multi-cloud-view?fullscreen_widget=3051320295940886"
+                    },
+                    {
+                        "title": "Disk Usage Forecast",
+                        "link": "https://app.datadoghq.com/dashboard/xpx-vub-ehw/health-status-multi-cloud-view?fullscreen_widget=744618207062518"
+                    }
+                ]
+            }
+        },
+        "monitors": [
+            {
+                "status": "Warn",
+                "scopes": [
+                    "service:web-store",
+                    "!device:overlay",
+                    "env:prod"
+                ],
+                "classification": "metric",
+                "creator": {
+                    "handle": "jose.ferreira@datadoghq.com",
+                    "id": 1979590,
+                    "name": "Jose Ferreira"
+                },
+                "metrics": [
+                    "system.disk.in_use"
+                ],
+                "notifications": [
+                    {
+                        "handle": "jose.ferreira@datadoghq.com",
+                        "name": "Jose Ferreira"
+                    },
+                    {
+                        "handle": "ops-team@vandelayindustries.com",
+                        "name": "ops-team@vandelayindustries.com"
+                    },
+                    {
+                        "handle": "slack-jose-demo",
+                        "name": "Slack jose-demo"
+                    }
+                ],
+                "muted_until_ts": 9223372036854775807,
+                "query": "avg(last_5m):avg:system.disk.in_use{env:prod,service:web-store,!device:overlay} by {host,device} > 0.9",
+                "id": 31953676,
+                "last_triggered_ts": 1618525276,
+                "name": "Disk space is low on {{device.name}} / {{host.name}}",
+                "tags": [
+                    "datadog_demo:true",
+                    "datadog_demo_keep:true"
+                ],
+                "org_id": 11287,
+                "priority": null,
+                "overall_state_modified": 1618973298,
+                "restricted_roles": [],
+                "type": "metric alert"
+            },
+            {
+                "status": "Warn",
+                "scopes": [
+                    "service:web-store"
+                ],
+                "classification": "metric",
+                "creator": {
+                    "handle": "kelly.becker@datadoghq.com",
+                    "id": 2218786,
+                    "name": "Kelly Becker"
+                },
+                "metrics": [
+                    "system.disk.in_use"
+                ],
+                "notifications": [
+                    {
+                        "handle": "kelly.becker@datadoghq.com",
+                        "name": "Kelly Becker"
+                    }
+                ],
+                "muted_until_ts": 9223372036854775807,
+                "query": "min(last_5m):avg:system.disk.in_use{env:prod*,service:web-store} by {host,device} > 0.9",
+                "id": 33442485,
+                "last_triggered_ts": 1619574825,
+                "name": "Disk Space is Low on {{device.name}} / {{host.name}}",
+                "tags": [
+                    "datadog_demo:true",
+                    "datadog_demo_keep:true"
+                ],
+                "org_id": 11287,
+                "priority": null,
+                "overall_state_modified": 1619574895,
+                "restricted_roles": [],
+                "type": "query alert"
+            },
+            {
+                "status": "OK",
+                "scopes": [
+                    "device:/dev/xvda1",
+                    "host:fse-ldmx-f7-18"
+                ],
+                "classification": "metric",
+                "creator": {
+                    "handle": "benjamin.burns@datadoghq.com",
+                    "id": 589103,
+                    "name": "Benjamin Burns"
+                },
+                "metrics": [
+                    "system.disk.in_use"
+                ],
+                "notifications": [
+                    {
+                        "handle": "benjamin.burns@datadoghq.com",
+                        "name": "Benjamin Burns"
+                    }
+                ],
+                "muted_until_ts": null,
+                "query": "avg(last_5m):avg:system.disk.in_use{device:/dev/xvda1,host:fse-ldmx-f7-18} > 0.9",
+                "id": 10928580,
+                "last_triggered_ts": 1599289380,
+                "name": "fse-auto-dev low on disk",
+                "tags": [
+                    "datadog_demo_keep:true"
+                ],
+                "org_id": 11287,
+                "priority": null,
+                "overall_state_modified": 1611774845,
+                "restricted_roles": [],
+                "type": "metric alert"
+            }
+        ]
+    }
+}

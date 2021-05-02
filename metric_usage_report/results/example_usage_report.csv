@@ -1,0 +1,13 @@
+Metric,Source,Dashboard Title,Dashboard Link,Author,Widget Title, Widget Link
+system.cpu.user,dashboard,"Devlin Screenboard, ""🐶""",https://app.datadoghq.com/dashboard/edf-ahb-7ab/devlin-screenboard,nicholas.devlin@datadoghq.com,"🐶""",https://app.datadoghq.com/dashboard/edf-ahb-7ab/devlin-screenboard?fullscreen_widget=2457158628141370
+system.cpu.user,dashboard,"Shop.ist Timeboard",https://app.datadoghq.com/dashboard/smx-5hf-wd9/shopist-timeboard,alex.isken@datadoghq.com,"untitled",https://app.datadoghq.com/dashboard/smx-5hf-wd9/shopist-timeboard?fullscreen_widget=4605663016045112
+system.cpu.user,dashboard,"Shop.ist Timeboard",https://app.datadoghq.com/dashboard/smx-5hf-wd9/shopist-timeboard,alex.isken@datadoghq.com,"Avg of system.cpu.user over env:prod, datadog_app:shopist by cluster-name",https://app.datadoghq.com/dashboard/smx-5hf-wd9/shopist-timeboard?fullscreen_widget=4078487646149228
+system.cpu.user,monitor,"[Dany] test monitor",https://app.datadoghq.com/monitors/34435497,dany.narcisse@datadoghq.com,,
+system.cpu.user,monitor,"Ethan Demo Anomalous CPU Utilization - Anomaly Monitor for web-store service",https://app.datadoghq.com/monitors/32237385,ethan.grab@datadoghq.com,,
+system.cpu.user,monitor,"CPU Usage is high for {{host.name}} in {{host.region}}  (Brent Warren Demo)",https://app.datadoghq.com/monitors/32380160,brent.warren@datadoghq.com,,
+system.disk.in_use,dashboard,"Garrett's Timeboard Demo",https://app.datadoghq.com/dashboard/r5y-wbu-6qk/garretts-timeboard-demo,garrett.young@datadoghq.com,"disk utilization from $service by host (Forecast - Linear)",https://app.datadoghq.com/dashboard/r5y-wbu-6qk/garretts-timeboard-demo?fullscreen_widget=7061463199094440
+system.disk.in_use,dashboard,"Executive Dashboard",https://app.datadoghq.com/dashboard/zht-wg3-cjv/executive-dashboard,benjamin.crom@datadoghq.com,"Monthly Storage Forecast",https://app.datadoghq.com/dashboard/zht-wg3-cjv/executive-dashboard?fullscreen_widget=21
+system.disk.in_use,dashboard,"Health Status Multi-Cloud View",https://app.datadoghq.com/dashboard/xpx-vub-ehw/health-status-multi-cloud-view,et.thomatos@datadoghq.com,"Disk Usage",https://app.datadoghq.com/dashboard/xpx-vub-ehw/health-status-multi-cloud-view?fullscreen_widget=2116455955015609
+system.disk.in_use,monitor,"Disk space is low on {{device.name}} / {{host.name}}",https://app.datadoghq.com/monitors/31953676,jose.ferreira@datadoghq.com,,
+system.disk.in_use,monitor,"Disk Space is Low on {{device.name}} / {{host.name}}",https://app.datadoghq.com/monitors/33442485,kelly.becker@datadoghq.com,,
+system.disk.in_use,monitor,"fse-auto-dev low on disk",https://app.datadoghq.com/monitors/10928580,benjamin.burns@datadoghq.com,,

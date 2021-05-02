@@ -1,4 +1,3 @@
 .vscode
 __pycache__
 db_cache.txt
-config.py
