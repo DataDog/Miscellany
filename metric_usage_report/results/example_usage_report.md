@@ -25,6 +25,7 @@
 | [[Dany] test monitor](https://app.datadoghq.com/monitors/34435497) | dany.narcisse@datadoghq.com |
 | [Ethan Demo Anomalous CPU Utilization - Anomaly Monitor for web-store service](https://app.datadoghq.com/monitors/32237385) | ethan.grab@datadoghq.com |
 | [CPU Usage is high for {{host.name}} in {{host.region}}  (Brent Warren Demo)](https://app.datadoghq.com/monitors/32380160) | brent.warren@datadoghq.com |
+
 [In-app Monitor Search](https://app.datadoghq.com/monitors/manage?q=metric%3A%22system.cpu.user%22)
 
 ## system.disk.in_use
@@ -44,5 +45,6 @@
 | [Disk space is low on {{device.name}} / {{host.name}}](https://app.datadoghq.com/monitors/31953676) | jose.ferreira@datadoghq.com |
 | [Disk Space is Low on {{device.name}} / {{host.name}}](https://app.datadoghq.com/monitors/33442485) | kelly.becker@datadoghq.com |
 | [fse-auto-dev low on disk](https://app.datadoghq.com/monitors/10928580) | benjamin.burns@datadoghq.com |
+
 [In-app Monitor Search](https://app.datadoghq.com/monitors/manage?q=metric%3A%22system.disk.in_use%22)
 
