@@ -128,7 +128,7 @@ def output_md_file(report):
                     monitor_link = monitor_link,
                     author = monitor["creator"]["handle"]
                 ))
-            file.write("[In-app Monitor Search](https://app.datadoghq.com/monitors/manage?q=metric%3A%22{}%22)\n\n".format(metric))
+            file.write("\n[In-app Monitor Search](https://app.datadoghq.com/monitors/manage?q=metric%3A%22{}%22)\n\n".format(metric))
 
 
  
