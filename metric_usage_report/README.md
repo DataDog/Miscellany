@@ -26,3 +26,7 @@ Reports will be placed in the results folder under the names `report.*`
 API calls are expensive and time consuming. To avoid requesting all dashboard definitions from your account every time you want a metric report, results are cached in json format in the file `db_cache.txt`. If that file exists, the script will automatically use those results instead.
 
 To get a fresh list of dashboards, either rename or delete the file `db_cache.txt`.
+
+### untitled Widgets
+
+If a widget doesn't have a title, dashboards will generate one based off the query inside. That logic was a bit too complex for me to replicate, so I just named them `unitled` to avoid having an empty string when displaying the widget in the report.
