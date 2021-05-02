@@ -1,4 +1,3 @@
 .vscode
 __pycache__
-db_cache*
-results/
+db_cache.txt

@@ -5,9 +5,11 @@ API_KEY = ""
 APP_KEY = ""
 
 # A list of metric names, values should match metrics present in your account
-METRICS_TO_EVAL = ["dd.synth.live_riders"]
+METRICS_TO_EVAL = ["system.cpu.user", "system.disk.in_use"]
 
-# the filename where api responses are stored to avoid duplicate requests (you shouldn't need to change this)
+### ADVANCED CONFIGS
+
+# the filename where dashboard api responses are stored to avoid duplicate requests (you shouldn't need to change this)
 DB_CACHE_PATH = "db_cache.txt"
 
 # the filename where json results are placed
