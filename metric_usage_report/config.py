@@ -1,14 +1,22 @@
-#Your Datadog API Key
+# Your Datadog API Key
 API_KEY = ""
 
-#Your Datadog Application Key
+# Your Datadog Application Key
 APP_KEY = ""
 
-# should the program check for metrics present in dashboards?
-CHECK_DASHBOARDS = True
+# A list of metric names, values should match metrics present in your account
+METRICS_TO_EVAL = ["system.cpu.user", "system.disk.in_use"]
 
-# should the program check for metrics present in monitors?
-CHECK_MONITORS = True
+### ADVANCED CONFIGS
 
-# a list of strings, values should match metrics tpresent in your account
-METRICS_TO_EVAL = []
+# the filename where dashboard api responses are stored to avoid duplicate requests (you shouldn't need to change this)
+DB_CACHE_PATH = "db_cache.txt"
+
+# the filename where json results are placed
+JSON_OUTPUT_PATH = "results/report.json"
+
+# the filename where csv results are placed
+CSV_OUTPUT_PATH = "results/report.csv"
+
+# the filename where markdown results are placed
+MARKDOWN_OUTPUT_PATH = "results/report.md"
