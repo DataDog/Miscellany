@@ -1,4 +1,4 @@
-#!/usr/bin/env
+#!/usr/bin/env python3
 """Usage:
   dogmover.py pull (<type>) [--tag tag]... [--dry-run] [-h]
   dogmover.py push (<type>) [--dry-run] [-h]
