@@ -2,7 +2,7 @@
 
 ![Dogmover](https://github.com/DataDog/Miscellany/blob/master/Dogmover/dogmover.png "A moving dog.")
 
-This tool is built to help migrate Datadog `dashboards`, `monitors`, `users`, `synthetic api tests`, `synthetic browser tests`, `aws accounts`, `log pipelines` and `notebooks` from one Datadog organization (eg. in US) to another (eg. in EU). The tool also supports moving these resources within the same instances (eg. EU to EU _or_ US to US).
+This tool is built to help migrate Datadog `dashboards`, `monitors`, `users`, `synthetic api tests`, `synthetic browser tests`, `aws accounts`, `log pipelines`, `notebooks`, and `slos` from one Datadog organization (eg. in US) to another (eg. in EU). The tool also supports moving these resources within the same instances (eg. EU to EU _or_ US to US).
 
 **Note:** It does _not_ move any historical data (eg., metrics, log messages, synthetic test results) as this is not supported due to security reasons.
 
@@ -23,7 +23,7 @@ To push (import) dashboards, run:
 
 The arguments supported are:
 
-`./dogmover.py pull|push dashboards|monitors|users|synthetics_api_tests|synthetics_browser_tests|awsaccounts|logpipelines|notebooks [--dry-run] [-h]`
+`./dogmover.py pull|push dashboards|monitors|users|synthetics_api_tests|synthetics_browser_tests|awsaccounts|logpipelines|notebooks|slos [--dry-run] [-h]`
 
 If you feel safe with the output Dogmover is giving you, run without `--dry-run` to commit your push/pull into your Datadog account.
 
@@ -36,7 +36,7 @@ If you feel safe with the output Dogmover is giving you, run without `--dry-run`
 
 ### Usage via container
 Usage is similar to the one without container:
-`docker run --rm -v $(pwd):/dogmover dogmover pull|push dashboards|monitors|users|synthetics_api_tests|synthetics_browser_tests|awsaccounts|logpipelines|notebooks [--dry-run] [-h]`
+`docker run --rm -v $(pwd):/dogmover dogmover pull|push dashboards|monitors|users|synthetics_api_tests|synthetics_browser_tests|awsaccounts|logpipelines|notebooks|slos [--dry-run] [-h]`
 
 ## Notes
 ### The --dry-run argument
@@ -50,6 +50,7 @@ If you are not using the `--dry-run` argument, all your pulls will create a JSON
 ./awsaccounts/*.json
 ./logpipelines/*.json
 ./notebooks/*.json
+./slos/*.json
 ```
 
 ### The --tag argument
