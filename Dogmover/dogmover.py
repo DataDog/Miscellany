@@ -238,6 +238,18 @@ def pull_notebooks(options):
         path = _json_to_file('notebooks', str(notebook["id"]), notebook)
     print("Retrieved '{}' notebooks.".format(count))
 
+def pull_slos(options):
+    path = False
+
+    count = 0
+    r = requests.get('{}api/v1/slo?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]))
+    slos = r.json()
+
+    for slo in slos["data"]:
+        count = count + 1
+        path = _json_to_file('slos', str(slo["id"]), slo)
+    print("Retrieved '{}' SLOs.".format(count))
+
 def push_dashboards():
     count = 0
     dashboards = _files_to_json("dashboards")
@@ -443,6 +455,20 @@ def push_notebooks(options):
                 r = requests.post('{}api/v1/notebook?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]), json=data)
     print("Pushed '{}' notebooks".format(count))
 
+def push_slos(options):
+    count=0
+    slos = _files_to_json("slos")
+    if not slos:
+        exit("No SLOs are locally available.  Consider pulling the SLOs first.")
+
+    for slo in slos:
+        with open(slo) as f:
+            data = json.load(f)
+            count = count + 1
+            print("Pushing: {}".format(data["name"].encode('utf-8')))
+            if not arguments["--dry-run"]:
+                r = requests.post('{}api/v1/slo?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]), json=data)
+    print("Pushed '{}' SLOs".format(count))
 
 if __name__ == '__main__':
     arguments = docopt(__doc__, version='0.1.1rc')
@@ -468,6 +494,8 @@ if __name__ == '__main__':
             pull_logpipelines(_init_options("pull"))
         elif arguments['<type>'] == 'notebooks':
             pull_notebooks(_init_options("pull"))
+        elif arguments['<type>'] == 'slos':
+            pull_slos(_init_options("pull"))
     elif arguments["push"]:
         _init_options("push")
         if arguments['<type>'] == 'dashboards':
@@ -486,3 +514,5 @@ if __name__ == '__main__':
             push_logpipelines(_init_options("push"))
         elif arguments['<type>'] == 'notebooks':
             push_notebooks(_init_options("push"))
+        elif arguments['<type>'] == 'slos':
+            push_slos(_init_options("push"))
