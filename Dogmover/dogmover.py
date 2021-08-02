@@ -227,15 +227,16 @@ def pull_notebooks(options):
     path = False
     count = 0
 
-    r = requests.get('{}api/v1/notebook?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]))
+    headers = {'content-type': 'application/json', 'DD-API-KEY': options["api_key"], 'DD-APPLICATION-KEY': options["app_key"]}
+    r = requests.get('{}/api/v1/notebooks'.format(options["api_host"]), headers=headers)
     notebooks = r.json()
-    if 'errors' in notebooks: # check if feature flag is enabled in this organisation
-        if 'You do not have permission' in notebooks["errors"][0]:
-            exit("Notebooks API (notebooks_api) feature flag is not enabled on this Datadog organisation. help@datadoghq.com for more information.")
+    if notebooks["meta"]["page"]["total_filtered_count"] == 0:
+        exit("No notebook could be found for your organization.")
 
-    for notebook in notebooks["notebooks"]:
+    for notebook in notebooks["data"]:
         count = count + 1
-        path = _json_to_file('notebooks', str(notebook["id"]), notebook)
+        path = _json_to_file('notebooks', str(notebook["id"]), {"data": notebook})
+        print("Pulling notebook: {} with id: {}, writing to file: {}".format(notebook["attributes"]["name"].encode('utf8'), notebook["id"], path))
     print("Retrieved '{}' notebooks.".format(count))
 
 def pull_slos(options):
@@ -450,9 +451,10 @@ def push_notebooks(options):
         with open(notebook) as f:
             data = json.load(f)
             count = count + 1
-            print("Pushing: {}".format(data["name"].encode('utf8')))
+            print("Pushing: {}".format(data["data"]["attributes"]["name"].encode('utf8')))
             if not arguments["--dry-run"]:
-                r = requests.post('{}api/v1/notebook?api_key={}&application_key={}'.format(options["api_host"], options["api_key"], options["app_key"]), json=data)
+                headers={'content-type': 'application/json', 'DD-API-KEY': options["api_key"], 'DD-APPLICATION-KEY': options["app_key"]}
+                r = requests.post('{}/api/v1/notebooks'.format(options["api_host"]), headers=headers, json=data)
     print("Pushed '{}' notebooks".format(count))
 
 def push_slos(options):
