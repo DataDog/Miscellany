@@ -63,9 +63,6 @@ You can choose to pull specific synthetic tests|monitors based on their tags, ex
 ### Pushing monitors will schedule a managed downtime
 Pushing monitors will automatically schedule a managed downtime for _all_ your monitors, this is to suppress false/positive alerts. You can remove this scheduled downtime by navigating to `Monitors -> Manage downtime` in Datadog.
 
-### Notebooks is behind a beta feature flag
-Requires feature flag `notebooks_api` to be enabled on source/dest organisation. Contact Datadog support to have it enabled on your Datadog organization.
-
 
 ## Author
 * Misiu Pajor (misiu.pajor@datadoghq.com)
