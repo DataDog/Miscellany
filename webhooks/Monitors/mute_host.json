@@ -1,0 +1,4 @@
+{
+    "message": "Host muted by Alert: [$ALERT_TITLE](https://app.datadoghq.com/monitors/$ALERT_ID)",
+    "override": true
+}

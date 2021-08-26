@@ -1,0 +1,14 @@
+{
+  "filter": {
+    "query": "*"
+  },
+  "exclusion_filters": [
+    {
+      "name": "Exclude all",
+      "filter": {
+        "query": "*"
+      },
+      "is_enabled": false
+    }
+  ]
+}

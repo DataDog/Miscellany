@@ -1,0 +1,45 @@
+{
+    "data": {
+        "attributes": {
+            "customer_impacted": false,
+            "fields": {
+                "severity": {
+                    "type": "dropdown",
+                    "value": "SEV-1"
+                }
+            },
+            "initial_cells": [
+                {
+                    "cell_type": "markdown",
+                    "content": {
+                        "content": "$EVENT_MSG"
+                    },
+                    "important": false
+                },
+                {
+                    "cell_type": "markdown",
+                    "content": {
+                        "content": "A special message here [markdown accepted](https://daringfireball.net/projects/markdown/syntax)"
+                    },
+                    "important": true
+                }
+            ],
+            "notification_handles": [
+                {
+                    "display_name": "Jane Doe",
+                    "handle": "@test.user@test.com"
+                }
+            ],
+            "title": "$ALERT_TITLE $ALERT_PRIORITY"
+        },
+        "relationships": {
+            "commander": {
+                "data": {
+                    "id": "$COMMANDER_USER_ID",
+                    "type": "users"
+                }
+            }
+        },
+        "type": "incidents"
+    }
+}
