@@ -1,0 +1,49 @@
+{
+    "data": {
+        "type": "notebooks",
+        "attributes": {
+            "name": "List of Webhook variables",
+            "time": {
+                "live_span": "1h"
+            },
+            "cells": [
+                {
+                    "type": "notebook_cells",
+                    "attributes": {
+                        "definition": {
+                            "type": "markdown",
+                            "text": "## General variables\n- DATE = $DATE\n- EMAIL = $EMAIL\n- EVENT_MSG = $EVENT_MSG\n- EVENT_TITLE = $EVENT_TITLE\n- EVENT_TYPE = $EVENT_TYPE\n- HOSTNAME = $HOSTNAME\n- ID = $ID\n- TAGS = $TAGS\n- TEXT_ONLY_MSG = \n```$TEXT_ONLY_MSG\n```\n- USER = $USER\n- USERNAME = $USERNAME\n- LAST_UPDATED = $LAST_UPDATED\n- LINK = $LINK\n- LOGS_SAMPLE = $LOGS_SAMPLE\n- METRIC_NAMESPACE = $METRIC_NAMESPACE\n- ORG_ID = $ORG_ID\n- ORG_NAME = $ORG_NAME\n- PRIORITY = $PRIORITY"
+                        }
+                    }
+                },
+                {
+                    "type": "notebook_cells",
+                    "attributes": {
+                        "definition": {
+                            "type": "markdown",
+                            "text": "## Alert variables\n- AGGREG_KEY = $AGGREG_KEY\n- ALERT_CYCLE_KEY = $ALERT_CYCLE_KEY\n- ALERT_ID = $ALERT_ID\n- ALERT_METRIC = $ALERT_METRIC\n- ALERT_PRIORITY = $ALERT_PRIORITY\n- ALERT_QUERY = $ALERT_QUERY\n- ALERT_SCOPE = $ALERT_SCOPE\n- ALERT_STATUS = $ALERT_STATUS\n- ALERT_TITLE = $ALERT_TITLE\n- ALERT_TRANSITION = $ALERT_TRANSITION\n- ALERT_TYPE = $ALERT_TYPE"
+                        }
+                    }
+                },
+                {
+                    "type": "notebook_cells",
+                    "attributes": {
+                        "definition": {
+                            "type": "markdown",
+                            "text": "## Incident variables\n- INCIDENT_ATTACHMENTS = $INCIDENT_ATTACHMENTS\n- INCIDENT_COMMANDER = $INCIDENT_COMMANDER\n- INCIDENT_CUSTOMER_IMPACT = $INCIDENT_CUSTOMER_IMPACT\n- INCIDENT_FIELDS = $INCIDENT_FIELDS\n- INCIDENT_PUBLIC_ID = $INCIDENT_PUBLIC_ID\n- INCIDENT_TITLE = $INCIDENT_TITLE\n- INCIDENT_URL = $INCIDENT_URL\n- INCIDENT_MSG = $INCIDENT_MSG"
+                        }
+                    }
+                },
+                {
+                    "type": "notebook_cells",
+                    "attributes": {
+                        "definition": {
+                            "type": "markdown",
+                            "text": "## Security variables\n- SECURITY_RULE_NAME = $SECURITY_RULE_NAME\n- SECURITY_SIGNAL_ID = $SECURITY_SIGNAL_ID\n- SECURITY_SIGNAL_SEVERITY = $SECURITY_SIGNAL_SEVERITY\n- SECURITY_SIGNAL_TITLE = $SECURITY_SIGNAL_TITLE\n- SECURITY_SIGNAL_MSG = $SECURITY_SIGNAL_MSG\n- SECURITY_SIGNAL_ATTRIBUTES = $SECURITY_SIGNAL_ATTRIBUTES\n- SECURITY_RULE_ID = $SECURITY_RULE_ID\n- SECURITY_RULE_QUERY = $SECURITY_RULE_QUERY\n- SYNTHETICS_FIRST_FAILING_STEP_NAME = $SYNTHETICS_FIRST_FAILING_STEP_NAME"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

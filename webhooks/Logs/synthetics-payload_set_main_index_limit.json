@@ -1,0 +1,8 @@
+{
+    "filter": {
+        "query": ""
+    },
+    "daily_limit": "{{DAILY_LIMIT}}",
+    "disable_daily_limit": "false",
+    "exclusion_filters": []
+}
