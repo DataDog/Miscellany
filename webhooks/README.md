@@ -26,7 +26,7 @@ You'll want to create new Variables for the Webhook authentication. These will s
 ```
 
 ## Resources
-[Datadog API docs](https://docs.datadoghq.com/api/latest/)
-[Webhook integration doc](https://docs.datadoghq.com/integrations/webhooks)
-[Calling on Datadog's API with the Webhooks Integration](https://docs.datadoghq.com/developers/guide/calling-on-datadog-s-api-with-the-webhooks-integration/)
-[Send SMS alerts with webhooks and Twilio](https://www.datadoghq.com/blog/send-alerts-sms-customizable-webhooks-twilio/)
+* [Datadog API docs](https://docs.datadoghq.com/api/latest/)
+* [Webhook integration doc](https://docs.datadoghq.com/integrations/webhooks)
+* [Calling on Datadog's API with the Webhooks Integration](https://docs.datadoghq.com/developers/guide/calling-on-datadog-s-api-with-the-webhooks-integration/)
+* [Send SMS alerts with webhooks and Twilio](https://www.datadoghq.com/blog/send-alerts-sms-customizable-webhooks-twilio/)

@@ -24,5 +24,5 @@ Be sure to unmute host when the alert resolves.
 |                |                                                        |                                                   |
 
 ## Resources
-[Datadog Alert Monitors API](https://docs.datadoghq.com/api/latest/monitors/)
-[Datadog Hosts API](https://docs.datadoghq.com/api/latest/hosts/)
+* [Datadog Alert Monitors API](https://docs.datadoghq.com/api/latest/monitors/)
+* [Datadog Hosts API](https://docs.datadoghq.com/api/latest/hosts/)

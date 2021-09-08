@@ -32,5 +32,5 @@ URL: https://api.datadoghq.com/api/v2/incidents
 To use your webhook, add @webhook-<WEBHOOK_NAME> in the text of the metric alert you want to trigger the webhook.
 
 ## Resources
-[Datadog Incidents API](https://docs.datadoghq.com/api/latest/incidents/)
-[Webhook integration doc](https://docs.datadoghq.com/integrations/webhooks)
+* [Datadog Incidents API](https://docs.datadoghq.com/api/latest/incidents/)
+* [Webhook integration doc](https://docs.datadoghq.com/integrations/webhooks)

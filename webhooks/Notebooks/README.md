@@ -18,5 +18,5 @@ URL: https://api.datadoghq.com/api/v1/notebooks
 |                                         |                                                                                               |
 
 ## Resources
-[Datadog Notebook API](https://docs.datadoghq.com/api/latest/notebooks/)
-[Webhook integration doc](https://docs.datadoghq.com/integrations/webhooks)
+* [Datadog Notebook API](https://docs.datadoghq.com/api/latest/notebooks/)
+* [Webhook integration doc](https://docs.datadoghq.com/integrations/webhooks)

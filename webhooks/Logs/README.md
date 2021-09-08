@@ -57,4 +57,4 @@ Check the Index exclusion filter to confirm appropriate state.
 For the use case of disabling/enabling exclusion filters, be sure to return the filter to it's original state when the alert resolves.
 
 ## Resources
-[Datadog Logs configuration](https://docs.datadoghq.com/logs/log_configuration/)
+* [Datadog Logs configuration](https://docs.datadoghq.com/logs/log_configuration/)
