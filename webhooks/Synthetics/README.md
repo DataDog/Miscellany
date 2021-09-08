@@ -34,5 +34,5 @@ URL: https://api.datadoghq.com/api/v1/synthetics/tests/trigger/ci
 |                              |                               |
 
 ## Resources
-[Datadog Synthetics docs](https://docs.datadoghq.com/synthetics/)
-[Datadog Synthetics API docs](https://docs.datadoghq.com/api/latest/synthetics/)
+* [Datadog Synthetics docs](https://docs.datadoghq.com/synthetics/)
+* [Datadog Synthetics API docs](https://docs.datadoghq.com/api/latest/synthetics/)
