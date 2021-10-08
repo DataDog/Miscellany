@@ -40,11 +40,8 @@ if __name__=="__main__":
                     #tags = monitor.get('tags') 
                     #if len(tags) != 0:                        
                     #    for tag in tags:                            
-                    #        if 'dummy' in tag: 
-                    #            print(tags)
+                    #        if 'dummy' in tag:                       
                     #            tags[tags.index('dummy')] = 'dog'
-                    #    #print(updatedTags)
-                    #    print(tags)
                     #    body = MonitorUpdateRequest(
                     #        tags=tags     
                     #    )      
