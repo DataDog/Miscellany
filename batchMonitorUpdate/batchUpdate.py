@@ -31,7 +31,7 @@ if __name__=="__main__":
                     name = monitor['name']
                     if 'Dummydog' in name:
                         tags = monitor['tags']
-                        tags.append('batched')
+                        tags.append('dummy')
                         body = MonitorUpdateRequest(
                             tags=tags     
                         )      
