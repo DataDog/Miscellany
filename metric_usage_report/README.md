@@ -2,7 +2,7 @@
 
 ## Overview
 
-This program utilizes the [datadogpy API library](https://github.com/DataDog/datadogpy) to accept a list of metric names and return a list of dashboards in your account that use those metrics in their queries.
+This program utilizes the [datadogpy API library](https://github.com/DataDog/datadogpy) to accept a list of metric names and return a list of dashboards and monitors in your account that use those metrics in their queries.
 
 
 ## Instructions
