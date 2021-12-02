@@ -70,6 +70,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [Packer Image Build + Terraform Deploy with AWS Secrets Manager and Datadog Agent](./agent_bootstrapping/README.md) | N/A | A guide that helps you to build an AMI with updates + Datadog Agent preinstalled using Packer, and deploy to AWS using Terraform while storing your Datadog API key in AWS Secrets Manager and using an IAM Instance Profile to retrive it at deployment time. |
 | [ddog](./ddog/README.md) | Java 1.8+ | A command line tool to troubleshoot connectivity issues for on-premises environments. [Ping](./ddog/README.md#Ping), [SendMetric](./ddog/README.md#SendMetric), [SendLog](./ddog/README.md#SendLog) and [SendTrace](./ddog/README.md#SendTrace) are the available commands. |
 | [webhooks](./webhooks/) | N/A | A collection of [Webhooks](https://docs.datadoghq.com/integrations/webhooks/) examples which use the [Datadog API](https://docs.datadoghq.com/api/latest/) to perform different actions |
+| [Install and configure Datadog agent on Minikube](./datadog_agent_on_minikube/) | N/A | A detailed guide to configure Datadog agent in order to monitor each component of a Kubernetes cluster |
 
 ## Additional tools
 These are some additional tools and scripts written by Datadog.
