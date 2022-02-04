@@ -23,7 +23,7 @@ Reports will be placed in the results folder under the names `report.*`
 
 ### Caching
 
-API calls are expensive and time consuming. To avoid requesting all dashboard definitions from your account every time you want a metric report, results are cached in json format in the file `db_cache.txt`. If that file exists, the script will automatically use those results instead.
+API calls are time consuming. To avoid requesting all dashboard definitions from your account every time you want a metric report, results are cached in json format in the file `db_cache.txt`. If that file exists, the script will automatically use those results instead.
 
 To get a fresh list of dashboards, either rename or delete the file `db_cache.txt`.
 
