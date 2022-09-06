@@ -1,7 +1,7 @@
 # Dogmover
 
 ___
-### ⚠️ Dogmover has been deprecated in favor of the Datdog Sync CLI Tool ⚠️
+### ⚠️ Dogmover has been deprecated in favor of the Datadog Sync CLI Tool ⚠️
 ### https://github.com/DataDog/datadog-sync-cli
 ___
 
