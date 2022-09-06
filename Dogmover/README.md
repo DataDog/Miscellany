@@ -1,5 +1,10 @@
 # Dogmover
 
+___
+### ⚠️ Dogmover has been deprecated in favor of the Datadog Sync CLI Tool ⚠️
+### https://github.com/DataDog/datadog-sync-cli
+___
+
 ![Dogmover](https://github.com/DataDog/Miscellany/blob/master/Dogmover/dogmover.png "A moving dog.")
 
 This tool is built to help migrate Datadog `dashboards`, `monitors`, `users`, `synthetic api tests`, `synthetic browser tests`, `aws accounts`, `log pipelines`, `notebooks`, and `slos` from one Datadog organization (eg. in US) to another (eg. in EU). The tool also supports moving these resources within the same instances (eg. EU to EU _or_ US to US).
