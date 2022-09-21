@@ -2,11 +2,11 @@
  Metrics Without Limits Optimisation Tool
 
  This script will run through a provided list of metric names to obtain an allowlist of tags and aggregations
- that have been actively queried on by dashboards, notebooks, monitors, and the through API in the past 30 days
+ that have been actively queried on by dashboards, notebooks, monitors, and through the API in the past 30 days
  and then apply these as a MWL tag configuration to a metric should the estimate MWL usage be less than using all tags.
 
  Please note: 
- - The script can and will be default overight existing tag configurations. 
+ - The script can and will be default overwriting existing tag configurations. 
  - The script only performs a comparison between the active queried configuration and all tags options.
 
  Requirements:
