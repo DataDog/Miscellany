@@ -1,5 +1,3 @@
-# sandbox/vagrant/Security/cws/agent_rules
-
 # <img src="https://cdn.pixabay.com/photo/2016/10/15/15/17/digital-1742679_1280.jpg" alt="code generation Icon" width="" height="">
 
 ## What does this script do
