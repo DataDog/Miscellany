@@ -15,3 +15,5 @@ This could be a tedious process especially if we have a large number of hosts wi
 Before launching the `generate.sh` script, make sure to fill up the `data.csv` file with the list of host names, their metric values and their timestamp accordingly.
 
 Once done you can launch the `generate.sh` script which will automatically generate another script `send.sh` which could be executed to submit the metrics. 
+
+> **_NOTE:_** Please make sure to replace the API key and the endpoint URL accordingly.
