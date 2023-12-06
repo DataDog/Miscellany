@@ -24,11 +24,13 @@ shared_preload_libraries = 'pg_stat_statements'  # (change requires restart)
 
 2. Edit the `.env`` in the project directory and add the following environment variables with your PostgreSQL connection details:
    ```
-   DBHOST=your_database_host
-   PORT=your_database_port
-   DBNAME=your_database_name
-   DBUSER=your_database_user
-   PASSWORD=your_database_password
+   DB_HOST=your_database_host
+   DB_PORT=your_database_port
+   DB_NAME=your_database_name
+   DB_USER=your_database_user
+   DB_PASSWORD=your_database_password
+   DD_ROLE_NAME=datadog
+   DD_ROLE_PASSWORD=datadog
    ```
 
 3. Run the Script:
