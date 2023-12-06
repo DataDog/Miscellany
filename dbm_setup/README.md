@@ -54,7 +54,7 @@ docker run -d --name postgres-container -p 5446:5432 -e POSTGRES_PASSWORD=postpa
 
 To create an additional databse for testing:
 ```
-psql -h localhost -p 6333 -U postgres -c "CREATE DATABASE testdb;"
+psql -h localhost -p 5432 -U postgres -c "CREATE DATABASE testdb;"
 ```
 
 ![Alt text](<./img/Screen Recording 2023-11-28 at 10.11.06 AM.gif>)
