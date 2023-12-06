@@ -16,25 +16,28 @@ def print_success(message):
 
 def get_connection_params():
     return {
-        'host': os.getenv('DBHOST'),
-        'port': os.getenv('PORT'),
-        'dbname': os.getenv('DBNAME'),
-        'user': os.getenv('DBUSER'),
-        'password': os.getenv('PASSWORD')
+        'host': os.getenv('DB_HOST'),
+        'port': os.getenv('DB_PORT'),
+        'dbname': os.getenv('DB_NAME'),
+        'user': os.getenv('DB_USER'),
+        'password': os.getenv('DB_PASSWORD')
     }
+
+DD_ROLE_PASSWORD = os.getenv('DD_ROLE_PASSWORD')
+DD_ROLE_NAME = os.getenv('DD_ROLE_NAME')
 
 def create_datadog_user_and_schema(conn, db):
     try:
         with conn.cursor() as cur:
-            cur.execute("SELECT 1 FROM pg_roles WHERE rolname='datadog'")
+            cur.execute(f"SELECT 1 FROM pg_roles WHERE rolname='{DD_ROLE_NAME}'")
             exists = cur.fetchone()
             if not exists:
-                cur.execute("CREATE USER datadog WITH PASSWORD 'datadog'")
+                cur.execute(f"CREATE USER {DD_ROLE_NAME} WITH PASSWORD '{DD_ROLE_PASSWORD}'")
                 print_success(f"datadog user created in {db} database")
                 conn.commit()
 
         with conn.cursor() as cur:
-            cur.execute("SELECT EXISTS(SELECT 1 FROM pg_namespace WHERE nspname = 'datadog')")
+            cur.execute(f"SELECT EXISTS(SELECT 1 FROM pg_namespace WHERE nspname = '{DD_ROLE_NAME}')")
             schema_exists = cur.fetchone()[0]
     except Exception as exc:
         print_error(f"An error occurred while querying for schema {exc}")
@@ -44,13 +47,7 @@ def create_datadog_user_and_schema(conn, db):
 
     try:
         with conn.cursor() as cur:
-            cur.execute("CREATE EXTENSION IF NOT EXISTS pg_stat_statements;")
-    except Exception as e:
-        print_error(f"An error occurred while executing CREATE EXTENSION: {e}")
-
-    try:
-        with conn.cursor() as cur:
-            cur.execute("CREATE SCHEMA datadog; GRANT USAGE ON SCHEMA datadog TO datadog; GRANT USAGE ON SCHEMA public TO datadog; GRANT pg_monitor TO datadog;")
+            cur.execute(f"CREATE SCHEMA datadog; GRANT USAGE ON SCHEMA datadog TO {DD_ROLE_NAME}; GRANT USAGE ON SCHEMA public TO datadog; GRANT pg_monitor TO datadog;")
             print_success(f"datadog schema created and permissions granted in {db} database")
             conn.commit()
     except Exception as e:
@@ -80,8 +77,7 @@ def explain_statement(conn):
             RETURNS NULL ON NULL INPUT
             SECURITY DEFINER;
             """)
-            #conn.commit()
-            #time.sleep(2)
+            conn.commit()
         print_success("Explain plans statement completed")
     except Exception as exc:
         print_error(f"Error encountered creating explain statement: {exc}")
