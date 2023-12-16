@@ -24,11 +24,11 @@ shared_preload_libraries = 'pg_stat_statements'  # (change requires restart)
 
 2. Edit the `.env`` in the project directory and add the following environment variables with your PostgreSQL connection details:
    ```
-   DB_HOST=your_database_host
-   DB_PORT=your_database_port
-   DB_NAME=your_database_name
-   DB_USER=your_database_user
-   DB_PASSWORD=your_database_password
+   PGHOST=your_database_host
+   PGPORT=your_database_port
+   PGDATABASE=your_database_name
+   PGUSER=your_database_user
+   PGPASSWORD=your_database_password
    DD_ROLE_NAME=datadog
    DD_ROLE_PASSWORD=datadog
    ```
@@ -54,7 +54,7 @@ docker run -d --name postgres-container -p 5446:5432 -e POSTGRES_PASSWORD=postpa
 
 To create an additional databse for testing:
 ```
-psql -h localhost -p 5432 -U postgres -c "CREATE DATABASE testdb;"
+psql -h localhost -p 5446 -U postgres -c "CREATE DATABASE testdb;"
 ```
 
 ![Alt text](<./img/Screen Recording 2023-11-28 at 10.11.06 AM.gif>)
