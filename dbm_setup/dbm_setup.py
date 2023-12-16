@@ -7,7 +7,8 @@ load_dotenv()
 GREEN = "\033[0;32m"
 RED = "\033[0;31m"
 RESET = "\033[0m"
-
+DD_ROLE_PASSWORD = os.getenv('DD_ROLE_PASSWORD')
+DD_ROLE_NAME = os.getenv('DD_ROLE_NAME')
 
 
 def print_error(message):
@@ -35,10 +36,6 @@ def get_version(conn):
         print(f"Error determining version: {exc}")
     return version
 
-    
-
-DD_ROLE_PASSWORD = os.getenv('DD_ROLE_PASSWORD')
-DD_ROLE_NAME = os.getenv('DD_ROLE_NAME')
 
 def create_datadog_user_and_schema(conn, db, version):
     try:
