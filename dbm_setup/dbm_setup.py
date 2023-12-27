@@ -44,7 +44,7 @@ def create_datadog_user_and_schema(conn, db, version):
             exists = cur.fetchone()
             if not exists:
                 cur.execute(f"CREATE USER {DD_ROLE_NAME} WITH PASSWORD '{DD_ROLE_PASSWORD}'")
-                print_success(f"datadog user created in {db} database")
+                print_success(f"{DD_ROLE_NAME} user created in {db} database")
                 conn.commit()
 
         with conn.cursor() as cur:
@@ -130,6 +130,7 @@ def create_pg_stat_statements_extension(conn_obj):
             if not result:
                 # If not installed, then install the extension
                 cur.execute("CREATE EXTENSION IF NOT EXISTS pg_stat_statements;")
+                conn.commit()
                 print(f"{GREEN}pg_stat_statements extension installed successfully")
             else:
                 print(f"{GREEN}pg_stat_statements extension already installed")
