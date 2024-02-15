@@ -43,7 +43,7 @@ The script will output information about the progress of tasks, such as user cre
 #### Testing the script
 You can test the script on a docker container to see how this works before running on your database.
 
-To run a Postgres Docker container for testing, runt he docker command below from repo root directory:
+To run a Postgres Docker container for testing, run the docker command below from repo root directory:
 ```
 docker run -d --name postgres-container -p 5446:5432 -e POSTGRES_PASSWORD=postpass -v $(pwd)/postgresql.conf:/etc/postgresql/postgresql.conf postgres -c 'config_file=/etc/postgresql/postgresql.conf'
 ```
