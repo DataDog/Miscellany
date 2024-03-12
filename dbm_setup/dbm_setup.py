@@ -73,7 +73,7 @@ def create_datadog_user_and_schema(conn, db, version):
         print_error(f"An error occurred while creating datadog schema and granting permissions: {e}")
 
 def explain_statement(conn, version):
-    if version >= 15:
+    if version >= 10 and version <= 15:
         try:
             with conn.cursor() as cur:
                 cur.execute("""
