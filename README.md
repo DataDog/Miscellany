@@ -72,6 +72,7 @@ These scripts and tools live in this repo, some scripts/tools have their own REA
 | [webhooks](./webhooks/) | N/A | A collection of [Webhooks](https://docs.datadoghq.com/integrations/webhooks/) examples which use the [Datadog API](https://docs.datadoghq.com/api/latest/) to perform different actions |
 | [Metrics Without Limits Optimiser](./mwl_optimiser/) | Python | Run through your custom metrics to apply a MWL allowlist of tags and aggregations to a metric based on whether the tags/aggregations have been actively queried on by dashboards, notebooks, monitors, and through the API in the past 30 day and only if the resulting volume of this new config is less than not using MWL.  |
 | [Postgres Database Monitoring Setup Script](./dbm_setup/) | Python | A script to prepare Postgres databases for use with [Database Monitoring](https://docs.datadoghq.com/database_monitoring/setup_postgres/selfhosted/?tab=postgres15). Discovers all databases on a databse host, creates datadog user, schema, and explain statments, then confirms the database was prepared properly. |
+| [Vault Secret Executable](./secret_executable) | Python | An example secrete executable script to serve secrets to the Datadog agent fetched from HashiCorp Vault |
 
 ## Additional tools
 These are some additional tools and scripts written by Datadog.
