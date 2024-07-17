@@ -30,9 +30,9 @@ def replace_email_domain(notification_text, old_domain, new_domain):
   notification_text_with_new_domain = notification_text.replace(old_domain, new_domain)
   return notification_text_with_new_domain
 
-def update_monitor_notification(monitor_id, notification_new):
+def update_monitor_notification(monitor_id, new_notification):
   try:
-    api.Monitor.update(monitor_id, message=notification_new)
+    api.Monitor.update(monitor_id, message=new_notification)
   except (HttpTimeout, ClientError, ApiError) as e:
     print('Exception:', e)
 
