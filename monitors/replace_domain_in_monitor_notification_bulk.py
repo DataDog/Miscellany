@@ -37,7 +37,7 @@ def update_monitor_notification(monitor_id, new_notification):
     print('Exception:', e)
 
 print(json.dumps(api.Monitor.get_all(), indent=4))
-# Add specified email from all monitors' notification body
+# Switch domain for all monitors' notification body
 [update_monitor_notification(monitor['id'], replace_email_domain(monitor['message'], args.old_domain, args.new_domain)) 
 for monitor 
 in api.Monitor.get_all()]
