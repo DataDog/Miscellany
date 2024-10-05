@@ -31,6 +31,7 @@ __version__ = "2.1.0"
 from docopt import docopt
 import json
 import os
+import time
 import glob
 import requests
 from datadog import initialize, api
@@ -438,6 +439,7 @@ def push_logpipelines(options):
                 json_data = json.loads(r.text)
                 json_data["id"] = itemId
                 path = _json_to_file('logpipelines.out', itemId, json_data)
+                time.sleep(10)
     print("Pushed '{}' log pipelines.".format(count))
 
 
