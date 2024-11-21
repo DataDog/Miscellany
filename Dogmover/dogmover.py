@@ -373,7 +373,7 @@ def push_synthetics_api_tests(options):
          with open(synthetic) as f:
             data = json.load(f)
             count = count + 1
-            invalid_keys = ["public_id", "monitor_id"]
+            invalid_keys = ["public_id", "monitor_id", "modified_at", "creator", "created_at"]
             list(map(data.pop, invalid_keys))
             print("Pushing {}".format(data["name"].encode('utf8')))
             if not arguments["--dry-run"]:
@@ -390,7 +390,7 @@ def push_synthetics_browser_tests(options):
          with open(synthetic) as f:
             data = json.load(f)
             count = count + 1
-            invalid_keys = ["public_id", "monitor_id"]
+            invalid_keys = ["public_id", "monitor_id", "modified_at", "creator", "created_at"]
             list(map(data.pop, invalid_keys))
             print("Pushing {}".format(data["name"].encode('utf8')))
             if not arguments["--dry-run"]:
