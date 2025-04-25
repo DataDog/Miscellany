@@ -11,7 +11,7 @@ RUN git clone https://github.com/DataDog/integrations-core.git
 
 # Set the working directory to the cloned repo
 COPY src/requirements.txt /src/requirements.txt
-RUN pip3 install -r /src/requirements.txt
+RUN pip3 install --no-cache-dir -r /src/requirements.txt
 
 # Copy the Python script into the container
 COPY /src /app
