@@ -4,55 +4,52 @@
 # It also handles YAML parsing errors gracefully, including them in the output.
 
 # Usage: Run this script in an environment where the Datadog Agent's conf.d directory is accessible.
+# The output will be saved to /output/collected_integrations.yaml.
 import os
 import yaml
 
-CONF_ROOT = "/etc/datadog-agent/conf.d"
-OUTPUT_FILE = "collected_integrations.yaml"
+BASE_DIR = "/app/integrations-core"
+output = {}
 
-def normalize_integration_name(name):
-    return name[:-2] if name.endswith(".d") else name
+# Get sorted list of directory names
+for item in sorted(os.listdir(BASE_DIR)):
+    full_path = os.path.join(BASE_DIR, item)
 
-def normalize_config_path(path):
-    return path.replace("conf.yaml.example", "conf.yaml")
+    # Skip non-configuration directories
+    if item.startswith(".") or item == "__pycache__":
+        # Skip hidden files and directories
+        continue
+    if item == "tests":
+        # Skip tests directory
+        continue
+    if item.startswith("datadog_checks_"):
+        # Skip datadog_checks_ directories
+        continue
+    
+    # Check if the item is a directory
+    if os.path.isdir(full_path):
+        # Check for conf.yaml and conf.yaml.example files
+        conf_path = os.path.join(full_path, "datadog_checks", item, "data", "conf.yaml")
+        example_path = os.path.join(full_path, "datadog_checks", item, "data", "conf.yaml.example")
 
-def find_configs():
-    integrations = {}
-    for entry in os.scandir(CONF_ROOT):
-        if entry.is_dir():
-            raw_name = entry.name
-            conf_dir = entry.path
-            conf_file = os.path.join(conf_dir, "conf.yaml")
-            example_file = os.path.join(conf_dir, "conf.yaml.example")
+        config = None
 
-            selected_file = None
-            if os.path.exists(conf_file):
-                selected_file = conf_file
-            elif os.path.exists(example_file):
-                selected_file = example_file
-
-            if selected_file:
+        if os.path.isfile(conf_path):
+            with open(conf_path, "r") as f:
                 try:
-                    with open(selected_file, "r") as f:
-                        config = yaml.safe_load(f) or {}
-                except yaml.YAMLError as e:
-                    config = {"_error": f"Failed to parse YAML: {str(e)}"}
+                    config = yaml.safe_load(f)
+                except yaml.YAMLError:
+                    config = None
 
-                name = normalize_integration_name(raw_name)
-                path = normalize_config_path(selected_file)
+        if config is None and os.path.isfile(example_path):
+            with open(example_path, "r") as f:
+                try:
+                    config = yaml.safe_load(f)
+                except yaml.YAMLError:
+                    config = None
 
-                integrations[name] = {
-                    "config_path": path,
-                    "config": config
-                }
+        output[item] = {"config": config}
 
-    return integrations
-
-def main():
-    integrations = find_configs()
-    with open(OUTPUT_FILE, "w") as out:
-        yaml.dump(integrations, out, default_flow_style=False, sort_keys=False)
-    print(f"✅ Collected {len(integrations)} integrations into {OUTPUT_FILE}")
-
-if __name__ == "__main__":
-    main()
+# Dump with top-level keys sorted
+with open("/output/collected_integrations.yaml", "w") as f:
+    yaml.dump(dict(sorted(output.items())), f, sort_keys=True)

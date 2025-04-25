@@ -1,1261 +1,432 @@
-zk:
-  config_path: /etc/datadog-agent/conf.d/zk.d/conf.yaml
+active_directory:
   config:
     init_config: null
     instances:
-    - host: localhost
-ibm_was:
-  config_path: /etc/datadog-agent/conf.d/ibm_was.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - servlet_url: http://localhost:<PORT>/wasPerfTool/servlet/perfservlet
-weaviate:
-  config_path: /etc/datadog-agent/conf.d/weaviate.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:2112/metrics
-mesos_master:
-  config_path: /etc/datadog-agent/conf.d/mesos_master.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - url: http://localhost:5050
-vsphere:
-  config_path: /etc/datadog-agent/conf.d/vsphere.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - host: <HOSTNAME>
-      username: <USERNAME>
-      password: <PASSWORD>
-      use_legacy_check_version: false
-      empty_default_hostname: true
-tomcat:
-  config_path: /etc/datadog-agent/conf.d/tomcat.d/conf.yaml
+    - null
+activemq:
   config:
     init_config:
-      is_jmx: true
       collect_default_metrics: true
+      is_jmx: true
       new_gc_metrics: true
     instances:
     - host: localhost
-      port: 9012
+      port: 1616
+activemq_xml:
+  config:
+    init_config: null
+    instances:
+    - url: http://localhost:8161
+adyen:
+  config: null
+aerospike:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://127.0.0.1:9145/metrics
+agent_metrics:
+  config: null
+airbyte:
+  config: null
+airflow:
+  config:
+    init_config: null
+    instances:
+    - url: <URL>
+amazon_eks:
+  config: null
+amazon_eks_blueprints:
+  config: null
+amazon_msk:
+  config:
+    init_config: null
+    instances:
+    - cluster_arn: <CLUSTER_ARN>
+      use_openmetrics: true
+ambari:
+  config:
+    init_config: null
+    instances:
+    - url: <URL>
+anthropic:
+  config: null
+anyscale:
+  config: null
 apache:
-  config_path: /etc/datadog-agent/conf.d/apache.d/conf.yaml
   config:
     init_config: null
     instances:
     - apache_status_url: http://localhost/server-status?auto
       disable_generic_tags: true
-spark:
-  config_path: /etc/datadog-agent/conf.d/spark.d/conf.yaml
+appgate_sdp:
   config:
     init_config: null
     instances:
-    - spark_url: http://localhost:8080
-      cluster_name: <CLUSTER_NAME>
-      disable_legacy_cluster_tag: true
-etcd:
-  config_path: /etc/datadog-agent/conf.d/etcd.d/conf.yaml
+    - openmetrics_endpoint: http://localhost:5556/metrics
+arangodb:
   config:
     init_config: null
     instances:
-      prometheus_url: http://localhost:2379/metrics
-aerospike:
-  config_path: /etc/datadog-agent/conf.d/aerospike.d/conf.yaml
+    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
+argo_rollouts:
   config:
     init_config: null
     instances:
-    - openmetrics_endpoint: http://127.0.0.1:9145/metrics
-eks_fargate:
-  config_path: /etc/datadog-agent/conf.d/eks_fargate.d/conf.yaml
+    - openmetrics_endpoint: http://localhost:8090/metrics
+argo_workflows:
   config:
     init_config: null
     instances:
-    - null
-presto:
-  config_path: /etc/datadog-agent/conf.d/presto.d/conf.yaml
-  config:
-    init_config:
-      is_jmx: true
-      collect_default_metrics: true
-      new_gc_metrics: true
-    instances:
-    - host: localhost
-      port: 9999
-milvus:
-  config_path: /etc/datadog-agent/conf.d/milvus.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:9091/metrics
-supabase:
-  config_path: /etc/datadog-agent/conf.d/supabase.d/conf.yaml
+    - openmetrics_endpoint: http://localhost:9090/metrics
+argocd:
   config:
     init_config: null
     instances:
     - null
-cloudera:
-  config_path: /etc/datadog-agent/conf.d/cloudera.d/conf.yaml
-  config:
-    init_config:
-      workload_username: <WORKLOAD_USERNAME>
-      workload_password: <WORKLOAD_PASSWORD>
-    instances:
-    - api_url: <API_URL>
-kafka:
-  config_path: /etc/datadog-agent/conf.d/kafka.d/conf.yaml
-  config:
-    init_config:
-      is_jmx: true
-      collect_default_metrics: true
-      new_gc_metrics: true
-    instances:
-    - host: localhost
-      port: 9999
-vault:
-  config_path: /etc/datadog-agent/conf.d/vault.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - use_openmetrics: true
-      api_url: http://localhost:8200/v1
-      no_token: false
-kubevirt_handler:
-  config_path: /etc/datadog-agent/conf.d/kubevirt_handler.d/conf.yaml
+asana:
+  config: null
+aspdotnet:
   config:
     init_config: null
     instances:
     - null
+authorize_net:
+  config: null
+avast:
+  config: null
 avi_vantage:
-  config_path: /etc/datadog-agent/conf.d/avi_vantage.d/conf.yaml
   config:
     init_config: null
     instances:
     - avi_controller_url: https://<AVI_CONTROLLER_HOSTNAME>/
-kyototycoon:
-  config_path: /etc/datadog-agent/conf.d/kyototycoon.d/conf.yaml
+aws_neuron:
   config:
     init_config: null
     instances:
-    - report_url: http://localhost:1978/rpc/report
-kubernetes_apiserver:
-  config_path: /etc/datadog-agent/conf.d/kubernetes_apiserver.d/conf.yaml
+    - openmetrics_endpoint: http://localhost:8000/metrics
+azure_active_directory:
+  config: null
+azure_iot_edge:
   config:
     init_config: null
     instances:
-    - null
-crio:
-  config_path: /etc/datadog-agent/conf.d/crio.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - prometheus_url: http://localhost:9090/metrics
-ivanti_connect_secure:
-  config_path: /etc/datadog-agent/conf.d/ivanti_connect_secure.d/conf.yaml
-  config: {}
-fly_io:
-  config_path: /etc/datadog-agent/conf.d/fly_io.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - org_slug: <ORG_SLUG>
-      headers:
-        Authorization: Bearer <FLY_ACCESS_TOKEN>
-      machines_api_endpoint: http://_api.internal:4280
-      empty_default_hostname: true
-activemq_xml:
-  config_path: /etc/datadog-agent/conf.d/activemq_xml.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - url: http://localhost:8161
-http_check:
-  config_path: /etc/datadog-agent/conf.d/http_check.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - name: My first service
-      url: http://some.url.example.com
-sonicwall_firewall:
-  config_path: /etc/datadog-agent/conf.d/sonicwall_firewall.d/conf.yaml
-  config: {}
-hazelcast:
-  config_path: /etc/datadog-agent/conf.d/hazelcast.d/conf.yaml
-  config:
-    init_config:
-      collect_default_metrics: true
-      new_gc_metrics: true
-    instances:
-    - null
-ray:
-  config_path: /etc/datadog-agent/conf.d/ray.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
-cockroachdb:
-  config_path: /etc/datadog-agent/conf.d/cockroachdb.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-kubevirt_api:
-  config_path: /etc/datadog-agent/conf.d/kubevirt_api.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-glusterfs:
-  config_path: /etc/datadog-agent/conf.d/glusterfs.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - min_collection_interval: 60
-ssh_check:
-  config_path: /etc/datadog-agent/conf.d/ssh_check.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - host: localhost
-      username: <USERNAME>
-varnish:
-  config_path: /etc/datadog-agent/conf.d/varnish.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - varnishstat: /usr/bin/varnishstat
-fluxcd:
-  config_path: /etc/datadog-agent/conf.d/fluxcd.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
-hivemq:
-  config_path: /etc/datadog-agent/conf.d/hivemq.d/conf.yaml
-  config:
-    init_config:
-      is_jmx: true
-      collect_default_metrics: true
-      new_gc_metrics: true
-    instances:
-    - host: <HOST>
-      port: 9010
-jboss_wildfly:
-  config_path: /etc/datadog-agent/conf.d/jboss_wildfly.d/conf.yaml
-  config:
-    init_config:
-      is_jmx: true
-      collect_default_metrics: true
-      new_gc_metrics: true
-      service_check_prefix: jboss
-    instances:
-    - jmx_url: service:jmx:remote+http://localhost:9990
-cisco_sdwan:
-  config_path: /etc/datadog-agent/conf.d/cisco_sdwan.d/conf.yaml
-  config:
-    instances:
-    - null
-kubevirt_controller:
-  config_path: /etc/datadog-agent/conf.d/kubevirt_controller.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-citrix_hypervisor:
-  config_path: /etc/datadog-agent/conf.d/citrix_hypervisor.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - url: <URL>
-vertica:
-  config_path: /etc/datadog-agent/conf.d/vertica.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-haproxy:
-  config_path: /etc/datadog-agent/conf.d/haproxy.d/conf.yaml
-  config:
-    init_config: null
-    instances: null
-twemproxy:
-  config_path: /etc/datadog-agent/conf.d/twemproxy.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - host: localhost
-      port: 2222
-mapreduce:
-  config_path: /etc/datadog-agent/conf.d/mapreduce.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - resourcemanager_uri: http://localhost:8088
-      cluster_name: <MAPREDUCE_CLUSTER_NAME>
-      disable_legacy_cluster_tag: true
-tibco_ems:
-  config_path: /etc/datadog-agent/conf.d/tibco_ems.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-ecs_fargate:
-  config_path: /etc/datadog-agent/conf.d/ecs_fargate.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - min_collection_interval: 20
-jetson:
-  config_path: /etc/datadog-agent/conf.d/jetson.d/conf.yaml
-  config:
-    instances:
-    - null
-hdfs_namenode:
-  config_path: /etc/datadog-agent/conf.d/hdfs_namenode.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - hdfs_namenode_jmx_uri: http://localhost:9870
-powerdns_recursor:
-  config_path: /etc/datadog-agent/conf.d/powerdns_recursor.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - host: 127.0.0.1
-      port: 8082
-      api_key: <API_KEY>
-kubernetes_cluster_autoscaler:
-  config_path: /etc/datadog-agent/conf.d/kubernetes_cluster_autoscaler.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:8085/metrics
-activemq:
-  config_path: /etc/datadog-agent/conf.d/activemq.d/conf.yaml
-  config:
-    init_config:
-      is_jmx: true
-      collect_default_metrics: true
-      new_gc_metrics: true
-    instances:
-    - host: localhost
-      port: 1616
-mcache:
-  config_path: /etc/datadog-agent/conf.d/mcache.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-pan_firewall:
-  config_path: /etc/datadog-agent/conf.d/pan_firewall.d/conf.yaml
-  config:
-    logs:
-    - type: tcp
-      port: 10518
-      service: firewall
-      source: pan.firewall
-network_path:
-  config_path: /etc/datadog-agent/conf.d/network_path.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - hostname: <HOSTNAME>
-druid:
-  config_path: /etc/datadog-agent/conf.d/druid.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - url: <DRUID_COORDINATOR_URL>
-nfsstat:
-  config_path: /etc/datadog-agent/conf.d/nfsstat.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-tekton:
-  config_path: /etc/datadog-agent/conf.d/tekton.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-voltdb:
-  config_path: /etc/datadog-agent/conf.d/voltdb.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - url: http://localhost:8080
-      username: <USERNAME>
-      password: <PASSWORD>
-foundationdb:
-  config_path: /etc/datadog-agent/conf.d/foundationdb.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-proxysql:
-  config_path: /etc/datadog-agent/conf.d/proxysql.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - host: <PROXYSQL_HOST>
-      port: <PORT>
-      username: <PROXYSQL_ADMIN_USER>
-      password: <PROXYSQL_ADMIN_PASSWORD>
-datadog_cluster_agent:
-  config_path: /etc/datadog-agent/conf.d/datadog_cluster_agent.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - prometheus_url: http://localhost:5000/metrics
+    - edge_agent_prometheus_url: http://edgeAgent:9600/metrics
+      edge_hub_prometheus_url: http://edgeHub:9600/metrics
+bitdefender:
+  config: null
+blazemeter:
+  config: null
 boundary:
-  config_path: /etc/datadog-agent/conf.d/boundary.d/conf.yaml
   config:
     init_config: null
     instances:
     - health_endpoint: http://localhost:9203/health
       openmetrics_endpoint: http://localhost:9203/metrics
-nginx_ingress_controller:
-  config_path: /etc/datadog-agent/conf.d/nginx_ingress_controller.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - prometheus_url: http://localhost:10254/metrics
-zeek:
-  config_path: /etc/datadog-agent/conf.d/zeek.d/conf.yaml
-  config: {}
-mapr:
-  config_path: /etc/datadog-agent/conf.d/mapr.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - disable_legacy_cluster_tag: true
-snmp:
-  config_path: /etc/datadog-agent/conf.d/snmp.d/conf.yaml
-  config:
-    init_config:
-      loader: core
-      use_device_id_as_hostname: true
-    instances:
-    - loader: core
-      use_device_id_as_hostname: true
-gitlab:
-  config_path: /etc/datadog-agent/conf.d/gitlab.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://<GITLAB_URL>/-/metrics
-snowflake:
-  config_path: /etc/datadog-agent/conf.d/snowflake.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - account: <ORG_NAME>-<ACCOUNT_NAME>
-      username: <USER>
-      role: <ROLE>
-      min_collection_interval: 3600
-      disable_generic_tags: true
-tenable:
-  config_path: /etc/datadog-agent/conf.d/tenable.d/conf.yaml
-  config:
-    logs:
-    - type: file
-      path: /opt/nessus/var/nessus/logs/backend.log
-      service: nessus_backend
-      source: tenable
-    - type: file
-      path: /opt/nessus/var/nessus/logs/www_server.log
-      service: nessus_webserver
-      source: tenable
-argo_workflows:
-  config_path: /etc/datadog-agent/conf.d/argo_workflows.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:9090/metrics
-airflow:
-  config_path: /etc/datadog-agent/conf.d/airflow.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - url: <URL>
-system_core:
-  config_path: /etc/datadog-agent/conf.d/system_core.d/conf.yaml
+brevo:
+  config: null
+btrfs:
   config:
     init_config: null
     instances:
     - null
-ping_federate:
-  config_path: /etc/datadog-agent/conf.d/ping_federate.d/conf.yaml
-  config: {}
-kube_dns:
-  config_path: /etc/datadog-agent/conf.d/kube_dns.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - prometheus_endpoint: http://localhost:10055/metrics
-checkpoint_quantum_firewall:
-  config_path: /etc/datadog-agent/conf.d/checkpoint_quantum_firewall.d/conf.yaml
-  config: {}
-php_fpm:
-  config_path: /etc/datadog-agent/conf.d/php_fpm.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-vllm:
-  config_path: /etc/datadog-agent/conf.d/vllm.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:8000/metrics
-temporal:
-  config_path: /etc/datadog-agent/conf.d/temporal.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
-prometheus:
-  config_path: /etc/datadog-agent/conf.d/prometheus.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - prometheus_url: http://localhost:10055/metrics
-      namespace: <SERVICE_NAME>
-      metrics:
-      - <METRIC_TO_FETCH>: <NEW_METRIC_NAME>
-      - <METRIC_TO_FETCH>
-squid:
-  config_path: /etc/datadog-agent/conf.d/squid.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - name: <NAME>
-teradata:
-  config_path: /etc/datadog-agent/conf.d/teradata.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - server: <SERVER>
-      database: <DATABASE>
-palo_alto_panorama:
-  config_path: /etc/datadog-agent/conf.d/palo_alto_panorama.d/conf.yaml
-  config: {}
-appgate_sdp:
-  config_path: /etc/datadog-agent/conf.d/appgate_sdp.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:5556/metrics
 cacti:
-  config_path: /etc/datadog-agent/conf.d/cacti.d/conf.yaml
   config:
     init_config: null
     instances:
     - mysql_host: localhost
       mysql_user: <MYSQL_USER>
       rrd_path: <CACTI_RRA_PATH>
-tcp_queue_length:
-  config_path: /etc/datadog-agent/conf.d/tcp_queue_length.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-gpu:
-  config_path: /etc/datadog-agent/conf.d/gpu.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-teamcity:
-  config_path: /etc/datadog-agent/conf.d/teamcity.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - use_openmetrics: true
-      server: http://teamcity.<ACCOUNT_NAME>.com
-    - server: http://teamcity.<ACCOUNT_NAME>.com
-systemd:
-  config_path: /etc/datadog-agent/conf.d/systemd.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - unit_names:
-      - <UNIT_NAME>
-couch:
-  config_path: /etc/datadog-agent/conf.d/couch.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - server: http://localhost:5984
-sonarqube:
-  config_path: /etc/datadog-agent/conf.d/sonarqube.d/conf.yaml
-  config:
-    init_config:
-      collect_default_metrics: true
-      new_gc_metrics: true
-    instances:
-    - null
-    - null
-go_expvar:
-  config_path: /etc/datadog-agent/conf.d/go_expvar.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - expvar_url: http://localhost:8080
-flink:
-  config_path: /etc/datadog-agent/conf.d/flink.d/conf.yaml
-  config: {}
-pgbouncer:
-  config_path: /etc/datadog-agent/conf.d/pgbouncer.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-ignite:
-  config_path: /etc/datadog-agent/conf.d/ignite.d/conf.yaml
-  config:
-    init_config:
-      is_jmx: true
-      collect_default_metrics: true
-      new_gc_metrics: true
-    instances:
-    - host: <HOST>
-      port: 49112
-kong:
-  config_path: /etc/datadog-agent/conf.d/kong.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:8001/metrics
-pulsar:
-  config_path: /etc/datadog-agent/conf.d/pulsar.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:8080/metrics
-wazuh:
-  config_path: /etc/datadog-agent/conf.d/wazuh.d/conf.yaml
-  config: {}
-keda:
-  config_path: /etc/datadog-agent/conf.d/keda.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:8080/metrics
-openldap:
-  config_path: /etc/datadog-agent/conf.d/openldap.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - url: ldaps://localhost:636
-nginx:
-  config_path: /etc/datadog-agent/conf.d/nginx.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - nginx_status_url: http://localhost:81/nginx_status/
-      only_query_enabled_endpoints: true
-      disable_generic_tags: true
-silk:
-  config_path: /etc/datadog-agent/conf.d/silk.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - host_address: https://localhost:443
-kubeflow:
-  config_path: /etc/datadog-agent/conf.d/kubeflow.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://<prometheus-service>:9090/metrics
-ibm_i:
-  config_path: /etc/datadog-agent/conf.d/ibm_i.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-sidekiq:
-  config_path: /etc/datadog-agent/conf.d/sidekiq.d/conf.yaml
-  config: {}
-gunicorn:
-  config_path: /etc/datadog-agent/conf.d/gunicorn.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - proc_name: <PROC_NAME>
-consul:
-  config_path: /etc/datadog-agent/conf.d/consul.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - url: http://localhost:8500
-      disable_legacy_service_tag: true
-hdfs_datanode:
-  config_path: /etc/datadog-agent/conf.d/hdfs_datanode.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - hdfs_datanode_jmx_uri: http://localhost:9864
-statsd:
-  config_path: /etc/datadog-agent/conf.d/statsd.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-teleport:
-  config_path: /etc/datadog-agent/conf.d/teleport.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - teleport_url: http://127.0.0.1
-quarkus:
-  config_path: /etc/datadog-agent/conf.d/quarkus.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:8080/q/metrics
-mongo:
-  config_path: /etc/datadog-agent/conf.d/mongo.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - hosts:
-      - <HOST>:<PORT>
-oom_kill:
-  config_path: /etc/datadog-agent/conf.d/oom_kill.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-marathon:
-  config_path: /etc/datadog-agent/conf.d/marathon.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - url: https://<SERVER>:<PORT>
-clickhouse:
-  config_path: /etc/datadog-agent/conf.d/clickhouse.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - server: <SERVER>
-cassandra_nodetool:
-  config_path: /etc/datadog-agent/conf.d/cassandra_nodetool.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - keyspaces: []
-kube_apiserver_metrics:
-  config_path: /etc/datadog-agent/conf.d/kube_apiserver_metrics.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - prometheus_url: https://localhost:443/metrics
-redisdb:
-  config_path: /etc/datadog-agent/conf.d/redisdb.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - host: localhost
-      port: 6379
-solr:
-  config_path: /etc/datadog-agent/conf.d/solr.d/conf.yaml
-  config:
-    init_config:
-      is_jmx: true
-      collect_default_metrics: true
-      new_gc_metrics: true
-    instances:
-    - host: <HOST>
-      port: 9999
-nvidia_nim:
-  config_path: /etc/datadog-agent/conf.d/nvidia_nim.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:8000/metrics
-cisco_secure_firewall:
-  config_path: /etc/datadog-agent/conf.d/cisco_secure_firewall.d/conf.yaml
-  config: {}
-btrfs:
-  config_path: /etc/datadog-agent/conf.d/btrfs.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-system_swap:
-  config_path: /etc/datadog-agent/conf.d/system_swap.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-rethinkdb:
-  config_path: /etc/datadog-agent/conf.d/rethinkdb.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - host: localhost
-      port: 28015
-kube_metrics_server:
-  config_path: /etc/datadog-agent/conf.d/kube_metrics_server.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - prometheus_url: https://localhost:443/metrics
-scylla:
-  config_path: /etc/datadog-agent/conf.d/scylla.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:9180/metrics
-kubelet:
-  config_path: /etc/datadog-agent/conf.d/kubelet.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - min_collection_interval: 20
-nvidia_triton:
-  config_path: /etc/datadog-agent/conf.d/nvidia_triton.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:8002/metrics
-postfix:
-  config_path: /etc/datadog-agent/conf.d/postfix.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - directory: /var/spool/postfix
-      queues:
-      - incoming
-      - active
-      - deferred
-sqlserver:
-  config_path: /etc/datadog-agent/conf.d/sqlserver.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - host: <HOST>,<PORT>
-      autodiscovery_db_service_check: false
-strimzi:
-  config_path: /etc/datadog-agent/conf.d/strimzi.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-traefik_mesh:
-  config_path: /etc/datadog-agent/conf.d/traefik_mesh.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://<PROXY_ENDPOINT>:<METRICS_PORT>
-symantec_endpoint_protection:
-  config_path: /etc/datadog-agent/conf.d/symantec_endpoint_protection.d/conf.yaml
-  config: {}
-riak:
-  config_path: /etc/datadog-agent/conf.d/riak.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - url: http://127.0.0.1:8098/stats
-kube_scheduler:
-  config_path: /etc/datadog-agent/conf.d/kube_scheduler.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - prometheus_url: http://localhost:10251/metrics
-openstack_controller:
-  config_path: /etc/datadog-agent/conf.d/openstack_controller.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-      use_legacy_check_version: false
-      ironic_microversion: '1.80'
-      nova_microversion: '2.93'
-      cinder_microversion: volume 3.70
-fluentd:
-  config_path: /etc/datadog-agent/conf.d/fluentd.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - monitor_agent_url: http://example.com:24220/api/plugins.json
-suricata:
-  config_path: /etc/datadog-agent/conf.d/suricata.d/conf.yaml
-  config: {}
-kyverno:
-  config_path: /etc/datadog-agent/conf.d/kyverno.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:8000/metrics
-lighttpd:
-  config_path: /etc/datadog-agent/conf.d/lighttpd.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - lighttpd_status_url: http://localhost/server-status?auto
-cert_manager:
-  config_path: /etc/datadog-agent/conf.d/cert_manager.d/conf.yaml
+calico:
   config:
     init_config: null
     instances:
     - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
+cassandra:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - cassandra_aliasing: true
+      host: localhost
+      port: 7199
+cassandra_nodetool:
+  config:
+    init_config: null
+    instances:
+    - keyspaces: []
+celery:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:5555/metrics
+ceph:
+  config:
+    init_config: null
+    instances:
+    - null
+cert_manager:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
+checkpoint_harmony_email_and_collaboration:
+  config: null
+checkpoint_quantum_firewall:
+  config: null
+cilium:
+  config:
+    init_config: null
+    instances:
+    - agent_endpoint: http://localhost:9962/metrics
+      use_openmetrics: true
 cisco_aci:
-  config_path: /etc/datadog-agent/conf.d/cisco_aci.d/conf.yaml
   config:
     init_config: null
     instances:
     - aci_url: http://localhost
-      username: datadog
       pwd: <PWD>
-dcgm:
-  config_path: /etc/datadog-agent/conf.d/dcgm.d/conf.yaml
+      username: datadog
+cisco_duo:
+  config: null
+cisco_sdwan:
+  config: null
+cisco_secure_email_threat_defense:
+  config: null
+cisco_secure_endpoint:
+  config: null
+cisco_secure_firewall:
+  config: null
+cisco_secure_web_appliance:
+  config: null
+cisco_umbrella_dns:
+  config: null
+citrix_hypervisor:
   config:
     init_config: null
     instances:
-    - openmetrics_endpoint: http://localhost:9400/metrics
-nagios:
-  config_path: /etc/datadog-agent/conf.d/nagios.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - nagios_conf: /etc/nagios3/nagios.cfg
-ceph:
-  config_path: /etc/datadog-agent/conf.d/ceph.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-tls:
-  config_path: /etc/datadog-agent/conf.d/tls.d/conf.yaml
+    - url: <URL>
+clickhouse:
   config:
     init_config: null
     instances:
     - server: <SERVER>
-kubernetes_state:
-  config_path: /etc/datadog-agent/conf.d/kubernetes_state.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - kube_state_url: http://example.com:8080/metrics
-linux_proc_extras:
-  config_path: /etc/datadog-agent/conf.d/linux_proc_extras.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-yarn:
-  config_path: /etc/datadog-agent/conf.d/yarn.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - disable_legacy_cluster_tag: true
-ossec_security:
-  config_path: /etc/datadog-agent/conf.d/ossec_security.d/conf.yaml
-  config: {}
-couchbase:
-  config_path: /etc/datadog-agent/conf.d/couchbase.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - server: http://localhost:8091
-mesos_slave:
-  config_path: /etc/datadog-agent/conf.d/mesos_slave.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - url: http://localhost:5051
-openmetrics:
-  config_path: /etc/datadog-agent/conf.d/openmetrics.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - metrics: []
-      tag_by_endpoint: false
 cloud_foundry_api:
-  config_path: /etc/datadog-agent/conf.d/cloud_foundry_api.d/conf.yaml
   config:
+    init_config: null
     instances:
     - api_url: <API_URL>
       client_id: <CLIENT_ID>
       client_secret: <CLIENT_SECRET>
-    init_config: null
-argo_rollouts:
-  config_path: /etc/datadog-agent/conf.d/argo_rollouts.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:8090/metrics
-sap_hana:
-  config_path: /etc/datadog-agent/conf.d/sap_hana.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - server: <SERVER>
-      username: <USERNAME>
-      password: <PASSWORD>
-karpenter:
-  config_path: /etc/datadog-agent/conf.d/karpenter.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:8000/metrics
-torchserve:
-  config_path: /etc/datadog-agent/conf.d/torchserve.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-    - null
-    - null
-gearmand:
-  config_path: /etc/datadog-agent/conf.d/gearmand.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-riakcs:
-  config_path: /etc/datadog-agent/conf.d/riakcs.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - null
-kube_proxy:
-  config_path: /etc/datadog-agent/conf.d/kube_proxy.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - prometheus_url: http://127.0.0.1:10249/metrics
-weblogic:
-  config_path: /etc/datadog-agent/conf.d/weblogic.d/conf.yaml
+cloudera:
   config:
     init_config:
-      is_jmx: true
-      collect_default_metrics: true
-      new_gc_metrics: true
+      workload_password: <WORKLOAD_PASSWORD>
+      workload_username: <WORKLOAD_USERNAME>
     instances:
-    - host: localhost
-      port: 9090
-marklogic:
-  config_path: /etc/datadog-agent/conf.d/marklogic.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - url: http://localhost:8002
-hudi:
-  config_path: /etc/datadog-agent/conf.d/hudi.d/conf.yaml
-  config:
-    init_config:
-      is_jmx: true
-      collect_default_metrics: true
-      new_gc_metrics: true
-    instances:
-    - host: <HOST>
-      port: <PORT>
-tcp_check:
-  config_path: /etc/datadog-agent/conf.d/tcp_check.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - name: <TCP_CHECK_INSTANCE_NAME>
-      host: <TCP_HOST_TO_CONNECT_TO>
-      port: <PORT>
-external_dns:
-  config_path: /etc/datadog-agent/conf.d/external_dns.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - prometheus_url: http://localhost:7979/metrics
-argocd:
-  config_path: /etc/datadog-agent/conf.d/argocd.d/conf.yaml
+    - api_url: <API_URL>
+cockroachdb:
   config:
     init_config: null
     instances:
     - null
-istio:
-  config_path: /etc/datadog-agent/conf.d/istio.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - use_openmetrics: true
-      tag_by_endpoint: true
 confluent_platform:
-  config_path: /etc/datadog-agent/conf.d/confluent_platform.d/conf.yaml
   config:
     init_config:
-      is_jmx: true
       collect_default_metrics: true
+      is_jmx: true
       new_gc_metrics: true
       service_check_prefix: confluent
     instances:
     - host: <HOST>
       port: <PORT>
-twistlock:
-  config_path: /etc/datadog-agent/conf.d/twistlock.d/conf.yaml
+consul:
   config:
     init_config: null
     instances:
-    - url: http://localhost:8081
-calico:
-  config_path: /etc/datadog-agent/conf.d/calico.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
-supervisord:
-  config_path: /etc/datadog-agent/conf.d/supervisord.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - name: <SUPERVISORD_SERVER_NAME>
-kube_controller_manager:
-  config_path: /etc/datadog-agent/conf.d/kube_controller_manager.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - prometheus_url: http://localhost:10252/metrics
-cassandra:
-  config_path: /etc/datadog-agent/conf.d/cassandra.d/conf.yaml
-  config:
-    init_config:
-      is_jmx: true
-      collect_default_metrics: true
-      new_gc_metrics: true
-    instances:
-    - host: localhost
-      port: 7199
-      cassandra_aliasing: true
-envoy:
-  config_path: /etc/datadog-agent/conf.d/envoy.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - openmetrics_endpoint: http://localhost:80/stats/prometheus
-delinea_privilege_manager:
-  config_path: /etc/datadog-agent/conf.d/delinea_privilege_manager.d/conf.yaml
-  config: {}
-esxi:
-  config_path: /etc/datadog-agent/conf.d/esxi.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - host: <HOSTNAME>
-      username: <USERNAME>
-      password: <PASSWORD>
-      empty_default_hostname: true
-mysql:
-  config_path: /etc/datadog-agent/conf.d/mysql.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - host: localhost
-      username: datadog
-      password: <PASSWORD>
-      port: 3306
-      disable_generic_tags: true
-elastic:
-  config_path: /etc/datadog-agent/conf.d/elastic.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - url: http://localhost:9200
-      disable_legacy_service_check_tags: true
+    - disable_legacy_service_tag: true
+      url: http://localhost:8500
+consul_connect:
+  config: null
+container:
+  config: null
+containerd:
+  config: null
+contentful:
+  config: null
 coredns:
-  config_path: /etc/datadog-agent/conf.d/coredns.d/conf.yaml
   config:
     init_config: null
     instances:
     - openmetrics_endpoint: http://%%host%%:9153/metrics
-octopus_deploy:
-  config_path: /etc/datadog-agent/conf.d/octopus_deploy.d/conf.yaml
+couch:
   config:
     init_config: null
     instances:
-    - octopus_endpoint: http://localhost:80
-      headers:
-        X-Octopus-ApiKey: <OCTOPUS_API_KEY>
-jmx:
-  config_path: /etc/datadog-agent/conf.d/jmx.d/conf.yaml
+    - server: http://localhost:5984
+couchbase:
   config:
     init_config: null
     instances:
-    - port: 7199
-arangodb:
-  config_path: /etc/datadog-agent/conf.d/arangodb.d/conf.yaml
+    - server: http://localhost:8091
+cri:
+  config: null
+crio:
   config:
     init_config: null
     instances:
-    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
-openstack:
-  config_path: /etc/datadog-agent/conf.d/openstack.d/conf.yaml
-  config:
-    init_config:
-      keystone_server_url: https://<KEYSTONE_SERVER_ENDPOINT>:<PORT>/
-    instances:
-    - name: <INSTANCE_NAME>
-      user:
-        password: <PASSWORD>
-        name: <USER_NAME>
-        domain:
-          id: <DOMAIN_ID>
-kafka_consumer:
-  config_path: /etc/datadog-agent/conf.d/kafka_consumer.d/conf.yaml
+    - prometheus_url: http://localhost:9090/metrics
+databricks:
+  config: null
+datadog_cluster_agent:
   config:
     init_config: null
     instances:
-    - kafka_connect_str: <KAFKA_CONNECT_STR>
-azure_iot_edge:
-  config_path: /etc/datadog-agent/conf.d/azure_iot_edge.d/conf.yaml
+    - prometheus_url: http://localhost:5000/metrics
+datadog_operator:
+  config: null
+dcgm:
   config:
     init_config: null
     instances:
-    - edge_hub_prometheus_url: http://edgeHub:9600/metrics
-      edge_agent_prometheus_url: http://edgeAgent:9600/metrics
+    - openmetrics_endpoint: http://localhost:9400/metrics
+ddev:
+  config: null
+delinea_privilege_manager:
+  config: null
+directory:
+  config:
+    init_config: null
+    instances:
+    - directory: <DIRECTORY_PATH>
+disk:
+  config: null
+dns_check:
+  config:
+    init_config: null
+    instances:
+    - hostname: <HOSTNAME>
+docker_daemon:
+  config:
+    init_config: null
+    instances:
+    - url: unix://var/run/docker.sock
+docs:
+  config: null
+docusign:
+  config: null
+dotnetclr:
+  config:
+    init_config: null
+    instances:
+    - null
+druid:
+  config:
+    init_config: null
+    instances:
+    - url: <DRUID_COORDINATOR_URL>
 duckdb:
-  config_path: /etc/datadog-agent/conf.d/duckdb.d/conf.yaml
   config:
     init_config: null
     instances:
     - db_name: /path-to-file/my_database.db
       min_collection_interval: 60
-ambari:
-  config_path: /etc/datadog-agent/conf.d/ambari.d/conf.yaml
+ecs_fargate:
   config:
     init_config: null
     instances:
-    - url: <URL>
-aws_neuron:
-  config_path: /etc/datadog-agent/conf.d/aws_neuron.d/conf.yaml
+    - min_collection_interval: 20
+eks_anywhere:
+  config: null
+eks_fargate:
   config:
     init_config: null
     instances:
-    - openmetrics_endpoint: http://localhost:8000/metrics
-rabbitmq:
-  config_path: /etc/datadog-agent/conf.d/rabbitmq.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - prometheus_plugin:
-        url: http://localhost:15692
     - null
-dns_check:
-  config_path: /etc/datadog-agent/conf.d/dns_check.d/conf.yaml
+elastic:
   config:
     init_config: null
     instances:
-    - hostname: <HOSTNAME>
-cilium:
-  config_path: /etc/datadog-agent/conf.d/cilium.d/conf.yaml
+    - disable_legacy_service_check_tags: true
+      url: http://localhost:9200
+envoy:
   config:
     init_config: null
     instances:
-    - use_openmetrics: true
-      agent_endpoint: http://localhost:9962/metrics
+    - openmetrics_endpoint: http://localhost:80/stats/prometheus
+esxi:
+  config:
+    init_config: null
+    instances:
+    - empty_default_hostname: true
+      host: <HOSTNAME>
+      password: <PASSWORD>
+      username: <USERNAME>
+etcd:
+  config:
+    init_config: null
+    instances:
+      prometheus_url: http://localhost:2379/metrics
+exchange_server:
+  config:
+    init_config: null
+    instances:
+    - null
+external_dns:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: http://localhost:7979/metrics
+extrahop:
+  config: null
+falco:
+  config: null
+flink:
+  config: null
+fluentd:
+  config:
+    init_config: null
+    instances:
+    - monitor_agent_url: http://example.com:24220/api/plugins.json
+fluxcd:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
+fly_io:
+  config:
+    init_config: null
+    instances:
+    - empty_default_hostname: true
+      headers:
+        Authorization: Bearer <FLY_ACCESS_TOKEN>
+      machines_api_endpoint: http://_api.internal:4280
+      org_slug: <ORG_SLUG>
+forcepoint_secure_web_gateway:
+  config: null
+forcepoint_security_service_edge:
+  config: null
+foundationdb:
+  config:
+    init_config: null
+    instances:
+    - null
+freshservice:
+  config: null
+gearmand:
+  config:
+    init_config: null
+    instances:
+    - null
+genesys:
+  config: null
+gitlab:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://<GITLAB_URL>/-/metrics
 gitlab_runner:
-  config_path: /etc/datadog-agent/conf.d/gitlab_runner.d/conf.yaml
   config:
     init_config:
       allowed_metrics:
@@ -1304,35 +475,925 @@ gitlab_runner:
     instances:
     - gitlab_url: <GITLAB_URL>
       prometheus_endpoint: http://<PROMETHEUS_ENDPOINT>:<PROMETHEUS_PORT>/metrics
-amazon_msk:
-  config_path: /etc/datadog-agent/conf.d/amazon_msk.d/conf.yaml
+gke:
+  config: null
+glusterfs:
   config:
     init_config: null
     instances:
-    - use_openmetrics: true
-      cluster_arn: <CLUSTER_ARN>
+    - min_collection_interval: 60
+go-metro:
+  config:
+    init_config:
+      exp_ttl: 60
+      idle_ttl: 300
+      log_level: info
+      log_to_file: true
+      snaplen: 512
+      statsd_ip: 127.0.0.1
+      statsd_port: 8125
+    instances:
+    - hosts:
+      - <HOSTNAME>
+      interface: eth0
+      ips:
+      - <IP>
+go_expvar:
+  config:
+    init_config: null
+    instances:
+    - expvar_url: http://localhost:8080
+godaddy:
+  config: null
+gpu:
+  config: null
+greenhouse:
+  config: null
+gunicorn:
+  config:
+    init_config: null
+    instances:
+    - proc_name: <PROC_NAME>
+haproxy:
+  config:
+    init_config: null
+    instances: null
+harbor:
+  config:
+    init_config: null
+    instances:
+    - password: <PASSWORD>
+      url: <URL>
+      username: <USERNAME>
+hazelcast:
+  config:
+    init_config:
+      collect_default_metrics: true
+      new_gc_metrics: true
+    instances:
+    - null
+hdfs_datanode:
+  config:
+    init_config: null
+    instances:
+    - hdfs_datanode_jmx_uri: http://localhost:9864
+hdfs_namenode:
+  config:
+    init_config: null
+    instances:
+    - hdfs_namenode_jmx_uri: http://localhost:9870
+helm:
+  config: null
+hive:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: <HOST>
+      port: 8809
+hivemq:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: <HOST>
+      port: 9010
+http_check:
+  config:
+    init_config: null
+    instances:
+    - name: My first service
+      url: http://some.url.example.com
+hubspot_content_hub:
+  config: null
+hudi:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: <HOST>
+      port: <PORT>
+hyperv:
+  config:
+    init_config: null
+    instances:
+    - null
+iam_access_analyzer:
+  config: null
+ibm_ace:
+  config:
+    init_config: null
+    instances:
+    - channel: <CHANNEL>
+      mq_port: 1414
+      mq_server: <MQ_SERVER>
+      queue_manager: <QUEUE_MANAGER>
+ibm_db2:
+  config:
+    init_config: null
+    instances:
+    - db: <DATABASE_NAME>
+      password: <PASSWORD>
+      username: <USERNAME>
+ibm_i:
+  config:
+    init_config: null
+    instances:
+    - null
+ibm_mq:
+  config:
+    init_config: null
+    instances:
+    - channel: DEV.ADMIN.SVRCONN
+      queue_manager: datadog
+ibm_was:
+  config:
+    init_config: null
+    instances:
+    - servlet_url: http://localhost:<PORT>/wasPerfTool/servlet/perfservlet
+ignite:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: <HOST>
+      port: 49112
+iis:
+  config:
+    init_config: null
+    instances:
+    - null
 impala:
-  config_path: /etc/datadog-agent/conf.d/impala.d/conf.yaml
   config:
     init_config: null
     instances:
-    - service_type: daemon
-      openmetrics_endpoint: http://%%host%%:25000/metrics_prometheus
+    - openmetrics_endpoint: http://%%host%%:25000/metrics_prometheus
+      service_type: daemon
+incident_io:
+  config: null
+infiniband:
+  config:
+    init_config: null
+    instances:
+    - null
+intercom:
+  config: null
+istio:
+  config:
+    init_config: null
+    instances:
+    - tag_by_endpoint: true
+      use_openmetrics: true
+ivanti_connect_secure:
+  config: null
+ivanti_nzta:
+  config: null
+jboss_wildfly:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+      service_check_prefix: jboss
+    instances:
+    - jmx_url: service:jmx:remote+http://localhost:9990
+jmeter:
+  config: null
+journald:
+  config:
+    logs:
+    - type: journald
+kafka:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: localhost
+      port: 9999
+kafka_consumer:
+  config:
+    init_config: null
+    instances:
+    - kafka_connect_str: <KAFKA_CONNECT_STR>
+karpenter:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8000/metrics
+keda:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8080/metrics
+keycloak:
+  config: null
+kong:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8001/metrics
+kube_apiserver_metrics:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: https://localhost:443/metrics
+kube_controller_manager:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: http://localhost:10252/metrics
+kube_dns:
+  config:
+    init_config: null
+    instances:
+    - prometheus_endpoint: http://localhost:10055/metrics
+kube_metrics_server:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: https://localhost:443/metrics
+kube_proxy:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: http://127.0.0.1:10249/metrics
+kube_scheduler:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: http://localhost:10251/metrics
+kubeflow:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://<prometheus-service>:9090/metrics
+kubelet:
+  config:
+    init_config: null
+    instances:
+    - min_collection_interval: 20
+kubernetes:
+  config: null
+kubernetes_admission:
+  config: null
+kubernetes_cluster_autoscaler:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8085/metrics
+kubernetes_state:
+  config:
+    init_config: null
+    instances:
+    - kube_state_url: http://example.com:8080/metrics
+kubernetes_state_core:
+  config:
+    init_config: null
+    instances:
+    - null
+kubevirt_api:
+  config:
+    init_config: null
+    instances:
+    - null
+kubevirt_controller:
+  config:
+    init_config: null
+    instances:
+    - null
+kubevirt_handler:
+  config:
+    init_config: null
+    instances:
+    - null
+kyototycoon:
+  config:
+    init_config: null
+    instances:
+    - report_url: http://localhost:1978/rpc/report
+kyverno:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8000/metrics
+langchain:
+  config: null
+lastpass:
+  config: null
+lighttpd:
+  config:
+    init_config: null
+    instances:
+    - lighttpd_status_url: http://localhost/server-status?auto
 linkerd:
-  config_path: /etc/datadog-agent/conf.d/linkerd.d/conf.yaml
   config:
     init_config: null
     instances:
-    - tag_by_endpoint: false
-      exclude_labels:
+    - exclude_labels:
       - destination_service
-traffic_server:
-  config_path: /etc/datadog-agent/conf.d/traffic_server.d/conf.yaml
+      tag_by_endpoint: false
+linux_proc_extras:
   config:
     init_config: null
     instances:
-    - traffic_server_url: http://localhost:8080/_stats
-      metric_patterns:
+    - null
+mailchimp:
+  config: null
+mapr:
+  config:
+    init_config: null
+    instances:
+    - disable_legacy_cluster_tag: true
+mapreduce:
+  config:
+    init_config: null
+    instances:
+    - cluster_name: <MAPREDUCE_CLUSTER_NAME>
+      disable_legacy_cluster_tag: true
+      resourcemanager_uri: http://localhost:8088
+marathon:
+  config:
+    init_config: null
+    instances:
+    - url: https://<SERVER>:<PORT>
+marklogic:
+  config:
+    init_config: null
+    instances:
+    - url: http://localhost:8002
+mcache:
+  config:
+    init_config: null
+    instances:
+    - null
+mesos_master:
+  config:
+    init_config: null
+    instances:
+    - url: http://localhost:5050
+mesos_slave:
+  config:
+    init_config: null
+    instances:
+    - url: http://localhost:5051
+metabase:
+  config: null
+milvus:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:9091/metrics
+mimecast:
+  config: null
+mongo:
+  config:
+    init_config: null
+    instances:
+    - hosts:
+      - <HOST>:<PORT>
+mux:
+  config: null
+mysql:
+  config:
+    init_config: null
+    instances:
+    - disable_generic_tags: true
+      host: localhost
+      password: <PASSWORD>
+      port: 3306
+      username: datadog
+nagios:
+  config:
+    init_config: null
+    instances:
+    - nagios_conf: /etc/nagios3/nagios.cfg
+network:
+  config: null
+network_path:
+  config: null
+nfsstat:
+  config:
+    init_config: null
+    instances:
+    - null
+nginx:
+  config:
+    init_config: null
+    instances:
+    - disable_generic_tags: true
+      nginx_status_url: http://localhost:81/nginx_status/
+      only_query_enabled_endpoints: true
+nginx_ingress_controller:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: http://localhost:10254/metrics
+ntp:
+  config: null
+nvidia_jetson:
+  config: null
+nvidia_nim:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8000/metrics
+nvidia_triton:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8002/metrics
+octopus_deploy:
+  config:
+    init_config: null
+    instances:
+    - headers:
+        X-Octopus-ApiKey: <OCTOPUS_API_KEY>
+      octopus_endpoint: http://localhost:80
+oke:
+  config: null
+okta_workflows:
+  config: null
+oom_kill:
+  config: null
+openai:
+  config: null
+openldap:
+  config:
+    init_config: null
+    instances:
+    - url: ldaps://localhost:636
+openmetrics:
+  config:
+    init_config: null
+    instances:
+    - metrics: []
+      tag_by_endpoint: false
+openshift:
+  config: null
+openstack:
+  config:
+    init_config:
+      keystone_server_url: https://<KEYSTONE_SERVER_ENDPOINT>:<PORT>/
+    instances:
+    - name: <INSTANCE_NAME>
+      user:
+        domain:
+          id: <DOMAIN_ID>
+        name: <USER_NAME>
+        password: <PASSWORD>
+openstack_controller:
+  config:
+    init_config: null
+    instances:
+      cinder_microversion: volume 3.70
+      ironic_microversion: '1.80'
+      nova_microversion: '2.93'
+      use_legacy_check_version: false
+oracle:
+  config:
+    init_config: null
+    instances:
+    - password: <PASSWORD>
+      server: localhost:1521
+      service_name: <SERVICE_NAME>
+      username: <USERNAME>
+orca_security:
+  config: null
+ossec_security:
+  config: null
+otel:
+  config: null
+palo_alto_cortex_xdr:
+  config: null
+palo_alto_panorama:
+  config: null
+pan_firewall:
+  config:
+    logs:
+    - port: 10518
+      service: firewall
+      source: pan.firewall
+      type: tcp
+pdh_check:
+  config:
+    init_config: null
+    instances:
+    - countersetname: <COUNTER_SET_NAME>
+      metrics:
+      - - <COUNTER_NAME>
+        - <METRIC_NAME>
+        - <METRIC_TYPE>
+pgbouncer:
+  config:
+    init_config: null
+    instances:
+    - null
+php_fpm:
+  config:
+    init_config: null
+    instances:
+    - null
+ping_federate:
+  config: null
+ping_one:
+  config: null
+pivotal_pks:
+  config: null
+plaid:
+  config: null
+plivo:
+  config: null
+podman:
+  config: null
+postfix:
+  config:
+    init_config: null
+    instances:
+    - directory: /var/spool/postfix
+      queues:
+      - incoming
+      - active
+      - deferred
+postgres:
+  config:
+    init_config: null
+    instances:
+    - collect_bloat_metrics: false
+      disable_generic_tags: true
+      host: localhost
+      username: datadog
+postmark:
+  config: null
+powerdns_recursor:
+  config:
+    init_config: null
+    instances:
+    - api_key: <API_KEY>
+      host: 127.0.0.1
+      port: 8082
+presto:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: localhost
+      port: 9999
+process:
+  config:
+    init_config: null
+    instances:
+    - name: <NAME>
+prometheus:
+  config:
+    init_config: null
+    instances:
+    - metrics:
+      - <METRIC_TO_FETCH>: <NEW_METRIC_NAME>
+      - <METRIC_TO_FETCH>
+      namespace: <SERVICE_NAME>
+      prometheus_url: http://localhost:10055/metrics
+proxysql:
+  config:
+    init_config: null
+    instances:
+    - host: <PROXYSQL_HOST>
+      password: <PROXYSQL_ADMIN_PASSWORD>
+      port: <PORT>
+      username: <PROXYSQL_ADMIN_USER>
+pulsar:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8080/metrics
+quarkus:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8080/q/metrics
+rabbitmq:
+  config:
+    init_config: null
+    instances:
+    - prometheus_plugin:
+        url: http://localhost:15692
+    - null
+ray:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
+redisdb:
+  config:
+    init_config: null
+    instances:
+    - host: localhost
+      port: 6379
+rethinkdb:
+  config:
+    init_config: null
+    instances:
+    - host: localhost
+      port: 28015
+riak:
+  config:
+    init_config: null
+    instances:
+    - url: http://127.0.0.1:8098/stats
+riakcs:
+  config:
+    init_config: null
+    instances:
+    - null
+ringcentral:
+  config: null
+sanity:
+  config: null
+sap_hana:
+  config:
+    init_config: null
+    instances:
+    - password: <PASSWORD>
+      server: <SERVER>
+      username: <USERNAME>
+scylla:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:9180/metrics
+servicenow_performance:
+  config: null
+shopify:
+  config: null
+sidekiq:
+  config: null
+silk:
+  config:
+    init_config: null
+    instances:
+    - host_address: https://localhost:443
+silverstripe_cms:
+  config:
+    instances:
+    - SILVERSTRIPE_DATABASE_NAME: <DATABASE_NAME>
+      SILVERSTRIPE_DATABASE_PASSWORD: <PASSWORD>
+      SILVERSTRIPE_DATABASE_PORT: 5432
+      SILVERSTRIPE_DATABASE_SERVER_IP: <IP_ADDRESS>
+      SILVERSTRIPE_DATABASE_TYPE: <DATABASE_TYPE>
+      SILVERSTRIPE_DATABASE_USERNAME: <USERNAME>
+      min_collection_interval: 15
+singlestore:
+  config:
+    init_config: null
+    instances:
+    - host: <HOST>
+slurm:
+  config:
+    init_config: null
+    instances:
+    - min_collection_interval: 60
+snmp:
+  config:
+    init_config:
+      loader: core
+      use_device_id_as_hostname: true
+    instances:
+    - loader: core
+      use_device_id_as_hostname: true
+snmp_american_power_conversion:
+  config: null
+snmp_arista:
+  config: null
+snmp_aruba:
+  config: null
+snmp_chatsworth_products:
+  config: null
+snmp_check_point:
+  config: null
+snmp_cisco:
+  config: null
+snmp_dell:
+  config: null
+snmp_f5:
+  config: null
+snmp_fortinet:
+  config: null
+snmp_hewlett_packard_enterprise:
+  config: null
+snmp_juniper:
+  config: null
+snmp_netapp:
+  config: null
+snowflake:
+  config:
+    init_config: null
+    instances:
+    - account: <ORG_NAME>-<ACCOUNT_NAME>
+      disable_generic_tags: true
+      min_collection_interval: 3600
+      role: <ROLE>
+      username: <USER>
+solr:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: <HOST>
+      port: 9999
+sonarqube:
+  config:
+    init_config:
+      collect_default_metrics: true
+      new_gc_metrics: true
+    instances:
+    - null
+    - null
+sonatype_nexus:
+  config:
+    init_config: null
+    instances:
+    - min_collection_interval: 600
+      password: test_password
+      server_url: https://0.0.0.0:8081
+      username: test_username
+sonicwall_firewall:
+  config: null
+sophos_central_cloud:
+  config: null
+spark:
+  config:
+    init_config: null
+    instances:
+    - cluster_name: <CLUSTER_NAME>
+      disable_legacy_cluster_tag: true
+      spark_url: http://localhost:8080
+sqlserver:
+  config:
+    init_config: null
+    instances:
+    - autodiscovery_db_service_check: false
+      host: <HOST>,<PORT>
+squid:
+  config:
+    init_config: null
+    instances:
+    - name: <NAME>
+ssh_check:
+  config:
+    init_config: null
+    instances:
+    - host: localhost
+      username: <USERNAME>
+statsd:
+  config:
+    init_config: null
+    instances:
+    - null
+streamnative:
+  config: null
+strimzi:
+  config:
+    init_config: null
+    instances:
+    - null
+supabase:
+  config:
+    init_config: null
+    instances:
+    - null
+supervisord:
+  config:
+    init_config: null
+    instances:
+    - name: <SUPERVISORD_SERVER_NAME>
+suricata:
+  config: null
+symantec_endpoint_protection:
+  config: null
+symantec_vip:
+  config: null
+system_core:
+  config:
+    init_config: null
+    instances:
+    - null
+system_swap:
+  config:
+    init_config: null
+    instances:
+    - null
+systemd:
+  config: null
+tanium:
+  config: null
+tcp_check:
+  config:
+    init_config: null
+    instances:
+    - host: <TCP_HOST_TO_CONNECT_TO>
+      name: <TCP_CHECK_INSTANCE_NAME>
+      port: <PORT>
+tcp_queue_length:
+  config: null
+teamcity:
+  config:
+    init_config: null
+    instances:
+    - server: http://teamcity.<ACCOUNT_NAME>.com
+      use_openmetrics: true
+    - server: http://teamcity.<ACCOUNT_NAME>.com
+tekton:
+  config:
+    init_config: null
+    instances:
+    - null
+teleport:
+  config:
+    init_config: null
+    instances:
+    - teleport_url: http://127.0.0.1
+temporal:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
+temporal_cloud:
+  config: null
+tenable:
+  config:
+    logs:
+    - path: /opt/nessus/var/nessus/logs/backend.log
+      service: nessus_backend
+      source: tenable
+      type: file
+    - path: /opt/nessus/var/nessus/logs/www_server.log
+      service: nessus_webserver
+      source: tenable
+      type: file
+tenable_io:
+  config: null
+teradata:
+  config:
+    init_config: null
+    instances:
+    - database: <DATABASE>
+      server: <SERVER>
+terraform:
+  config: null
+tibco_ems:
+  config:
+    init_config: null
+    instances:
+    - null
+tls:
+  config:
+    init_config: null
+    instances:
+    - server: <SERVER>
+tokumx:
+  config:
+    init_config: null
+    instances:
+    - server: mongodb://localhost:27017
+tomcat:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: localhost
+      port: 9012
+torchserve:
+  config:
+    init_config: null
+    instances:
+    - null
+    - null
+    - null
+traefik_mesh:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://<PROXY_ENDPOINT>:<METRICS_PORT>
+traffic_server:
+  config:
+    init_config: null
+    instances:
+    - metric_patterns:
         include:
         - traffic_server.node.*
         - traffic_server.process.http.code.*
@@ -1352,75 +1413,133 @@ traffic_server:
         - traffic_server.process.cache.volume.percent_full
         - traffic_server.process.cache.volume.bytes.*
         - traffic_server.process.cache.volume.ram_cache.*
-slurm:
-  config_path: /etc/datadog-agent/conf.d/slurm.d/conf.yaml
-  config:
-    init_config: null
-    instances:
-    - min_collection_interval: 60
-postgres:
-  config_path: /etc/datadog-agent/conf.d/postgres.d/conf.yaml
+      traffic_server_url: http://localhost:8080/_stats
+trellix_endpoint_security:
+  config: null
+trend_micro_email_security:
+  config: null
+trend_micro_vision_one_endpoint_security:
+  config: null
+trend_micro_vision_one_xdr:
+  config: null
+twemproxy:
   config:
     init_config: null
     instances:
     - host: localhost
-      username: datadog
-      collect_bloat_metrics: false
-      disable_generic_tags: true
-oracle:
-  config_path: /etc/datadog-agent/conf.d/oracle.d/conf.yaml
-  config:
-    _error: "Failed to parse YAML: mapping values are not allowed here\n  in \"/etc/datadog-agent/conf.d/oracle.d/conf.yaml.example\"\
-      , line 35, column 29"
-journald:
-  config_path: /etc/datadog-agent/conf.d/journald.d/conf.yaml
-  config:
-    logs:
-    - type: journald
-ibm_db2:
-  config_path: /etc/datadog-agent/conf.d/ibm_db2.d/conf.yaml
+      port: 2222
+twistlock:
   config:
     init_config: null
     instances:
-    - db: <DATABASE_NAME>
+    - url: http://localhost:8081
+varnish:
+  config:
+    init_config: null
+    instances:
+    - varnishstat: /usr/bin/varnishstat
+vault:
+  config:
+    init_config: null
+    instances:
+    - api_url: http://localhost:8200/v1
+      no_token: false
+      use_openmetrics: true
+velero:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
+vertica:
+  config:
+    init_config: null
+    instances:
+    - null
+vllm:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8000/metrics
+voltdb:
+  config:
+    init_config: null
+    instances:
+    - password: <PASSWORD>
+      url: http://localhost:8080
       username: <USERNAME>
-      password: <PASSWORD>
-harbor:
-  config_path: /etc/datadog-agent/conf.d/harbor.d/conf.yaml
+vonage:
+  config: null
+vsphere:
   config:
     init_config: null
     instances:
-    - url: <URL>
+    - empty_default_hostname: true
+      host: <HOSTNAME>
+      password: <PASSWORD>
+      use_legacy_check_version: false
       username: <USERNAME>
-      password: <PASSWORD>
-directory:
-  config_path: /etc/datadog-agent/conf.d/directory.d/conf.yaml
+wazuh:
+  config: null
+weaviate:
   config:
     init_config: null
     instances:
-    - directory: <DIRECTORY_PATH>
-hive:
-  config_path: /etc/datadog-agent/conf.d/hive.d/conf.yaml
+    - openmetrics_endpoint: http://localhost:2112/metrics
+weblogic:
   config:
     init_config:
-      is_jmx: true
       collect_default_metrics: true
+      is_jmx: true
       new_gc_metrics: true
     instances:
-    - host: <HOST>
-      port: 8809
-singlestore:
-  config_path: /etc/datadog-agent/conf.d/singlestore.d/conf.yaml
+    - host: localhost
+      port: 9090
+win32_event_log:
+  config:
+    init_config:
+      legacy_mode: false
+    instances:
+    - null
+wincrashdetect:
+  config: null
+windows_performance_counters:
   config:
     init_config: null
     instances:
-    - host: <HOST>
-keycloak:
-  config_path: /etc/datadog-agent/conf.d/keycloak.d/conf.yaml
-  config: {}
-process:
-  config_path: /etc/datadog-agent/conf.d/process.d/conf.yaml
+    - metrics: {}
+windows_registry:
+  config: null
+windows_service:
   config:
     init_config: null
     instances:
-    - name: <NAME>
+    - services:
+      - <SERVICE_NAME_1>
+      - name: <SERVICE_NAME_2>
+      - startup_type: automatic
+        trigger_start: false
+winkmem:
+  config: null
+wmi_check:
+  config:
+    init_config: null
+    instances:
+    - class: <CLASS>
+      metrics:
+      - - <WMI_PROPERTY_NAME>
+        - <METRIC_NAME>
+        - <METRIC_TYPE>
+yarn:
+  config:
+    init_config: null
+    instances:
+    - disable_legacy_cluster_tag: true
+zeek:
+  config: null
+zero_networks:
+  config: null
+zk:
+  config:
+    init_config: null
+    instances:
+    - host: localhost
