@@ -1,7 +1,7 @@
 FROM python:3.13-slim
 
 # Install dependencies
-RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y git=1:2.39.5-0+deb12u2 && rm -rf /var/lib/apt/lists/*
 
 # Set up the working directory
 WORKDIR /app
