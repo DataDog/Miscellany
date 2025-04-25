@@ -1,0 +1,1545 @@
+active_directory:
+  config:
+    init_config: null
+    instances:
+    - null
+activemq:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: localhost
+      port: 1616
+activemq_xml:
+  config:
+    init_config: null
+    instances:
+    - url: http://localhost:8161
+adyen:
+  config: null
+aerospike:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://127.0.0.1:9145/metrics
+agent_metrics:
+  config: null
+airbyte:
+  config: null
+airflow:
+  config:
+    init_config: null
+    instances:
+    - url: <URL>
+amazon_eks:
+  config: null
+amazon_eks_blueprints:
+  config: null
+amazon_msk:
+  config:
+    init_config: null
+    instances:
+    - cluster_arn: <CLUSTER_ARN>
+      use_openmetrics: true
+ambari:
+  config:
+    init_config: null
+    instances:
+    - url: <URL>
+anthropic:
+  config: null
+anyscale:
+  config: null
+apache:
+  config:
+    init_config: null
+    instances:
+    - apache_status_url: http://localhost/server-status?auto
+      disable_generic_tags: true
+appgate_sdp:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:5556/metrics
+arangodb:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
+argo_rollouts:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8090/metrics
+argo_workflows:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:9090/metrics
+argocd:
+  config:
+    init_config: null
+    instances:
+    - null
+asana:
+  config: null
+aspdotnet:
+  config:
+    init_config: null
+    instances:
+    - null
+authorize_net:
+  config: null
+avast:
+  config: null
+avi_vantage:
+  config:
+    init_config: null
+    instances:
+    - avi_controller_url: https://<AVI_CONTROLLER_HOSTNAME>/
+aws_neuron:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8000/metrics
+azure_active_directory:
+  config: null
+azure_iot_edge:
+  config:
+    init_config: null
+    instances:
+    - edge_agent_prometheus_url: http://edgeAgent:9600/metrics
+      edge_hub_prometheus_url: http://edgeHub:9600/metrics
+bitdefender:
+  config: null
+blazemeter:
+  config: null
+boundary:
+  config:
+    init_config: null
+    instances:
+    - health_endpoint: http://localhost:9203/health
+      openmetrics_endpoint: http://localhost:9203/metrics
+brevo:
+  config: null
+btrfs:
+  config:
+    init_config: null
+    instances:
+    - null
+cacti:
+  config:
+    init_config: null
+    instances:
+    - mysql_host: localhost
+      mysql_user: <MYSQL_USER>
+      rrd_path: <CACTI_RRA_PATH>
+calico:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
+cassandra:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - cassandra_aliasing: true
+      host: localhost
+      port: 7199
+cassandra_nodetool:
+  config:
+    init_config: null
+    instances:
+    - keyspaces: []
+celery:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:5555/metrics
+ceph:
+  config:
+    init_config: null
+    instances:
+    - null
+cert_manager:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
+checkpoint_harmony_email_and_collaboration:
+  config: null
+checkpoint_quantum_firewall:
+  config: null
+cilium:
+  config:
+    init_config: null
+    instances:
+    - agent_endpoint: http://localhost:9962/metrics
+      use_openmetrics: true
+cisco_aci:
+  config:
+    init_config: null
+    instances:
+    - aci_url: http://localhost
+      pwd: <PWD>
+      username: datadog
+cisco_duo:
+  config: null
+cisco_sdwan:
+  config: null
+cisco_secure_email_threat_defense:
+  config: null
+cisco_secure_endpoint:
+  config: null
+cisco_secure_firewall:
+  config: null
+cisco_secure_web_appliance:
+  config: null
+cisco_umbrella_dns:
+  config: null
+citrix_hypervisor:
+  config:
+    init_config: null
+    instances:
+    - url: <URL>
+clickhouse:
+  config:
+    init_config: null
+    instances:
+    - server: <SERVER>
+cloud_foundry_api:
+  config:
+    init_config: null
+    instances:
+    - api_url: <API_URL>
+      client_id: <CLIENT_ID>
+      client_secret: <CLIENT_SECRET>
+cloudera:
+  config:
+    init_config:
+      workload_password: <WORKLOAD_PASSWORD>
+      workload_username: <WORKLOAD_USERNAME>
+    instances:
+    - api_url: <API_URL>
+cockroachdb:
+  config:
+    init_config: null
+    instances:
+    - null
+confluent_platform:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+      service_check_prefix: confluent
+    instances:
+    - host: <HOST>
+      port: <PORT>
+consul:
+  config:
+    init_config: null
+    instances:
+    - disable_legacy_service_tag: true
+      url: http://localhost:8500
+consul_connect:
+  config: null
+container:
+  config: null
+containerd:
+  config: null
+contentful:
+  config: null
+coredns:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://%%host%%:9153/metrics
+couch:
+  config:
+    init_config: null
+    instances:
+    - server: http://localhost:5984
+couchbase:
+  config:
+    init_config: null
+    instances:
+    - server: http://localhost:8091
+cri:
+  config: null
+crio:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: http://localhost:9090/metrics
+databricks:
+  config: null
+datadog_cluster_agent:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: http://localhost:5000/metrics
+datadog_operator:
+  config: null
+dcgm:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:9400/metrics
+ddev:
+  config: null
+delinea_privilege_manager:
+  config: null
+directory:
+  config:
+    init_config: null
+    instances:
+    - directory: <DIRECTORY_PATH>
+disk:
+  config: null
+dns_check:
+  config:
+    init_config: null
+    instances:
+    - hostname: <HOSTNAME>
+docker_daemon:
+  config:
+    init_config: null
+    instances:
+    - url: unix://var/run/docker.sock
+docs:
+  config: null
+docusign:
+  config: null
+dotnetclr:
+  config:
+    init_config: null
+    instances:
+    - null
+druid:
+  config:
+    init_config: null
+    instances:
+    - url: <DRUID_COORDINATOR_URL>
+duckdb:
+  config:
+    init_config: null
+    instances:
+    - db_name: /path-to-file/my_database.db
+      min_collection_interval: 60
+ecs_fargate:
+  config:
+    init_config: null
+    instances:
+    - min_collection_interval: 20
+eks_anywhere:
+  config: null
+eks_fargate:
+  config:
+    init_config: null
+    instances:
+    - null
+elastic:
+  config:
+    init_config: null
+    instances:
+    - disable_legacy_service_check_tags: true
+      url: http://localhost:9200
+envoy:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:80/stats/prometheus
+esxi:
+  config:
+    init_config: null
+    instances:
+    - empty_default_hostname: true
+      host: <HOSTNAME>
+      password: <PASSWORD>
+      username: <USERNAME>
+etcd:
+  config:
+    init_config: null
+    instances:
+      prometheus_url: http://localhost:2379/metrics
+exchange_server:
+  config:
+    init_config: null
+    instances:
+    - null
+external_dns:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: http://localhost:7979/metrics
+extrahop:
+  config: null
+falco:
+  config: null
+flink:
+  config: null
+fluentd:
+  config:
+    init_config: null
+    instances:
+    - monitor_agent_url: http://example.com:24220/api/plugins.json
+fluxcd:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
+fly_io:
+  config:
+    init_config: null
+    instances:
+    - empty_default_hostname: true
+      headers:
+        Authorization: Bearer <FLY_ACCESS_TOKEN>
+      machines_api_endpoint: http://_api.internal:4280
+      org_slug: <ORG_SLUG>
+forcepoint_secure_web_gateway:
+  config: null
+forcepoint_security_service_edge:
+  config: null
+foundationdb:
+  config:
+    init_config: null
+    instances:
+    - null
+freshservice:
+  config: null
+gearmand:
+  config:
+    init_config: null
+    instances:
+    - null
+genesys:
+  config: null
+gitlab:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://<GITLAB_URL>/-/metrics
+gitlab_runner:
+  config:
+    init_config:
+      allowed_metrics:
+      - ci_docker_machines_provider_machine_creation_duration_seconds
+      - ci_docker_machines_provider_machine_states
+      - ci_runner_builds
+      - ci_runner_errors
+      - ci_ssh_docker_machines_provider_machine_creation_duration_seconds
+      - ci_ssh_docker_machines_provider_machine_states
+      - gitlab_runner_autoscaling_machine_creation_duration_seconds
+      - gitlab_runner_autoscaling_machine_states
+      - gitlab_runner_errors_total
+      - gitlab_runner_jobs
+      - gitlab_runner_version_info
+      - go_gc_duration_seconds
+      - go_goroutines
+      - go_memstats_alloc_bytes
+      - go_memstats_alloc_bytes_total
+      - go_memstats_buck_hash_sys_bytes
+      - go_memstats_frees_total
+      - go_memstats_gc_sys_bytes
+      - go_memstats_heap_alloc_bytes
+      - go_memstats_heap_idle_bytes
+      - go_memstats_heap_inuse_bytes
+      - go_memstats_heap_objects
+      - go_memstats_heap_released_bytes_total
+      - go_memstats_heap_sys_bytes
+      - go_memstats_last_gc_time_seconds
+      - go_memstats_lookups_total
+      - go_memstats_mallocs_total
+      - go_memstats_mcache_inuse_bytes
+      - go_memstats_mcache_sys_bytes
+      - go_memstats_mspan_inuse_bytes
+      - go_memstats_mspan_sys_bytes
+      - go_memstats_next_gc_bytes
+      - go_memstats_other_sys_bytes
+      - go_memstats_stack_inuse_bytes
+      - go_memstats_stack_sys_bytes
+      - go_memstats_sys_bytes
+      - process_cpu_seconds_total
+      - process_max_fds
+      - process_open_fds
+      - process_resident_memory_bytes
+      - process_start_time_seconds
+      - process_virtual_memory_bytes
+    instances:
+    - gitlab_url: <GITLAB_URL>
+      prometheus_endpoint: http://<PROMETHEUS_ENDPOINT>:<PROMETHEUS_PORT>/metrics
+gke:
+  config: null
+glusterfs:
+  config:
+    init_config: null
+    instances:
+    - min_collection_interval: 60
+go-metro:
+  config:
+    init_config:
+      exp_ttl: 60
+      idle_ttl: 300
+      log_level: info
+      log_to_file: true
+      snaplen: 512
+      statsd_ip: 127.0.0.1
+      statsd_port: 8125
+    instances:
+    - hosts:
+      - <HOSTNAME>
+      interface: eth0
+      ips:
+      - <IP>
+go_expvar:
+  config:
+    init_config: null
+    instances:
+    - expvar_url: http://localhost:8080
+godaddy:
+  config: null
+gpu:
+  config: null
+greenhouse:
+  config: null
+gunicorn:
+  config:
+    init_config: null
+    instances:
+    - proc_name: <PROC_NAME>
+haproxy:
+  config:
+    init_config: null
+    instances: null
+harbor:
+  config:
+    init_config: null
+    instances:
+    - password: <PASSWORD>
+      url: <URL>
+      username: <USERNAME>
+hazelcast:
+  config:
+    init_config:
+      collect_default_metrics: true
+      new_gc_metrics: true
+    instances:
+    - null
+hdfs_datanode:
+  config:
+    init_config: null
+    instances:
+    - hdfs_datanode_jmx_uri: http://localhost:9864
+hdfs_namenode:
+  config:
+    init_config: null
+    instances:
+    - hdfs_namenode_jmx_uri: http://localhost:9870
+helm:
+  config: null
+hive:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: <HOST>
+      port: 8809
+hivemq:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: <HOST>
+      port: 9010
+http_check:
+  config:
+    init_config: null
+    instances:
+    - name: My first service
+      url: http://some.url.example.com
+hubspot_content_hub:
+  config: null
+hudi:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: <HOST>
+      port: <PORT>
+hyperv:
+  config:
+    init_config: null
+    instances:
+    - null
+iam_access_analyzer:
+  config: null
+ibm_ace:
+  config:
+    init_config: null
+    instances:
+    - channel: <CHANNEL>
+      mq_port: 1414
+      mq_server: <MQ_SERVER>
+      queue_manager: <QUEUE_MANAGER>
+ibm_db2:
+  config:
+    init_config: null
+    instances:
+    - db: <DATABASE_NAME>
+      password: <PASSWORD>
+      username: <USERNAME>
+ibm_i:
+  config:
+    init_config: null
+    instances:
+    - null
+ibm_mq:
+  config:
+    init_config: null
+    instances:
+    - channel: DEV.ADMIN.SVRCONN
+      queue_manager: datadog
+ibm_was:
+  config:
+    init_config: null
+    instances:
+    - servlet_url: http://localhost:<PORT>/wasPerfTool/servlet/perfservlet
+ignite:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: <HOST>
+      port: 49112
+iis:
+  config:
+    init_config: null
+    instances:
+    - null
+impala:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://%%host%%:25000/metrics_prometheus
+      service_type: daemon
+incident_io:
+  config: null
+infiniband:
+  config:
+    init_config: null
+    instances:
+    - null
+intercom:
+  config: null
+istio:
+  config:
+    init_config: null
+    instances:
+    - tag_by_endpoint: true
+      use_openmetrics: true
+ivanti_connect_secure:
+  config: null
+ivanti_nzta:
+  config: null
+jboss_wildfly:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+      service_check_prefix: jboss
+    instances:
+    - jmx_url: service:jmx:remote+http://localhost:9990
+jmeter:
+  config: null
+journald:
+  config:
+    logs:
+    - type: journald
+kafka:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: localhost
+      port: 9999
+kafka_consumer:
+  config:
+    init_config: null
+    instances:
+    - kafka_connect_str: <KAFKA_CONNECT_STR>
+karpenter:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8000/metrics
+keda:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8080/metrics
+keycloak:
+  config: null
+kong:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8001/metrics
+kube_apiserver_metrics:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: https://localhost:443/metrics
+kube_controller_manager:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: http://localhost:10252/metrics
+kube_dns:
+  config:
+    init_config: null
+    instances:
+    - prometheus_endpoint: http://localhost:10055/metrics
+kube_metrics_server:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: https://localhost:443/metrics
+kube_proxy:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: http://127.0.0.1:10249/metrics
+kube_scheduler:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: http://localhost:10251/metrics
+kubeflow:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://<prometheus-service>:9090/metrics
+kubelet:
+  config:
+    init_config: null
+    instances:
+    - min_collection_interval: 20
+kubernetes:
+  config: null
+kubernetes_admission:
+  config: null
+kubernetes_cluster_autoscaler:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8085/metrics
+kubernetes_state:
+  config:
+    init_config: null
+    instances:
+    - kube_state_url: http://example.com:8080/metrics
+kubernetes_state_core:
+  config:
+    init_config: null
+    instances:
+    - null
+kubevirt_api:
+  config:
+    init_config: null
+    instances:
+    - null
+kubevirt_controller:
+  config:
+    init_config: null
+    instances:
+    - null
+kubevirt_handler:
+  config:
+    init_config: null
+    instances:
+    - null
+kyototycoon:
+  config:
+    init_config: null
+    instances:
+    - report_url: http://localhost:1978/rpc/report
+kyverno:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8000/metrics
+langchain:
+  config: null
+lastpass:
+  config: null
+lighttpd:
+  config:
+    init_config: null
+    instances:
+    - lighttpd_status_url: http://localhost/server-status?auto
+linkerd:
+  config:
+    init_config: null
+    instances:
+    - exclude_labels:
+      - destination_service
+      tag_by_endpoint: false
+linux_proc_extras:
+  config:
+    init_config: null
+    instances:
+    - null
+mailchimp:
+  config: null
+mapr:
+  config:
+    init_config: null
+    instances:
+    - disable_legacy_cluster_tag: true
+mapreduce:
+  config:
+    init_config: null
+    instances:
+    - cluster_name: <MAPREDUCE_CLUSTER_NAME>
+      disable_legacy_cluster_tag: true
+      resourcemanager_uri: http://localhost:8088
+marathon:
+  config:
+    init_config: null
+    instances:
+    - url: https://<SERVER>:<PORT>
+marklogic:
+  config:
+    init_config: null
+    instances:
+    - url: http://localhost:8002
+mcache:
+  config:
+    init_config: null
+    instances:
+    - null
+mesos_master:
+  config:
+    init_config: null
+    instances:
+    - url: http://localhost:5050
+mesos_slave:
+  config:
+    init_config: null
+    instances:
+    - url: http://localhost:5051
+metabase:
+  config: null
+milvus:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:9091/metrics
+mimecast:
+  config: null
+mongo:
+  config:
+    init_config: null
+    instances:
+    - hosts:
+      - <HOST>:<PORT>
+mux:
+  config: null
+mysql:
+  config:
+    init_config: null
+    instances:
+    - disable_generic_tags: true
+      host: localhost
+      password: <PASSWORD>
+      port: 3306
+      username: datadog
+nagios:
+  config:
+    init_config: null
+    instances:
+    - nagios_conf: /etc/nagios3/nagios.cfg
+network:
+  config: null
+network_path:
+  config: null
+nfsstat:
+  config:
+    init_config: null
+    instances:
+    - null
+nginx:
+  config:
+    init_config: null
+    instances:
+    - disable_generic_tags: true
+      nginx_status_url: http://localhost:81/nginx_status/
+      only_query_enabled_endpoints: true
+nginx_ingress_controller:
+  config:
+    init_config: null
+    instances:
+    - prometheus_url: http://localhost:10254/metrics
+ntp:
+  config: null
+nvidia_jetson:
+  config: null
+nvidia_nim:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8000/metrics
+nvidia_triton:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8002/metrics
+octopus_deploy:
+  config:
+    init_config: null
+    instances:
+    - headers:
+        X-Octopus-ApiKey: <OCTOPUS_API_KEY>
+      octopus_endpoint: http://localhost:80
+oke:
+  config: null
+okta_workflows:
+  config: null
+oom_kill:
+  config: null
+openai:
+  config: null
+openldap:
+  config:
+    init_config: null
+    instances:
+    - url: ldaps://localhost:636
+openmetrics:
+  config:
+    init_config: null
+    instances:
+    - metrics: []
+      tag_by_endpoint: false
+openshift:
+  config: null
+openstack:
+  config:
+    init_config:
+      keystone_server_url: https://<KEYSTONE_SERVER_ENDPOINT>:<PORT>/
+    instances:
+    - name: <INSTANCE_NAME>
+      user:
+        domain:
+          id: <DOMAIN_ID>
+        name: <USER_NAME>
+        password: <PASSWORD>
+openstack_controller:
+  config:
+    init_config: null
+    instances:
+      cinder_microversion: volume 3.70
+      ironic_microversion: '1.80'
+      nova_microversion: '2.93'
+      use_legacy_check_version: false
+oracle:
+  config:
+    init_config: null
+    instances:
+    - password: <PASSWORD>
+      server: localhost:1521
+      service_name: <SERVICE_NAME>
+      username: <USERNAME>
+orca_security:
+  config: null
+ossec_security:
+  config: null
+otel:
+  config: null
+palo_alto_cortex_xdr:
+  config: null
+palo_alto_panorama:
+  config: null
+pan_firewall:
+  config:
+    logs:
+    - port: 10518
+      service: firewall
+      source: pan.firewall
+      type: tcp
+pdh_check:
+  config:
+    init_config: null
+    instances:
+    - countersetname: <COUNTER_SET_NAME>
+      metrics:
+      - - <COUNTER_NAME>
+        - <METRIC_NAME>
+        - <METRIC_TYPE>
+pgbouncer:
+  config:
+    init_config: null
+    instances:
+    - null
+php_fpm:
+  config:
+    init_config: null
+    instances:
+    - null
+ping_federate:
+  config: null
+ping_one:
+  config: null
+pivotal_pks:
+  config: null
+plaid:
+  config: null
+plivo:
+  config: null
+podman:
+  config: null
+postfix:
+  config:
+    init_config: null
+    instances:
+    - directory: /var/spool/postfix
+      queues:
+      - incoming
+      - active
+      - deferred
+postgres:
+  config:
+    init_config: null
+    instances:
+    - collect_bloat_metrics: false
+      disable_generic_tags: true
+      host: localhost
+      username: datadog
+postmark:
+  config: null
+powerdns_recursor:
+  config:
+    init_config: null
+    instances:
+    - api_key: <API_KEY>
+      host: 127.0.0.1
+      port: 8082
+presto:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: localhost
+      port: 9999
+process:
+  config:
+    init_config: null
+    instances:
+    - name: <NAME>
+prometheus:
+  config:
+    init_config: null
+    instances:
+    - metrics:
+      - <METRIC_TO_FETCH>: <NEW_METRIC_NAME>
+      - <METRIC_TO_FETCH>
+      namespace: <SERVICE_NAME>
+      prometheus_url: http://localhost:10055/metrics
+proxysql:
+  config:
+    init_config: null
+    instances:
+    - host: <PROXYSQL_HOST>
+      password: <PROXYSQL_ADMIN_PASSWORD>
+      port: <PORT>
+      username: <PROXYSQL_ADMIN_USER>
+pulsar:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8080/metrics
+quarkus:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8080/q/metrics
+rabbitmq:
+  config:
+    init_config: null
+    instances:
+    - prometheus_plugin:
+        url: http://localhost:15692
+    - null
+ray:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
+redisdb:
+  config:
+    init_config: null
+    instances:
+    - host: localhost
+      port: 6379
+rethinkdb:
+  config:
+    init_config: null
+    instances:
+    - host: localhost
+      port: 28015
+riak:
+  config:
+    init_config: null
+    instances:
+    - url: http://127.0.0.1:8098/stats
+riakcs:
+  config:
+    init_config: null
+    instances:
+    - null
+ringcentral:
+  config: null
+sanity:
+  config: null
+sap_hana:
+  config:
+    init_config: null
+    instances:
+    - password: <PASSWORD>
+      server: <SERVER>
+      username: <USERNAME>
+scylla:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:9180/metrics
+servicenow_performance:
+  config: null
+shopify:
+  config: null
+sidekiq:
+  config: null
+silk:
+  config:
+    init_config: null
+    instances:
+    - host_address: https://localhost:443
+silverstripe_cms:
+  config:
+    instances:
+    - SILVERSTRIPE_DATABASE_NAME: <DATABASE_NAME>
+      SILVERSTRIPE_DATABASE_PASSWORD: <PASSWORD>
+      SILVERSTRIPE_DATABASE_PORT: 5432
+      SILVERSTRIPE_DATABASE_SERVER_IP: <IP_ADDRESS>
+      SILVERSTRIPE_DATABASE_TYPE: <DATABASE_TYPE>
+      SILVERSTRIPE_DATABASE_USERNAME: <USERNAME>
+      min_collection_interval: 15
+singlestore:
+  config:
+    init_config: null
+    instances:
+    - host: <HOST>
+slurm:
+  config:
+    init_config: null
+    instances:
+    - min_collection_interval: 60
+snmp:
+  config:
+    init_config:
+      loader: core
+      use_device_id_as_hostname: true
+    instances:
+    - loader: core
+      use_device_id_as_hostname: true
+snmp_american_power_conversion:
+  config: null
+snmp_arista:
+  config: null
+snmp_aruba:
+  config: null
+snmp_chatsworth_products:
+  config: null
+snmp_check_point:
+  config: null
+snmp_cisco:
+  config: null
+snmp_dell:
+  config: null
+snmp_f5:
+  config: null
+snmp_fortinet:
+  config: null
+snmp_hewlett_packard_enterprise:
+  config: null
+snmp_juniper:
+  config: null
+snmp_netapp:
+  config: null
+snowflake:
+  config:
+    init_config: null
+    instances:
+    - account: <ORG_NAME>-<ACCOUNT_NAME>
+      disable_generic_tags: true
+      min_collection_interval: 3600
+      role: <ROLE>
+      username: <USER>
+solr:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: <HOST>
+      port: 9999
+sonarqube:
+  config:
+    init_config:
+      collect_default_metrics: true
+      new_gc_metrics: true
+    instances:
+    - null
+    - null
+sonatype_nexus:
+  config:
+    init_config: null
+    instances:
+    - min_collection_interval: 600
+      password: test_password
+      server_url: https://0.0.0.0:8081
+      username: test_username
+sonicwall_firewall:
+  config: null
+sophos_central_cloud:
+  config: null
+spark:
+  config:
+    init_config: null
+    instances:
+    - cluster_name: <CLUSTER_NAME>
+      disable_legacy_cluster_tag: true
+      spark_url: http://localhost:8080
+sqlserver:
+  config:
+    init_config: null
+    instances:
+    - autodiscovery_db_service_check: false
+      host: <HOST>,<PORT>
+squid:
+  config:
+    init_config: null
+    instances:
+    - name: <NAME>
+ssh_check:
+  config:
+    init_config: null
+    instances:
+    - host: localhost
+      username: <USERNAME>
+statsd:
+  config:
+    init_config: null
+    instances:
+    - null
+streamnative:
+  config: null
+strimzi:
+  config:
+    init_config: null
+    instances:
+    - null
+supabase:
+  config:
+    init_config: null
+    instances:
+    - null
+supervisord:
+  config:
+    init_config: null
+    instances:
+    - name: <SUPERVISORD_SERVER_NAME>
+suricata:
+  config: null
+symantec_endpoint_protection:
+  config: null
+symantec_vip:
+  config: null
+system_core:
+  config:
+    init_config: null
+    instances:
+    - null
+system_swap:
+  config:
+    init_config: null
+    instances:
+    - null
+systemd:
+  config: null
+tanium:
+  config: null
+tcp_check:
+  config:
+    init_config: null
+    instances:
+    - host: <TCP_HOST_TO_CONNECT_TO>
+      name: <TCP_CHECK_INSTANCE_NAME>
+      port: <PORT>
+tcp_queue_length:
+  config: null
+teamcity:
+  config:
+    init_config: null
+    instances:
+    - server: http://teamcity.<ACCOUNT_NAME>.com
+      use_openmetrics: true
+    - server: http://teamcity.<ACCOUNT_NAME>.com
+tekton:
+  config:
+    init_config: null
+    instances:
+    - null
+teleport:
+  config:
+    init_config: null
+    instances:
+    - teleport_url: http://127.0.0.1
+temporal:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
+temporal_cloud:
+  config: null
+tenable:
+  config:
+    logs:
+    - path: /opt/nessus/var/nessus/logs/backend.log
+      service: nessus_backend
+      source: tenable
+      type: file
+    - path: /opt/nessus/var/nessus/logs/www_server.log
+      service: nessus_webserver
+      source: tenable
+      type: file
+tenable_io:
+  config: null
+teradata:
+  config:
+    init_config: null
+    instances:
+    - database: <DATABASE>
+      server: <SERVER>
+terraform:
+  config: null
+tibco_ems:
+  config:
+    init_config: null
+    instances:
+    - null
+tls:
+  config:
+    init_config: null
+    instances:
+    - server: <SERVER>
+tokumx:
+  config:
+    init_config: null
+    instances:
+    - server: mongodb://localhost:27017
+tomcat:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: localhost
+      port: 9012
+torchserve:
+  config:
+    init_config: null
+    instances:
+    - null
+    - null
+    - null
+traefik_mesh:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://<PROXY_ENDPOINT>:<METRICS_PORT>
+traffic_server:
+  config:
+    init_config: null
+    instances:
+    - metric_patterns:
+        include:
+        - traffic_server.node.*
+        - traffic_server.process.http.code.*
+        - traffic_server.process.http(s|2)?.*current
+        - traffic_server.process.http(s|2)?.*_requests
+        - traffic_server.process.http(s|2)?.*_connections
+        - traffic_server.process.http.transaction_.*
+        - traffic_server.process.hostdb.*
+        - traffic_server.process.dns.*
+        - traffic_server.process.traffic_server.memory.rss
+        - traffic_server.process.eventloop.*
+        - traffic_server.process.ssl.user_agent_session.*
+        - traffic_server.process.ssl.ssl_error.*
+        - traffic_server.process.ssl.user_agent_sessions
+        - traffic_server.process.cache.total.*
+        - traffic_server.process.cache.volume.dir.*
+        - traffic_server.process.cache.volume.percent_full
+        - traffic_server.process.cache.volume.bytes.*
+        - traffic_server.process.cache.volume.ram_cache.*
+      traffic_server_url: http://localhost:8080/_stats
+trellix_endpoint_security:
+  config: null
+trend_micro_email_security:
+  config: null
+trend_micro_vision_one_endpoint_security:
+  config: null
+trend_micro_vision_one_xdr:
+  config: null
+twemproxy:
+  config:
+    init_config: null
+    instances:
+    - host: localhost
+      port: 2222
+twistlock:
+  config:
+    init_config: null
+    instances:
+    - url: http://localhost:8081
+varnish:
+  config:
+    init_config: null
+    instances:
+    - varnishstat: /usr/bin/varnishstat
+vault:
+  config:
+    init_config: null
+    instances:
+    - api_url: http://localhost:8200/v1
+      no_token: false
+      use_openmetrics: true
+velero:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: <OPENMETRICS_ENDPOINT>
+vertica:
+  config:
+    init_config: null
+    instances:
+    - null
+vllm:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:8000/metrics
+voltdb:
+  config:
+    init_config: null
+    instances:
+    - password: <PASSWORD>
+      url: http://localhost:8080
+      username: <USERNAME>
+vonage:
+  config: null
+vsphere:
+  config:
+    init_config: null
+    instances:
+    - empty_default_hostname: true
+      host: <HOSTNAME>
+      password: <PASSWORD>
+      use_legacy_check_version: false
+      username: <USERNAME>
+wazuh:
+  config: null
+weaviate:
+  config:
+    init_config: null
+    instances:
+    - openmetrics_endpoint: http://localhost:2112/metrics
+weblogic:
+  config:
+    init_config:
+      collect_default_metrics: true
+      is_jmx: true
+      new_gc_metrics: true
+    instances:
+    - host: localhost
+      port: 9090
+win32_event_log:
+  config:
+    init_config:
+      legacy_mode: false
+    instances:
+    - null
+wincrashdetect:
+  config: null
+windows_performance_counters:
+  config:
+    init_config: null
+    instances:
+    - metrics: {}
+windows_registry:
+  config: null
+windows_service:
+  config:
+    init_config: null
+    instances:
+    - services:
+      - <SERVICE_NAME_1>
+      - name: <SERVICE_NAME_2>
+      - startup_type: automatic
+        trigger_start: false
+winkmem:
+  config: null
+wmi_check:
+  config:
+    init_config: null
+    instances:
+    - class: <CLASS>
+      metrics:
+      - - <WMI_PROPERTY_NAME>
+        - <METRIC_NAME>
+        - <METRIC_TYPE>
+yarn:
+  config:
+    init_config: null
+    instances:
+    - disable_legacy_cluster_tag: true
+zeek:
+  config: null
+zero_networks:
+  config: null
+zk:
+  config:
+    init_config: null
+    instances:
+    - host: localhost
