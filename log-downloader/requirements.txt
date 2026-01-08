@@ -1,4 +1,4 @@
-certifi==2019.6.16
+certifi==2025.11.12
 chardet==3.0.4
 datadog==0.29.3
 decorator==4.4.0
