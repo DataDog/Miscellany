@@ -1,5 +1,5 @@
 backports.shutil-get-terminal-size==1.0.0
-certifi==2017.7.27.1
+certifi==2025.11.12
 chardet==3.0.4
 colorama==0.3.9
 cursor==1.2.0
