@@ -7,9 +7,9 @@ datadog==0.28.0
 decorator==4.1.2
 enum34==1.1.6
 halo==0.0.23
-idna==2.6
+idna==2.10
 log-symbols==0.0.12
-requests==2.20.0
+requests==2.34.2
 simplejson==3.11.1
 six==1.11.0
 spinners==0.0.23
