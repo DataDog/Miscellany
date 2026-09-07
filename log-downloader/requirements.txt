@@ -4,4 +4,4 @@ datadog==0.29.3
 decorator==4.4.0
 idna==2.8
 requests==2.22.0
-urllib3==1.25.3
+urllib3==2.7.0
