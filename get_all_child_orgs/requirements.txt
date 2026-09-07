@@ -1,10 +1,10 @@
 asn1crypto==0.24.0
 backports.shutil-get-terminal-size==1.0.0
 certifi==2019.3.9
-cffi==1.12.3
+cffi==2.1.1
 chardet==3.0.4
 colorama==0.3.9
-cryptography==1.8.1
+cryptography==50.0.1
 cursor==1.2.0
 enum34==1.1.6
 halo==0.0.23
@@ -14,7 +14,7 @@ keyring==10.3.2
 log-symbols==0.0.12
 packaging==19.0
 pycookiecheat==0.3.5
-pycparser==2.19
+pycparser==3.0
 pyparsing==2.4.0
 requests==2.20.0
 six==1.11.0
